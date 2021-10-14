@@ -44,6 +44,40 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
 
                             <h3><i class="fa fa-cart-plus bigfonts" aria-hidden="true"></i><b>&nbsp;Stock  Report </b></h3>
                         </div>
+                        <div class="form-group row">
+                        <div class="form-group col-sm-3">
+                                    <select id="itemwise" class="form-control form-control-sm" name="itemwise">
+                                        <option selected value="">--Select Item--</option>
+                                        <?php
+                                        $sql = mysqli_query($dbcon,"SELECT * FROM salesitemaster2");
+                                        while ($row = $sql->fetch_assoc()){	
+                                            $itemname=$row['itemname'];
+                                            echo '<option  value="'.$itemname.'" >'.$itemname.'</option>';
+
+                                        }
+                                        ?>
+                                    </select>
+
+                                </div>
+                        <div class="form-group col-sm-3">
+                                    <select id="brandwise" class="form-control form-control-sm" name="brandwise">
+                                        <option selected value="">--Select Brand--</option>
+                                        <?php
+                                        $sql = mysqli_query($dbcon,"SELECT * FROM brandmaster");
+                                        while ($row = $sql->fetch_assoc()){	
+                                            $brandname=$row['brand'];
+                                            echo '<option  value="'.$brandname.'" >'.$brandname.' </option>';
+
+                                        }
+                                        ?>
+                                    </select>
+
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="filter_table();">Run Filter</button>
+                                </div>
+ 
+                                    </div>
 
                         <div class="card-body">
 
@@ -66,8 +100,26 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                                         <tbody>
                                             <?php
 
-                                            $sql = "SELECT * from salesitemaster2 ORDER BY id DESC;";    
+                                                if((isset($_GET['itemwise']) && $_GET['itemwise']!=='')||(isset($_GET['brandwise'])&&$_GET['brandwise']!='')){
+                                                    $itemwise = $_GET['itemwise'];
+                                                    $brandwise = $_GET['brandwise'];
 
+
+                                                $sql = "SELECT * from salesitemaster2 s where 1=1";
+                                                if(isset($_GET['itemwise'])&&$_GET['itemwise']!=''){
+
+                                                    $sql.=" and s.itemname='".$_GET['itemwise']."'";    
+                                                }
+                                                if(isset($_GET['brandwise'])&&$_GET['brandwise']!=''){
+
+                                                    $sql.=" and s.brand='".$_GET['brandwise']."'";    
+                                                }
+
+                                                }else{
+                                        //  $sql = "SELECT * from salesitemaster2";    
+                                                
+                                            $sql = "SELECT * from salesitemaster2 ORDER BY id DESC;";    
+                                                }
 
                                             $result = mysqli_query($dbcon,$sql);
                                             if ($result->num_rows > 0){
@@ -120,9 +172,13 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 <script>
+     var page_itemwise = "<?php if(isset($_GET['itemwise'])){ echo $_GET['itemwise']; } ?>";
+       var page_brandwise = "<?php if(isset($_GET['brandwise'])){ echo $_GET['brandwise']; } ?>";
+
 
     $(document).ready(function() {
-
+        $('#itemwise').val(page_itemwise);
+        $('#brandwise').val(page_brandwise);
 
         //var printhead = 'Stock Inward';
         //var excel_printhead = 'Stock Inward';
@@ -202,6 +258,11 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
 
 
     });
+    function filter_table(){
+        var itemwise = $('#itemwise').val();
+        var brandwise = $('#brandwise').val();
+        location.href="StockOutwardReports.php?itemwise="+itemwise+"&brandwise="+brandwise;
+    }
 
 </script>
 <?php

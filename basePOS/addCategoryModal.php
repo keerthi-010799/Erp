@@ -5,6 +5,7 @@ if(isset($_POST['category']))
 {
 	$code ="";
 	$prefix = "CAT00";
+	$return = array();
 	
     $category=$_POST['category'];//same
    // $description = $_POST['description'];//same
@@ -13,13 +14,13 @@ if(isset($_POST['category']))
     $run_query=mysqli_query($dbcon,$check_suptype_query);
 	if(mysqli_num_rows($run_query)>0)
     {
-		echo '0';
-      
-        exit();
+		$return['status'] = false;
+		$return['error']  = 'Error in inserting new Category,try another unique category';	
     }
-   //$image =base64_encode($image);	
-//Generating Category Codes
-$sql="SELECT MAX(id) as latest_id FROM itemcategory ORDER BY id DESC";
+      //$image =base64_encode($image);	
+      //Generating Category Codes
+ else{
+  $sql="SELECT MAX(id) as latest_id FROM itemcategory ORDER BY id DESC";
 	if($result = mysqli_query($dbcon,$sql)){
 		$row   = mysqli_fetch_assoc($result);
 		if(mysqli_num_rows($result)>0){
@@ -36,16 +37,20 @@ $sql="SELECT MAX(id) as latest_id FROM itemcategory ORDER BY id DESC";
 	 $insert_itemcategory="insert into itemcategory(`code`,`category`) 
 	VALUES ('$code','$category')";													    
 	//echo "$insert_paymenterm";
-	
 	if(mysqli_query($dbcon,$insert_itemcategory))
 	{
-		echo 	$category;
+		$return['status'] = true;
+		$return['data'] = $category;
 		//echo "<script>alert('User Group creation Successful ')</script>";
 		//header("location:addUsers.php");
     } else {
-		echo '0';
-		exit; //echo "<script>alert('User creation unsuccessful ')</script>";
+		$return['error']='Erron in creating category';
+		// echo '0';
+		// exit; //echo "<script>alert('User creation unsuccessful ')</script>";
 	}
-	
 }
+}
+
+echo json_encode($return);
+
 ?>

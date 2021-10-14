@@ -92,7 +92,7 @@ include('workers/getters/functions.php');
                                                 $end = date('Y-m-d', $timestamp);
                                                 $custwise = $_GET['custwise'];
 
-                                             echo   $sql = "SELECT * from customer_payments cp,customerprofile c,invoices i where 1=1 ";
+                                                $sql = "SELECT * from customer_payments cp,customerprofile c,invoices i where 1=1 ";
                                                 if($_GET['st']!=''){
                                                     if($st==$end){
                                                         $sql.= " and cp.cust_payment_date='$st' ";   

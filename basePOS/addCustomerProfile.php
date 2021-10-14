@@ -85,7 +85,7 @@ $prefix = "CUSTID-";
 	{
    
 		echo "<script>alert('Customer Profile creation Successful ')</script>";
-		header("location:listCustomerProfile.php");
+		//header("location:listCustomerProfile.php");
     } else { die('Error: ' . mysqli_error($dbcon));
 		exit;
 	}
@@ -149,9 +149,9 @@ $prefix = "CUSTID-";
 														
 																
 								    <div class="form-row">
-								<div class="form-group col-md-3">
-									  <label for="inputState">Title</label>
-									  <select required id="inputState" class="form-control form-control-sm"  name="title">
+								      <div class="form-group col-md-3">
+									   <label for="inputState">Title</label>
+									   <select required id="inputState" class="form-control form-control-sm"  name="title">
 										<span class="text-muted"> 
 										<option value="" >Salutation</option></span>
 										<option value="M/S.">MS.</option>
@@ -221,7 +221,7 @@ $prefix = "CUSTID-";
 										<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
 										<button type="button" name="submitcustype" id="submitcustype" class="btn btn-primary">Save and Associate</button>
 									  </div>
-									</div>
+												</form>
 								  </div>
 								</div>
 								</div>

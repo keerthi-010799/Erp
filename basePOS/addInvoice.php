@@ -4,9 +4,173 @@ include('header.php');
 
 <!-- End Sidebar -->
 
+<div class="modal fade custom-modal" id="newcustomermodal" tabindex="-1" role="dialog" aria-labelledby="customModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+    <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Add New Customer</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        <div class="modal-body">   
+            <form autocomplete="off" id="new_customer_form" action="#" enctype="multipart/form-data" method="post">								
+				<div class="form-row">
+					<div class="form-group col-md-3">
+							<label for="inputState">Title</label>
+							<select required id="inputState" class="form-control form-control-sm"  name="title">
+								<span class="text-muted"> 
+								<option value="" >Salutation</option></span>
+								<option value="M/S.">MS.</option>
+								<option value="Mr.">Mr.</option>
+								<option value="Mrs.">Mrs.</option>
+								<option value="Mrs.">Dr.</option>
+							</select>
+                    </div>
+                    <div class="form-group col-md-8">
+						 <label >Name<span class="text-danger">*</span></label>
+		    			  <input type="text" class="form-control form-control-sm" name="custname" placeholder="Customer Full Name/Display Name" required class="form-control" autocomplete="off">
+				    </div>
+				</div>
+                <div class="form-row">
+                    <div class="form-group col-md-11">
+                        <label for="inputState">Customer Type</label>
+                        <select required id="custype" onchange="onlocode(this)"  class="form-control form-control-sm" name="custype">
+                            <option value="">Open Customer Type</option>
+                                <?php 
+                                 include("database/db_conection.php");//make connection here
+                                 $sql = mysqli_query($dbcon, "SELECT custype FROM custype");
+                                 while ($row = $sql->fetch_assoc()){	
+                                 echo $custype=$row['custype'];
+                                 echo '<option onchange="'.$row[''].'" value="'.$custype.'" >'.$custype.'</option>';
+                                }
+                                ?>
+                        </select>
+								
+					</div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-11">
+                        <label for="inputState">Business Location</label>
+                        <select id="locname" onchange="onlocode(this)" class="form-control form-control-sm" name="blocation">
+                            <option value="">Open Location</option>                        
+							<?php 
+                                include("database/db_conection.php");//make connection here
+                                $sql = mysqli_query($dbcon, "SELECT code,description FROM state");
+                                while ($row = $sql->fetch_assoc()){	
+								 $code=$row['code'];
+                                 $description=$row['description'];
+                                 echo '<option  value="'.$description.'" >'.$description.'</option>';                                                      
+                                }
+                            ?>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+					<div class="form-group col-md-9">
+					  <h4 class="col-md-12 text-muted"><b>Customer Address &nbsp;</b></h4>
+					</div>
+				</div>				
+				<div class="form-group row">
+					<div class="col-md-11"> 
+						<input type="text" placeholder="No,Street " name="address" class="form-control form-control-sm"> 
+					</div>
+				</div>
+                <div class="form-row">
+					<div class="form-group col-md-11">
+					   <input type="text" class="form-control form-control-sm" required name="city"  placeholder="City/town/village *">
+					</div>
+				</div>
+                <div class="form-row">
+			        <div class="form-group col-md-4">
+                        <select required id="inputState" onchange="onlocode(this)"  class="form-control form-control-sm" name="state">
+                            <span class="text-muted">  <option value="">State/Union Territory *</option> </span>
+                            <?php 
+                              include("database/db_conection.php");//make connection here
+                              $sql = mysqli_query($dbcon, "SELECT code,description FROM state");
+                              while ($row = $sql->fetch_assoc()){	
+								$code=$row['code'];
+                                $description=$row['description'];
+                                echo '<option  value="'.$code.'" >'.$description.'</option>';                                                      
+                              }
+                            ?>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-4">
+                        <select required id="inputState" onchange="onlocode(this)"  class="form-control form-control-sm" name="country">
+                            <span class="text-muted"> <option value="">Country *</option> </span>
+                            <?php 
+                                include("database/db_conection.php");//make connection here
+                                $sql = mysqli_query($dbcon, "SELECT code,description FROM country");
+                                while ($row = $sql->fetch_assoc()){	
+                                    $code=$row['code'];
+                                    $description=$row['description'];
+                                    echo '<option  value="'.$code.'" >'.$description.'</option>';        
+                                }
+                            ?>
+                        </select>
+					</div>				
+					<div class="form-group col-md-3">
+						<input type="text" class="form-control form-control-sm" name="zip"  placeholder="Zip/Postal Code ">
+					</div>				
+				</div>					
+				<div class="form-row">
+					<div class="form-group col-md-9">
+						<h4 class="col-md-12 text-muted">Contact Details</h4>
+					</div>
+				</div>					
+				<div class="form-row">
+					<div class="form-group col-md-3">
+						<label> Work Phone</label>
+						<input type="text" class="form-control form-control-sm" name="workphone"  placeholder="Landline">
+					</div>			
+					<div class="form-group col-md-3">
+						<label> Mobile <span class="text-danger">*</span></label>
+						<input type="text" class="form-control form-control-sm" name="mobile"  required placeholder="9677573737">
+					</div>				
+					<div class="form-group col-md-5">
+						<label> Email<span class="text-danger"></span></label>
+						<input type="email" class="form-control form-control-sm" name="email"   placeholder="Optional" autocomplete="off">
+						</div>
+				</div>					
+				<div class="form-row">
+					<div class="form-group col-md-11">									
+						<input type="text" class="form-control form-control-sm" name="web"  placeholder="Website(Optional)">
+					</div>
+				</div>
+                <div class="form-row">
+					<div class="form-group col-md-9">
+						<h4 class="col-md-12 text-muted">Tax Details</h4>
+					</div>
+				</div>
+				<div class="form-row">
+					<div class="form-group col-md-11">
+						<label>GSTIN<span class="text-danger"></span></label>
+						<input type="text" class="form-control form-control-sm" name="gstin"  placeholder="Maximum 15 Digits">
+					</div>
+				</div>
+                <div class="form-row">
+				    <div class="col-md-12 col-md-offset-12">
+						<div class="checkbox"><label>
+							<input type="checkbox" name="primaryflag" value="0" class="ember-checkbox ember-view">Make this profile as primary for all correspondence</label>
+						</div>
+					</div>
+				</div>											
+            </form>
+          </div>
+    
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" name="submit" id="newcustomer"  class="btn btn-primary">Save and Associate</button>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+    
 <div class="content-page">
+ <!-- Start content -->
 
-    <!-- Start content -->
     <div class="content">
 
         <div class="container-fluid">
@@ -81,10 +245,12 @@ include('header.php');
                                             while ($row = $sql->fetch_assoc()){	
                                                 $custid=$row['custid'];
                                                 $custname=$row['custname'];
-                                                echo '<option  value="'.$custid.'" >'.$custid.' '.$custname.'</option>';
+                                                echo '<option  value="'.$custname.'" >' .$custname.'</option>';
                                             }
                                             ?>
                                         </select>
+                                        <a href="#" data-target="#newcustomermodal" data-toggle="modal">
+								<i class="fa fa-user-plus" aria-hidden="true"></i>Add New Customer</a><br>
 
                                     </div>
                                 </div>
@@ -125,8 +291,8 @@ include('header.php');
 
 
 
-                                        <a href="#custom-modal" data-target="#customModal" data-toggle="modal">
-                                            <i class="fa fa-user-plus" aria-hidden="true"></i>Add New Pay Term</a><br>
+                                        <!-- <a href="#modal" data-target="#customModal" data-toggle="modal">
+                                            <i class="fa fa-user-plus" aria-hidden="true"></i>Add New Pay Term</a><br> -->
 
 
                                     </div>
@@ -315,7 +481,7 @@ include('header.php');
                                                 <?php $qr  = "select * from salesitemaster2;";
                                                 $exc = mysqli_query($dbcon,$qr)or die();
                                                 while($r = mysqli_fetch_array($exc)){ ?>
-                                                <option value="<?php echo $r['id']; ?>"><?php echo "[".$r['itemcode']."] ".$r['itemname']; ?></option>
+                                                <option value="<?php echo $r['id']; ?>"><?php echo $r['itemcode']."-".substr($r['brand'],0,5)."-".$r['itemname']."-".substr($r['size'],0,5) ?></option>
                                                 <?php
                                                                                     }
                                                 ?>
@@ -850,6 +1016,7 @@ include('header.php');
 
                 return indexed_array;
             }
+
             var today = new Date();
             var yy = today.getFullYear().toString();
             var mm = today.getMonth() + 1;
@@ -909,6 +1076,59 @@ include('header.php');
 
         });
 
+
+            $('#newcustomer').click(function(e){
+                e.preventDefault();
+                var $form = $("#new_customer_form");
+                 var data = getFormData($form);
+                var unidexed_array = $form.serializeArray();
+
+            function getFormData($form){
+                var unindexed_array = $form.serializeArray();
+                var indexed_array = {};
+
+                $.map(unindexed_array, function(n, i){
+                        indexed_array[n['name']] = n['value'];
+                });
+
+                return indexed_array;
+            }
+                
+                //console.log(unidexed_array);
+
+                $.ajax ({
+                    url: 'workers/setters/add_new_customer.php',
+                    type: 'post',
+                    data: {
+                          form_data:data
+                    },
+                    //dataType: 'json',
+                    success:function(response){
+                        console.log(response);
+
+                        if(typeof(response) === "string"){
+                        var res_data = JSON.parse(response);
+                        }else{
+                         var res_data = response;
+                        }
+                        if(res_data.status){
+                            // console.log(res_data.data);
+                            var new_option ="<option>"+res_data.data+"</option>";
+                            $('#inv_customer').append(new_option);
+                             $('#newcustomermodal').modal("hide");
+                             $('.modal-backdrop').remove();
+                             $(document.body).removeClass("modal-open");
+
+
+                        }else{
+                            alert(res_data.error)
+                        }
+                        
+                    }
+
+                });
+            });
+                 
 
 
     </script>			

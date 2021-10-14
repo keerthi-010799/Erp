@@ -37,6 +37,40 @@
                         </div>
 
                         <div class="card-body">
+                        <div class="form-group row">
+                        <div class="form-group col-sm-3">
+                                    <select id="categorywise" class="form-control form-control-sm" name="categorywise">
+                                        <option selected value="">--Select Catogery--</option>
+                                        <?php
+                                        $sql = mysqli_query($dbcon,"SELECT * FROM itemcategory");
+                                        while ($row = $sql->fetch_assoc()){	
+                                            $category=$row['category'];
+                                            echo '<option  value="'.$category.'" >'.$category.'</option>';
+
+                                        }
+                                        ?>
+                                    </select>
+
+                                </div>
+                        <div class="form-group col-sm-3">
+                                    <select id="brandwise" class="form-control form-control-sm" name="brandwise">
+                                        <option selected value="">--Select Brand--</option>
+                                        <?php
+                                        $sql = mysqli_query($dbcon,"SELECT * FROM brandmaster");
+                                        while ($row = $sql->fetch_assoc()){	
+                                            $brandname=$row['brand'];
+                                            echo '<option  value="'.$brandname.'" >'.$brandname.' </option>';
+
+                                        }
+                                        ?>
+                                    </select>
+
+                                </div>
+                                <div class="col-sm-2">
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="filter_table();">Run Filter</button>
+                                </div>
+ 
+                                    </div>
                             <div class="table-responsive">
                                 <table id="example1" class="table table-bordered table-hover display">
                                     <thead>
@@ -57,11 +91,29 @@
                                     <tbody>
                                         <?php
 
-
                                         include("database/db_conection.php");//make connection here
-                                        $sql = "SELECT * from salesitemaster2";
+                                        
+                                    if((isset($_GET['categorywise']) && $_GET['categorywise']!=='')||(isset($_GET['brandwise'])&&$_GET['brandwise']!='')){
+                                            $categorywise = $_GET['categorywise'];
+                                            $brandwise = $_GET['brandwise'];
+
+
+                                        $sql = "SELECT * from salesitemaster2 s where 1=1";
+                                        if(isset($_GET['categorywise'])&&$_GET['categorywise']!=''){
+    
+                                            $sql.=" and s.category='".$_GET['categorywise']."'";    
+                                        }
+                                        if(isset($_GET['brandwise'])&&$_GET['brandwise']!=''){
+
+                                            $sql.=" and s.brand='".$_GET['brandwise']."'";    
+                                        }
+
+                                    }else{
+                                        $sql = "SELECT * from salesitemaster2";    
+                                    }
                                         $result = mysqli_query($dbcon,$sql);
-                                        if ($result->num_rows > 0){
+                                        
+                                        if (!empty($result) && $result->num_rows > 0){
                                             while ($row =$result-> fetch_assoc()){
                                                // print_r($row);
                                                 $pprice = $row['sales_taxmethod'] == 0 ? $row['itemcost'] : $row['itemcost']*(100/(100+$row['sales_taxrate']));
@@ -128,7 +180,16 @@
                 </div>
 
 
-                <script>
+    <script>
+       var page_categorywise = "<?php if(isset($_GET['categorywise'])){ echo $_GET['categorywise']; } ?>";
+       var page_brandwise = "<?php if(isset($_GET['brandwise'])){ echo $_GET['brandwise']; } ?>";
+
+       $(document).ready(function() {
+        console.log(page_categorywise);
+        $('#categorywise').val(page_categorywise);
+        $('#brandwise').val(page_brandwise);
+       });
+                                  
                     $('#po_print').hide();
 
                     function get_print_html(po_code,img){
@@ -174,8 +235,16 @@
                         var printcontent = $('#' + id).clone();
                         $('body').empty().html(printcontent);
                         window.print();
-                        $('body').html(restorepage);
+                        $('body').html(restorepage)
+
 
                     }
+       
+                        
+        function filter_table(){
+        var categorywise = $('#categorywise').val();
+        var brandwise = $('#brandwise').val();
+        location.href="listSalesItemMaster.php?categorywise="+categorywise+"&brandwise="+brandwise;
+    }
                 </script>
                 <?php include('footer.php'); ?>

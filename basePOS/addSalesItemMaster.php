@@ -2,6 +2,7 @@
 <!-- End Sidebar -->
 
 <!-- Modal -->
+<!--catogrey-->
 <div class="modal fade custom-modal" id="customModal" tabindex="-1" role="dialog" aria-labelledby="customModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
@@ -27,6 +28,34 @@
         </div>
     </div>
 </div>
+
+<!--Brand--->
+<div class="modal fade custom-modal" id="customModalBrand" tabindex="-1" role="dialog" aria-labelledby="customModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Add New Brand</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="#" enctype="multipart/form-data" method="post">
+
+                    <div class="form-group">
+                        <input type="text" class="form-control" name="addbrand"  id="addbrand"  placeholder="Add Brand">
+                    </div>		
+                </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" name="submitBrand" id="submitBrand" class="btn btn-primary">Save and Associate</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="content-page">
 
     <!-- Start content -->
@@ -524,12 +553,51 @@
                     },
                     //dataType: 'json',
                     success:function(response){
-                        if(response!=0 || response!=""){
-                            var new_option ="<option>"+response+"</option>";
+                        console.log(response);
+                        if(typeof(response) === "string"){
+                        var res_data = JSON.parse(response);
+                        }else{
+                         var res_data = response;
+                        }
+                        if(res_data.status){
+                            var new_option ="<option>"+res_data.data+"</option>";
                             $('#category').append(new_option);
                             $('#customModal').modal('toggle');
                         }else{
-                            alert('Error in inserting new Category,try another unique category');
+                            alert(res_data.error)
+                            //alert('Error in inserting new Category,try another unique category');
+                        }
+                    }
+
+                });
+
+            });
+
+            $('#submitBrand').click(function(){
+                var brand = $('#addbrand').val();
+                //var suptype = $('#addsupptype').val();
+                $.ajax ({
+                    url: 'workers/setters/add_new_brand.php',
+                    type: 'post',
+                    data: {
+                        brand:brand,
+                        // description:description
+                    },
+                    //dataType: 'json',
+                    success:function(response){
+                        console.log(response);
+                        if(typeof(response) === "string"){
+                        var res_data = JSON.parse(response);
+                        }else{
+                         var res_data = response;
+                        }
+                        if(res_data.status){
+                            var new_option ="<option>"+res_data.data+"</option>";
+                            $('#brand').append(new_option);
+                            $('#customModalBrand').modal('toggle');
+                        }else{
+                            alert(res_data.error)
+                            //('Error in inserting new brand,try another unique brand');
                         }
                     }
 

@@ -28,7 +28,7 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                         <h1 class="main-title float-left"> Customer Recievables Report</h1>
                         <ol class="breadcrumb float-right">
                             <li class="breadcrumb-item">Home</li>
-                            <li class="breadcrumb-item active">Customer Recievables Reprot</li>
+                            <li class="breadcrumb-item active">Customer Recievables Report</li>
                         </ol>
                         <div class="clearfix"></div>
                     </div>
