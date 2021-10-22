@@ -24,7 +24,6 @@ function getSaleItemCountCols($getArr, $dbcon){
     return $listHtml;
 }
 
-
 function getSaleItemCountfootercols($dbcon){
     $listsql = "SELECT * from salesitemaster2 ";
     $listresult = mysqli_query($dbcon,$listsql);
@@ -107,6 +106,8 @@ function getSaleItemCount($getArr, $itemCodeId) {
                                         <option value="Paid">Paid</option>
                                     </select>
                                 </div>
+                                <div class="form-group row">
+                                        
                                 <div class="col-sm-2">
                                     <button type="button" class="btn btn-primary" onclick="get_custrec_reports();">Run Report</button>
                                 </div>
@@ -134,17 +135,6 @@ function getSaleItemCount($getArr, $itemCodeId) {
                                                   }
                                                 }
                                             ?>
-                                                <!-- <th>250 ml</th>
-                                                <th>500 ml</th>
-                                                <th>500 ml(20)</th>
-                                                <th>500 ml(30)</th>
-                                                <th>500 ml(40)</th>
-                                                <th>1000 ml Rly</th>
-                                                <th>1000 ml</th>
-                                                <th>1000 ml(50)</th>
-                                                <th>2000 ml(30)</th>
-                                                <th>2000 ml(35)</th>
-                                                <th>5000 ml</th> -->
                                                 <th>Sales By</th>
                                                 <th>Truck</th>
                                                 <th>Driver Name</th>
@@ -152,13 +142,16 @@ function getSaleItemCount($getArr, $itemCodeId) {
                                         </thead>
                                         <tbody>
                                             <?php
-                                            if((isset($_GET['st'])&&$_GET['st']!='')||(isset($_GET['end'])&&$_GET['end']!='')||(isset($_GET['custwise'])&&$_GET['custwise'])||(isset($_GET['pstatuswise'])&&$_GET['pstatuswise']!='')){ 
+                                            if((isset($_GET['st'])&&$_GET['st']!='')||(isset($_GET['end'])&&$_GET['end']!='')||(isset($_GET['custwise'])&&$_GET['custwise'])||(isset($_GET['pstatuswise'])&&$_GET['pstatuswise']!='')||(isset($_GET['catogerywise'])&&$_GET['catogerywise']!='')||(isset($_GET['brandwise'])&&$_GET['brandwise']!='')||(isset($_GET['itemwise'])&&$_GET['itemwise']!='')){ 
                                                 $timestamp = strtotime($_GET['st']);
                                                 $st = date('Y-m-d', $timestamp);
                                                 $timestamp = strtotime($_GET['end']);
                                                 $end = date('Y-m-d', $timestamp);
                                                 $custwise = $_GET['custwise'];
                                                 $pstatuswise = $_GET['pstatuswise'];
+                                                // $catogerywise = $_GET['categorywise'];
+                                                // $brandwise = $_GET['brandwise'];
+                                                // $itemwise = $_GET['itemwise'];
                                                 $sql = "SELECT * from (select * from invoices union select * from invoicesacc ) i,customerprofile c where 1=1  ";
                                                 if($_GET['st']!=''){
                                                     if($st==$end){
@@ -170,6 +163,15 @@ function getSaleItemCount($getArr, $itemCodeId) {
                                                 if(isset($_GET['custwise'])&&$_GET['custwise']!=''){
                                                     $sql.=" and i.inv_customer='".$_GET['custwise']."'";    
                                                 }
+                                                // if(isset($_GET['brandwise'])&&$_GET['brandwise']!=''){
+                                                //     $sql.=" and si.brand='".$_GET['brandwise']."'";    
+                                                // }
+                                                // if(isset($_GET['catogerywise'])&&$_GET['catogerywise']!=''){
+                                                //     $sql.=" and si.category='".$_GET['catogerywise']."'";    
+                                                // }
+                                                // if(isset($_GET['itemwise'])&&$_GET['itemwise']!=''){
+                                                //     $sql.=" and si.itemname='".$_GET['itemwise']."'";    
+                                                // }
                                                 if(isset($_GET['pstatuswise'])&&$_GET['pstatuswise']!=''){
                                                     if($_GET['pstatuswise']=="Overdue"){
                                                         $sql.=" and (i.inv_payment_status='Unpaid' OR i.inv_payment_status='Partially Paid') and CURDATE()>DATE_ADD(i.inv_date, INTERVAL i.inv_payterm DAY) ";    
@@ -189,18 +191,7 @@ function getSaleItemCount($getArr, $itemCodeId) {
                                                     <td>'.$row['inv_code'].'</td>
                                                     <td>'.$row['inv_date'].'</td>
                                                     <td>'.$row['custname'].'</td>';
-
                                                     echo getSaleItemCountCols($row['inv_items'],$dbcon);
-                                                    // if ($listresult->num_rows > 0){
-                                                    //     echo "<td>".$listresult->num_rows."</td>";
-                                                    //     while ($listrow = $listresult-> fetch_assoc()){
-                                                    //        // print_r($listrow);
-                                                    //           echo '<td>sasas</td>';
-                                                    //          // echo '<td>'.getSaleItemCount($row['inv_items'],$listrow['id']).'</td>';
-                                                        
-                                                    //     }
-                                                    // }
-                                                    
                                                    echo '<td>'.$row['inv_owner'].'</td>
                                                     <td>'.$row['inv_truck_no'].'</td>
                                                     <td>'.$row['inv_driver_name'].'</td>
@@ -209,20 +200,20 @@ function getSaleItemCount($getArr, $itemCodeId) {
                                             }
                                             ?>
                                         </tbody>
-                                        <tfoot>
+                                        <!-- <tfoot>
                                             <tr>
+                                                !-- <th></th>
                                                 <th></th>
-                                                <th></th>
-                                                <th></th>
+                                                <th></th> --
                                               
-                                        <?php
+                                        <!?php
                                             echo getSaleItemCountfootercols($dbcon);
                                         ?>
+                                                <-- <th></th>
                                                 <th></th>
-                                                <th></th>
-                                                <th></th>
+                                                <th></th> --
                                             </tr>
-                                        </tfoot>
+                                        </tfoot> -->
                                     </table>
                                 </div>
                             </div>
@@ -240,10 +231,16 @@ function getSaleItemCount($getArr, $itemCodeId) {
     var page_st = "<?php if(isset($_GET['st'])){ echo $_GET['st']; } ?>";
     var page_end = "<?php if(isset($_GET['end'])){ echo $_GET['end']; } ?>";
     var page_pstatuswise = "<?php if(isset($_GET['pstatuswise'])){ echo $_GET['pstatuswise']; } ?>";
+    var page_catogerywise = "<?php if(isset($_GET['catogerywise'])){ echo $_GET['catogerywise']; } ?>";
+    var page_brandwise = "<?php if(isset($_GET['brandwise'])){ echo $_GET['brandwise']; } ?>";
+    var page_itemwise = "<?php if(isset($_GET['itemwise'])){ echo $_GET['itemwise']; } ?>";
     var items = <?php echo json_encode($itemVals) ?>;
     $(document).ready(function() {
         $('#custwise').val(page_custwise);
         $('#pstatuswise').val(page_pstatuswise);
+        $('#categorywise').val(page_catogerywise);
+        $('#brandwise').val(page_brandwise);
+        $('#itemwise').val(page_itemwise);
         $("#reset-date").hide();
         $('#daterange').daterangepicker({
             ranges: {
@@ -379,7 +376,10 @@ function getSaleItemCount($getArr, $itemCodeId) {
         }
         var custwise = $('#custwise').val();
         var pstatuswise = $('#pstatuswise').val();
-        location.href="salesItemwiseReport.php?st="+st+"&end="+end+"&custwise="+custwise+"&pstatuswise="+pstatuswise;
+        var categorywise = $('#categorywise').val();
+        var brandwise = $('#brandwise').val();
+        var itemwise = $('#itemwise').val();
+        location.href="salesItemwiseReport.php?st="+st+"&end="+end+"&custwise="+custwise+"&pstatuswise="+pstatuswise+"&categorywise="+categorywise+"&brandwise="+brandwise+"&itemwise="+itemwise;
     }
     function cb(start, end) {
         $('#daterange').val(start+ ' - ' + end);

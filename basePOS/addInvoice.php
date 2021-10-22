@@ -3,7 +3,7 @@ include('header.php');
 ?>
 
 <!-- End Sidebar -->
-
+<!-- modal addnew customer-->
 <div class="modal fade custom-modal" id="newcustomermodal" tabindex="-1" role="dialog" aria-labelledby="customModal" aria-hidden="true">
     <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -167,7 +167,426 @@ include('header.php');
     </div>
 </div>
 </div>
-    
+
+<!--modal add item-->
+<div class="modal fade custom-modal" id="additemModal" tabindex="-1" role="dialog" aria-labelledby="customModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Add New Item</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!--?php include('addSalesItemMaster.php'); ?-->
+                <form id="salesitemform" autocomplete="off" action="#" enctype="multipart/form-data" method="post">			
+
+								<div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="brand">Brand</label>
+                                        <select id="brand" onchange="" class="form-control form-control-sm select2"
+                                         name="brand"  autocomplete="off">
+                                         
+                                            <option selected>Select Brand</option>
+                                            <?php 
+                                            include("database/db_conection.php");//make connection here
+                                            $sql = mysqli_query($dbcon,"SELECT id,brand FROM brandmaster
+																			ORDER BY id ASC
+																			");
+                                            while ($row = $sql->fetch_assoc()){	
+                                                echo $brand_id=$row['id'];
+                                                echo $brand=$row['brand'];
+                                              //  echo '<option onchange="'.$row[''].'" value="'.$brand_id.'" >'.$brand_id.'-'.$brand.'</option>';
+                                                echo '<option onchange="'.$row[''].'" value="'.$brand.'" >'.$brand.'</option>';
+
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Item Name<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control form-control-sm" name="itemname" id="itemname" placeholder="Product Name" required class="form-control" autocomplete="off" />
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputState">Category</label>
+                                        <select id="category" onchange="" class="form-control form-control-sm" name="category" id="category" autocomplete="off">
+                                            <option selected>Select Category</option>
+                                            <?php 
+                                            include("database/db_conection.php");//make connection here
+                                            $sql = mysqli_query($dbcon,"SELECT code,category FROM itemcategory
+																			ORDER BY id ASC
+																			");
+                                            while ($row = $sql->fetch_assoc()){	
+                                                echo $category_code=$row['code'];
+                                                echo $category=$row['category'];
+                                                echo '<option onchange="'.$row[''].'" value="'.$category.'" >'.$category.'</option>';
+
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+								
+
+								<div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Size</label>
+                                        <input type="text" name="size" id="size" class="form-control form-control-sm"  placeholder="Size 40,39,L,M"  >
+                                    </div>
+                                </div>	
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>HSN Code</label>
+                                        <input type="text" name="hsncode" id="hsncode" class="form-control form-control-sm"  placeholder="Enter a valid HSN Code.."  >
+                                    </div>
+                                </div>	
+
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <h5>Sales Price Information</h5>
+                                    </div>
+                                </div>
+                                <div id="sales_div">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <i class="fa fa-rupee fonts" aria-hidden="true"></i>
+                                            <label>Sales Rate/Price<span class="text-danger">*</span></label>
+                                            <input type="text" onchange="gettaxrate('sales_div');" name="sales_priceperqty" id="sales_priceperqty" class="form-control form-control-sm"  required placeholder="Price Per Qty" autocomplete="off" />
+                                        </div>
+                                        <div class="form-group col-md-2" id="adjust_price" style="display:none">
+                                            <i class="fa fa-rupee fonts" aria-hidden="true"></i>
+                                            <label>Adjust Price</label>
+                                            <input type="number" step="any" onkeypress="adjustprice('sales');"  onkeyup="adjustprice('sales');" id="sales_adjpriceperqty" name="sales_adjpriceperqty" class="form-control form-control-sm"   />
+                                        </div>
+                                        <div class="form-group col-md-3">
+                                            <label>UOM&nbsp;<i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" 
+                                                               data-trigger="focus" data-placement="top" title="The Item will be measured in terms of this UNIT(e.g.:Kgs,dozen,box"></i>
+                                                <span class="text-danger">*</span></label>
+                                            <select id="sales_uom" onchange="gettaxrate('sales_div');" required class="form-control form-control-sm" name="sales_uom">
+                                                <option value="0" selected>Select UOM</option>
+                                                <?php 
+                                                include("database/db_conection.php");//make connection here
+
+                                                $sql = mysqli_query($dbcon, "SELECT code,description FROM uom_lookups ");
+                                                while ($row = $sql->fetch_assoc()){	
+                                                    $description=$row['description'];
+                                                    $code=$row['code'];
+                                                    echo '<option  value="'.$code.'" >'.$description.'</option>';
+                                                }
+                                                ?>
+                                            </select>	
+                                        </div>							
+                                    </div>
+
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>As of Date<span class="text-danger">*</span></label>
+                                            <i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" 
+                                               data-trigger="focus" data-placement="top" title="As of Date is price as on date"></i>
+                                            <input type="date" class="form-control form-control-sm"  name="sales_pricedatefrom" id="sales_pricedatefrom" value="<?php echo date("Y-m-d");?>">					  
+                                        </div>
+                                    </div>											
+
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <label for="inputState">Tax Method
+                                            </label>
+                                            <select id="sales_taxmethod" name="sales_taxmethod" onchange="gettaxrate('sales_div')" class="form-control form-control-sm" name="taxmethod">
+                                                <option selected>Select Tax Method</option>
+                                                <option value="1">Inclusive</option>
+                                                <option value="0">Exclusive</option>
+                                            </select>
+                                        </div>
+
+
+
+                                        <div class="form-group col-md-3">
+                                            <label for="inputState">Tax Name</label>
+                                            <select id="sales_taxid" onchange="gettaxrate('sales_div');" required class="form-control form-control-sm" name="sales_taxid">
+                                                <option value="0" selected>Open Taxrate</option>
+                                                <?php 
+
+                                                $sql = mysqli_query($dbcon, "SELECT id,taxtype,taxname,taxrate FROM taxmaster ");
+                                                while ($row = $sql->fetch_assoc()){	
+                                                $taxname=$row['taxname'];
+                                                $taxrate=$row['taxrate'];
+                                                $taxtype=$row['taxtype'];
+                                                $taxid=$row['id'];
+                                                echo '<option  data-name="'.$taxname.'" data-type="'.$taxtype.'" data-rate="'.$taxrate.'" value="'.$taxid.'" >'.$taxname.'</option>';
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    <div class="form-group" style="display:none;">
+                                        <input type="text" name="sales_taxtype" id="sales_taxtype" class="form-control form-control-sm"  required placeholder="Price Per Qty" autocomplete="off" readonly>
+                                    </div> 
+                                    <div class="form-group" style="display:none;">
+                                        <input type="text" name="sales_taxname" id="sales_taxname" class="form-control form-control-sm"  required placeholder="Price Per Qty" autocomplete="off" readonly>
+                                    </div>
+                                    <div class="form-group" style="display:none;">
+                                        <input type="text" name="itemcost" id="itemcost" class="form-control form-control-sm"  required placeholder="Price Per Qty" autocomplete="off" readonly>
+                                    </div>
+                                    </div>
+
+
+
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <!-- <i class="fa fa-rupee fonts" aria-hidden="true"></i> -->
+                                            <label>Tax Rate %<span class="text-danger">*</span></label>
+                                            <input type="text" name="sales_taxrate" id="sales_taxrate" class="form-control form-control-sm"  required placeholder="Price Per Qty" autocomplete="off" readonly>
+                                        </div>
+
+                                        <div class="form-group col-md-3">									
+                                            <label>Tax Amount&nbsp;<span class="text-danger"><i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" 
+                                                                                                data-trigger="focus" data-placement="top" title="The Item will be measured in terms of this uint(e.g.:Kgs,dozen,box"></i>
+                                                </span></label>
+                                            <input type="text" name="sales_taxamount" id="sales_taxamount" class="form-control form-control-sm" autocomplete="off" placeholder="Tax Amount" required readonly />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <i class="fa fa-rupee fonts" aria-hidden="true"></i>
+                                            <label>Actual Product Price<span class="text-danger">*</span></label>
+                                            <input type="text" name="sales_product_price" id="sales_product_price" class="form-control form-control-sm"  required placeholder="Actual Product price" autocomplete="off" readonly />
+                                        </div>
+
+                                        <div class="form-group col-md-3">									
+                                            <label>Final Price&nbsp;<span class="text-danger"><i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" 
+                                                                                                 data-trigger="focus" data-placement="top" title="The Item will be measured in terms of this uint(e.g.:Kgs,dozen,box"></i>
+                                                </span></label>
+                                            <input type="text" name="sales_final_price" id="sales_final_price" class="form-control form-control-sm" autocomplete="off" placeholder="Price Including Tax" required readonly>
+                                        </div>
+                                    </div>
+                                </div>											
+
+
+                                <div class="form-row" style="display:none">
+                                    <div class="form-group col-md-6">
+                                        <h5>Purchase Price Information</h5>
+                                    </div>
+                                </div>
+                                <div id="purchase_div" style="display:none">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-2">
+                                            <i class="fa fa-rupee fonts" aria-hidden="true"></i>
+                                            <label>Cost<span class="text-danger"></span></label>
+                                            <input type="text" onchange="gettaxrate('purchase_div');" name="priceperqty" id="priceperqty" class="form-control form-control-sm"  placeholder="Price Per Qty" autocomplete="off" />
+                                        </div>
+                                        <div class="form-group col-md-2" id="adjust_cost" style="display:none">
+                                            <i class="fa fa-rupee fonts" aria-hidden="true"></i>
+                                            <label>Adjust Price</label>
+                                            <input type="number" step="any" onkeypress="adjustprice('purchase');"  onkeyup="adjustprice('purchase');" id="adjpriceperqty" name="adjpriceperqty" class="form-control form-control-sm"   />
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label>UOM&nbsp;<i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" 
+                                                               data-trigger="focus" data-placement="top" title="The Item will be measured in terms of this UNIT(e.g.:Kgs,dozen,box"></i>
+                                                <span class="text-danger">*</span></label>
+                                            <select id="uom" onchange="gettaxrate('purchase_div');"  class="form-control form-control-sm" name="uom">
+                                                <option value="0" selected>Select UOM</option>
+                                                <?php 
+
+                                                $sql = mysqli_query($dbcon, "SELECT code,description FROM uom_lookups ");
+                                                while ($row = $sql->fetch_assoc()){	
+                                                    $description=$row['description'];
+                                                    $code=$row['code'];
+                                                    echo '<option  value="'.$code.'" >'.$description.'</option>';
+                                                }
+                                                ?>
+                                            </select>	
+                                        </div>	
+
+                                    </div>
+
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>As of Date<span class="text-danger">*</span></label>
+                                            <i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" 
+                                               data-trigger="focus" data-placement="top" title="As of Date is price as on date"></i>
+                                            <input type="date" class="form-control form-control-sm"  name="pricedatefrom" id="pricedatefrom" value="<?php echo date("Y-m-d");?>">					  
+                                        </div>
+                                    </div>											
+
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <label for="inputState">Tax Method
+                                            </label>
+                                            <select id="taxmethod" onchange="gettaxrate('purchase_div');" class="form-control form-control-sm" name="taxmethod">
+                                                <option value=''>Select Tax Method</option>
+                                                <option value="1">Inclusive</option>
+                                                <option value="0">Exclusive</option>
+                                            </select>
+                                        </div>
+
+
+
+                                        <div class="form-group col-md-3">
+                                            <label for="inputState">Tax Name</label>
+                                            <select id="taxid" onchange="gettaxrate('purchase_div');"  class="form-control form-control-sm" name="taxid">
+                                                <option value="0" selected>Open Taxrate</option>
+                                                <?php 
+                                                include("database/db_conection.php");//make connection here
+                                                $sql = mysqli_query($dbcon, "SELECT id,taxtype,taxname,taxrate FROM taxmaster ");
+                                                while ($row = $sql->fetch_assoc()){	
+                                                $taxname=$row['taxname'];
+                                                $taxrate=$row['taxrate'];
+                                                $taxtype=$row['taxtype'];
+                                                $taxid=$row['id'];
+                                                echo '<option  data-name="'.$taxname.'" data-type="'.$taxtype.'" data-rate="'.$taxrate.'" value="'.$taxid.'" >'.$taxname.'</option>';
+                                                }
+                                                ?>
+                                            </select>	
+                                        </div>
+                                    <div class="form-group" style="display:none;">
+                                        <input type="text" name="taxtype" id="taxtype" class="form-control form-control-sm"  required placeholder="Price Per Qty" autocomplete="off" readonly>
+                                    </div> 
+                                    <div class="form-group" style="display:none;">
+                                        <input type="text" name="taxname" id="taxname" class="form-control form-control-sm"  required placeholder="Price Per Qty" autocomplete="off" readonly>
+                                    </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <!-- <i class="fa fa-rupee fonts" aria-hidden="true"></i> -->
+                                            <label>Tax Rate %<span class="text-danger">*</span></label>
+                                            <input type="text" name="taxrate" id="taxrate" class="form-control form-control-sm"   placeholder="Price Per Qty" autocomplete="off" readonly>
+                                        </div>
+
+                                        <div class="form-group col-md-3">									
+                                            <label>Tax Amount&nbsp;<span class="text-danger"><i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" 
+                                                                                                data-trigger="focus" data-placement="top" title="The Item will be measured in terms of this uint(e.g.:Kgs,dozen,box"></i>
+                                                </span></label>
+                                            <input type="text" name="taxamount" id="taxamount" class="form-control form-control-sm" autocomplete="off" placeholder="Tax Amount"  readonly />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <i class="fa fa-rupee fonts" aria-hidden="true"></i>
+                                            <label>Actual Product Price<span class="text-danger">*</span></label>
+                                            <input type="text" name="product_price" id="product_price" class="form-control form-control-sm"   placeholder="Actual Product price" autocomplete="off" readonly />
+                                        </div>
+
+                                        <div class="form-group col-md-3">									
+                                            <label>Final Price&nbsp;<span class="text-danger"><i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" 
+                                                                                                 data-trigger="focus" data-placement="top" title="The Item will be measured in terms of this uint(e.g.:Kgs,dozen,box"></i>
+                                                </span></label>
+                                            <input type="text" name="final_price" id="final_price" class="form-control form-control-sm" autocomplete="off" placeholder="Price Including Tax"  readonly>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <h5>Stock Information</h5>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-3">
+                                        <label>Stock Qty on Hand<span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control form-control-sm" name="stockinqty" id="stockinqty" placeholder="Current Stock in quantity" required autocomplete="off">
+                                    </div>		 					
+                                    <div class="form-group col-md-3" id="adjust_stock" style="display:none">
+                                        <i class="fa fa-rupee fonts" aria-hidden="true"></i>
+                                        <label>Adjust Stock</label>
+                                        <input type="number" step="any" onkeypress="adjustprice('stock');"  onkeyup="adjustprice('stock');" id="adjuststk" name="adjuststk" class="form-control form-control-sm"   />
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                        <label for="inputState">As of Date</label>									
+                                        <input type="date" class="form-control form-control-sm"  name="stockinqty_date" id="stockinqty_date" value="<?php echo date("Y-m-d");?>">		
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">									  
+                                        <label>Low Stock Alert</label>
+                                        <input type="text" class="form-control form-control-sm" name="lowstockalert" id="lowstockalert" placeholder="eg., 5  or 10 "  required class="form-control" autocomplete="off">
+                                    </div>
+                                </div>
+
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputState">Prefered Supplier Name</label>
+                                        <select id="sales_vendorid" onchange="" class="form-control form-control-sm"  required name="sales_vendorid" autocomplete="off">
+                                            <option selected>Open Vendors</option>
+                                            <?php 
+                                            include("database/db_conection.php");//make connection here
+                                            $sql = mysqli_query($dbcon,"SELECT vendorid,concat(title,' ',supname) as vendorname FROM vendorprofile
+																			ORDER BY id ASC
+																			");
+                                            while ($row = $sql->fetch_assoc()){	
+                                                echo $vendorid=$row['vendorid'];
+                                                echo $vendorname=$row['vendorname'];
+                                                echo '<option onchange="'.$row[''].'" value="'.$vendorid.'" >'.$vendorname.'</option>';
+
+                                            }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label for="inputState">Handler</label>
+                                        <?php 
+                                        //session_start();
+                                        include("database/db_conection.php");
+                                        $userid = $_SESSION['userid'];
+                                        $sq = "select username from userprofile where id='$userid'";
+                                        $result = mysqli_query($dbcon, $sq) or die(mysqli_error($dbcon));
+                                        //$count = mysqli_num_rows($result);
+                                        $rs = mysqli_fetch_assoc($result);
+                                        ?>
+                                        <input type="text" class="form-control form-control-sm" name="handler" id="handler" readonly class="form-control form-control-sm" value="<?php echo $rs['username']; ?>" required />
+
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <h5>Notes Information</h5>
+                                    </div>
+                                </div>
+
+
+
+
+                                <div class="form-row">
+                                    <div class="form-group col-md-6">
+                                        <label>Add Notes</label>
+                                        <textarea rows="2" class="form-control editor" id="notes" name="notes" placeholder="add product/price/stock related notes here"></textarea>
+                                    </div> 
+                                </div>
+                                        </form>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" name="submitnewitem" id="submitnewitem" class="btn btn-primary">Save and Associate</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="content-page">
  <!-- Start content -->
 
@@ -245,7 +664,7 @@ include('header.php');
                                             while ($row = $sql->fetch_assoc()){	
                                                 $custid=$row['custid'];
                                                 $custname=$row['custname'];
-                                                echo '<option  value="'.$custname.'" >' .$custname.'</option>';
+                                                echo '<option  value="'.$custname.'" >'.$custid ." ".$custname.'</option>';
                                             }
                                             ?>
                                         </select>
@@ -486,11 +905,12 @@ include('header.php');
                                                                                     }
                                                 ?>
                                             </select>
+                                            <a href="#" data-target="#additemModal" data-toggle="modal">
+								<i class="fa fa-user-plus" aria-hidden="true"></i>Add item </a><br>
+
                                         </td>
-
-
                                         <!--td><input type="text" name="description" placeholder="Item Name" class="form-control"></td
-<td><input type="text" name="itemcode" placeholder="Item Details" class="form-control"></td>-->
+                                            <td><input type="text" name="itemcode" placeholder="Item Details" class="form-control"></td>-->
                                         <td><input id="hsncode" type="text" name="hsncode" placeholder="hsncode"    data-id="" class="form-control form-control-sm hsncode"></td>
                                         <td><input id="qty" type="text" name="qty" onkeypress="sales_rowitem.update_math_vals();sales_rowitem.stkalert(this);"   onkeyup="sales_rowitem.update_math_vals();sales_rowitem.stkalert(this);" placeholder="Qty" data-id="" class="form-control form-control-sm  qty"></td>                                        <td>
                                         <select class="form-control form-control-sm amount" id="uom"  onchange="sales_rowitem.update_math_vals();"; name="uom" style="line-height:1.5;">
@@ -1129,7 +1549,227 @@ include('header.php');
                 });
             });
                  
+    </script>	
+    <script>
+        var page_action = "<?php if(isset($_GET['action'])){ echo $_GET['action']; } ?>";
+        var page_table = "<?php if(isset($_GET['type'])){ echo $_GET['type']; } ?>";
+        var page_item_code = "<?php if(isset($_GET['itemcode'])){ echo $_GET['itemcode']; } ?>";
+        var page_sales_priceperqty = 0;
+        var page_priceperqty = 0;
+        var page_stockinqty = 0;
 
+
+        $('document').ready(function(){	
+            console.log("jp")
+            
+            if(page_action=="edit"){
+                var edit_data = Page.get_edit_vals(page_item_code,page_table,"itemcode");
+                page_sales_priceperqty = edit_data.sales_priceperqty;
+                page_priceperqty = edit_data.priceperqty;
+                page_stockinqty = edit_data.stockinqty;
+                set_form_data(edit_data);
+                $('#adjust_price').show();
+                $('#adjust_cost').show();
+                $('#adjust_stock').show();
+                $('#sales_priceperqty').attr('readonly',true);
+                $('#sales_uom').attr('readonly',true);
+                $('#priceperqty').attr('readonly',true);
+                $('#uom').attr('readonly',true);
+                $('#stockinqty').attr('readonly',true);
+            }
+            function set_form_data(data){
+                $.each(data, function(index, value) {
+
+                    if(index=="id"||index=="po_code"){
+
+
+                    }else{
+                        $('#'+index).val(value);
+                    }
+
+                }); 
+
+
+            }
+
+            gettaxrate('sales_div');
+            gettaxrate('purchase_div');
+
+        });
+        function gettaxrate(id){
+            var ele = document.getElementById(id);
+            var taxrate = "";
+            var taxmethod = "";
+            var price   = "";
+            var taxtype = "";
+            var taxname = "";
+            if(id=="sales_div"){
+                taxid = $('#sales_taxid',ele).val();
+                taxtype = $('#sales_taxid option:selected').attr('data-type');
+                taxrate = $('#sales_taxid option:selected').attr('data-rate');
+                taxname = $('#sales_taxid option:selected').attr('data-name');
+                taxmethod = $('#sales_taxmethod',ele).val();
+                price   = $('#sales_priceperqty',ele).val();
+            }else{
+                taxid = $('#taxid',ele).val();
+                taxtype = $('#taxid option:selected').attr('data-type');
+                taxrate = $('#taxid option:selected').attr('data-rate');
+                taxname = $('#taxid option:selected').attr('data-name');
+                taxmethod = $('#taxmethod',ele).val();
+                price   = $('#priceperqty',ele).val();
+            }
+            var product_price = 0;
+            if(taxrate == "" || taxrate == null){
+                taxrate = 0;
+            }
+            if(price == "" || price == null ){
+                price = 0;
+            }
+
+            calcPrice   = (price - ( price * taxrate / 100 )).toFixed(2);
+            percentagedval = (parseFloat(price)-parseFloat(calcPrice)).toFixed(2);
+
+            if(taxmethod=='1'){
+                product_price = price-percentagedval;
+
+            }else{
+                product_price = price;
+                price = parseFloat(price)+parseFloat(percentagedval);
+            }
+                $('#itemcost',ele).val(product_price);
+
+            if(id=="sales_div"){
+                $('#sales_taxrate',ele).val(taxrate);
+                $('#sales_taxtype',ele).val(taxtype);
+                $('#sales_taxname',ele).val(taxname);
+                $('#sales_taxamount',ele).val(percentagedval);
+
+                $('#sales_final_price',ele).val(price);
+                $('#sales_product_price',ele).val(product_price);
+            }else{
+                $('#taxrate',ele).val(taxrate);
+                $('#taxtype',ele).val(taxtype);
+                $('#taxname',ele).val(taxname);
+                $('#taxamount',ele).val(percentagedval);
+
+                $('#final_price',ele).val(price);
+                $('#product_price',ele).val(product_price);
+            }
+
+        }
+
+        function adjustprice(type){
+            if(type=="sales"){
+                $('#sales_priceperqty').val(page_sales_priceperqty);
+                var adj = $('#sales_adjpriceperqty').val();
+                var pri = $('#sales_priceperqty').val();
+                var fin = +adj + +pri;
+                $('#sales_priceperqty').val(fin);
+                gettaxrate('sales_div');
+                //  $('#final_price').val(fin);
+            }else if(type=="purchase"){
+                $('#priceperqty').val(page_priceperqty);
+                var adj = $('#adjpriceperqty').val();
+                var pri = $('#priceperqty').val();
+                var fin = +adj + +pri;
+                $('#priceperqty').val(fin);
+                gettaxrate('purchase_div');
+            }else{
+                $('#stockinqty').val(page_stockinqty);
+                var adjstk = $('#adjuststk').val();
+                var stk = $('#stockinqty').val();
+                var fin = +adjstk + +stk;
+                $('#stockinqty').val(fin);
+            }
+        }
+
+        $("#submitnewitem").click(function(e){
+            e.preventDefault();
+            var $form = $("#salesitemform");
+            var data = getFormData($form);
+            console.log(data);
+            console.log(page_item_code);
+            console.log(page_action);
+            function getFormData($form){
+                var unindexed_array = $form.serializeArray();
+                var indexed_array = {};
+
+                $.map(unindexed_array, function(n, i){
+                    if(n['name']=="id"||n['name']=="product_price"||n['name']=="final_price"||n['name']=="sales_product_price"||n['name']=="sales_final_price"||n['name']=="sales_adjpriceperqty"||n['name']=="adjpriceperqty"||n['name']=="adjuststk"){
+
+                    }else{
+                        indexed_array[n['name']] = n['value'];
+                    }
+                });
+
+                return indexed_array;
+            }
+            var adjstk = $('#adjuststk').val();
+
+            $.ajax ({
+                url: 'workers/setters/save_salesitem.php',
+                type: 'post',
+                data: {array : JSON.stringify(data),itemcode:page_item_code,action:page_action?page_action:"add",table:"salesitemaster2",adjstk : adjstk },
+                dataType: 'json',
+                success:function(response){
+                    if(typeof(response) === "string"){
+                        var res_data = JSON.parse(response);
+                        }else{
+                         var res_data = response;
+                        }
+                        console.log(res_data.status,res_data.data);
+                        if(res_data.status){
+                        var new_option ="<option>"+res_data.data+"</option>";
+                          $('#item_select').append(new_option);
+                          $('#additemModal').modal("hide");
+                          $('.modal-backdrop').remove();
+                          $(document.body).removeClass("modal-open");
+                    }else{
+                        alert(res_data.error)
+                    }
+                }
+            });
+
+        });
+
+    </script>
+
+
+    <script>
+
+        $('document').ready(function(){
+            $('#submittax').click(function(){
+                var taxname=$('#addtaxname').val();
+                var description=$('#adddescription').val();//same
+                var taxtype=$('#addtaxtype').val();
+                var taxrate=$('#addtaxrate').val();
+                //alert(groupname+description);
+                $.ajax ({
+                    url: 'addTaxModal.php',
+                    type: 'post',
+                    data: {
+                        taxname:taxname,
+                        description:description,
+                        taxtype:taxtype,
+                        taxrate:taxrate
+                    },
+                    //dataType: 'json',
+                    success:function(response){
+                        if(response!=0 || response!=""){
+                            var new_option ="<option>"+response+"</option>";
+                            $('#taxname').append(new_option);
+                            $('#customModal7').modal('toggle');
+                            window.location.reload(true);
+
+                        }else{
+                            alert('Error in inserting taxname type,try another one');
+                        }
+                    }
+
+                });
+
+            });
+        });
 
     </script>			
 

@@ -57,7 +57,7 @@ $prefix = "CUSTID-";
 	{
    
         $return['status'] = true;
-        $return['data'] = $custname;
+        $return['data'] = $custid." ".$custname;
         //echo "<script>alert('Customer Profile creation Successful ')</script>";
 		//header("location:listCustomerProfile.php");
     } else { die('Error: ' . mysqli_error($dbcon));
