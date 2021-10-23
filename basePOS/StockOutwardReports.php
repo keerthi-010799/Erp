@@ -59,7 +59,23 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                                     </select>
 
                                 </div>
+                        
+                                <div class="form-group row">
                         <div class="form-group col-sm-3">
+                                    <select id="categorywise" class="form-control form-control-sm" name="categorywise">
+                                        <option selected value="">--Select Category--</option>
+                                        <?php
+                                        $sql = mysqli_query($dbcon,"SELECT * FROM itemcategory");
+                                        while ($row = $sql->fetch_assoc()){	
+                                            $category=$row['category'];
+                                            echo '<option  value="'.$category.'" >'.$category.'</option>';
+
+                                        }
+                                        ?>
+                                    </select>
+
+                                </div>
+                                <div class="form-group col-sm-3">
                                     <select id="brandwise" class="form-control form-control-sm" name="brandwise">
                                         <option selected value="">--Select Brand--</option>
                                         <?php
@@ -100,9 +116,10 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                                         <tbody>
                                             <?php
 
-                                                if((isset($_GET['itemwise']) && $_GET['itemwise']!=='')||(isset($_GET['brandwise'])&&$_GET['brandwise']!='')){
+                                                if((isset($_GET['itemwise']) && $_GET['itemwise']!=='')||(isset($_GET['brandwise'])&&$_GET['brandwise']!='')||(isset($_GET['categorywise'])&&$_GET['categorywise']!='')){
                                                     $itemwise = $_GET['itemwise'];
                                                     $brandwise = $_GET['brandwise'];
+                                                    $categorywise = $_GET['categorywise'];
 
 
                                                 $sql = "SELECT * from salesitemaster2 s where 1=1";
@@ -113,6 +130,10 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                                                 if(isset($_GET['brandwise'])&&$_GET['brandwise']!=''){
 
                                                     $sql.=" and s.brand='".$_GET['brandwise']."'";    
+                                                }
+                                                if(isset($_GET['categorywise'])&&$_GET['categorywise']!=''){
+
+                                                    $sql.=" and s.category='".$_GET['categorywise']."'";    
                                                 }
 
                                                 }else{
@@ -174,12 +195,13 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
 <script>
      var page_itemwise = "<?php if(isset($_GET['itemwise'])){ echo $_GET['itemwise']; } ?>";
        var page_brandwise = "<?php if(isset($_GET['brandwise'])){ echo $_GET['brandwise']; } ?>";
+       var page_categorywise = "<?php if(isset($_GET['categorywise'])){ echo $_GET['categorywise']; } ?>";
 
 
     $(document).ready(function() {
         $('#itemwise').val(page_itemwise);
         $('#brandwise').val(page_brandwise);
-
+        $('#categorywise').val(page_categorywise);
         //var printhead = 'Stock Inward';
         //var excel_printhead = 'Stock Inward';
         var table = $('#po_reports').DataTable( {
@@ -261,7 +283,8 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
     function filter_table(){
         var itemwise = $('#itemwise').val();
         var brandwise = $('#brandwise').val();
-        location.href="StockOutwardReports.php?itemwise="+itemwise+"&brandwise="+brandwise;
+        var categorywise = $('#categorywise').val();
+        location.href="StockOutwardReports.php?itemwise="+itemwise+"&brandwise="+brandwise+"&categorywise="+categorywise;
     }
 
 </script>

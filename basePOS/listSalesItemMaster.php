@@ -40,7 +40,7 @@
                         <div class="form-group row">
                         <div class="form-group col-sm-3">
                                     <select id="categorywise" class="form-control form-control-sm" name="categorywise">
-                                        <option selected value="">--Select Catogery--</option>
+                                        <option selected value="">--Select Category--</option>
                                         <?php
                                         $sql = mysqli_query($dbcon,"SELECT * FROM itemcategory");
                                         while ($row = $sql->fetch_assoc()){	

@@ -13,22 +13,22 @@ if(isset($_POST['creditnote_id']))
     $creditnote_customer = $row['creditnote_customer'];
     $creditnote_items = $row['creditnote_items'];
     $inv_items_arr = json_decode($creditnote_items);
-    $sql1 = "SELECT * from comprofile where orgid='$creditnote_comp_code' limit 1 ";
+    $sql1 = "SELECT * from comprofile";// where orgid='$creditnote_comp_code' limit 1 ";
     $result1 = mysqli_query($dbcon,$sql1);
     $row1 =$result1-> fetch_assoc();
     //print_r($row1);
 
-    $sql2 = "SELECT * from customerprofile where custid = '$creditnote_customer' limit 1";
+    $sql2 = "SELECT * from customerprofile";// where custid = '$creditnote_customer' limit 1";
     $result2 = mysqli_query($dbcon,$sql2);
     $row2 =$result2-> fetch_assoc();
 
-    $sql3 = "SELECT * from compbank  where orgid ='$creditnote_comp_code' limit 1";
+    $sql3 = "SELECT * from compbank";//  where orgid ='$creditnote_comp_code' limit 1";
     $result3 = mysqli_query($dbcon,$sql3);
     $row3 =$result3-> fetch_assoc();
 
 }
 function get_itemDetails($dbcon,$code){
-    $sql = "SELECT * from salesitemaster2 where id='$code' ";
+    $sql = "SELECT * from salesitemaster2";// where id='$code' ";
     $result = mysqli_query($dbcon,$sql);
     $row =$result-> fetch_assoc();
 

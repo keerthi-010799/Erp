@@ -28,7 +28,7 @@ if(isset($_GET['inv_code']))
 
 }
 function get_itemDetails($dbcon,$code){
-    $sql = "SELECT * from salesitemaster2 where id='$code' ";
+    $sql = "SELECT * from salesitemaster2 ";//where id='$code' ";
     $result = mysqli_query($dbcon,$sql);
     $row =$result-> fetch_assoc();
 

@@ -45,7 +45,7 @@ function gettaxamt_total($arr){
         if($items[$i]['tax_method']==0){
             $ttax+= $items[$i]['rwamt']*($items[$i]['tax_val']/100);
         }else{
-            $ttax+= ($items[$i]['rwqty']*$items[$i]['rwprice_org'])*(100/($items[$i]['tax_val']+100));
+            $ttax+= ($items[$i]['rwqty']*$items[$i]['rwprice_org'])*(100/(nf($items[$i]['tax_val'])+100));
         }
     }
 

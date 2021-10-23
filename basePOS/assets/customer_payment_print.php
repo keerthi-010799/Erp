@@ -25,7 +25,7 @@ $sql1 = "SELECT * from comprofile where orgid='$inv_comp_code' limit 1 ";
 $result1 = mysqli_query($dbcon,$sql1);
 $row1 =$result1-> fetch_assoc();
 function get_itemDetails($dbcon,$code){
-    $sql = "SELECT * from salesitemaster2 where id='$code' ";
+    $sql = "SELECT * from salesitemaster2" ;// where id='$code' ";
     $result = mysqli_query($dbcon,$sql);
     $row =$result-> fetch_assoc();
 

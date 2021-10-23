@@ -194,7 +194,7 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
 
                         </div>
                     </div><!-- end card-->
-                    <div id="po_print" style="display:;">
+                    <div id="po_print" style="display:none;">
 
 
 </div>

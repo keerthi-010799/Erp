@@ -6,7 +6,7 @@ if(isset($_GET['inv_code']))
 {
     $inv_code = $_GET['inv_code'];
 
-    $sql = "SELECT * from invoices where inv_code = '$inv_code' ";
+    $sql = "SELECT * from invoices";// where inv_code = '$inv_code' ";
     $result = mysqli_query($dbcon,$sql);
     $row =$result-> fetch_assoc();
     //print_r($row);
@@ -15,16 +15,16 @@ if(isset($_GET['inv_code']))
     $inv_items = $row['inv_items'];
     $inv_bal_amt = $row['inv_balance_amt'];
     $inv_items_arr = json_decode($inv_items);
-    $sql1 = "SELECT * from comprofile where orgid='$inv_comp_code' limit 1 ";
+    $sql1 = "SELECT * from comprofile ";//where orgid='$inv_comp_code' limit 1 ";
     $result1 = mysqli_query($dbcon,$sql1);
     $row1 =$result1-> fetch_assoc();
     //print_r($row1);
 
-    $sql2 = "SELECT * from customerprofile where custid = '$inv_customer' limit 1";
+    $sql2 = "SELECT * from customerprofile";// where custid = '$inv_customer' limit 1";
     $result2 = mysqli_query($dbcon,$sql2);
     $row2 =$result2-> fetch_assoc();
 
-    $sql3 = "SELECT * from compbank  where orgid ='$inv_comp_code' limit 1";
+    $sql3 = "SELECT * from compbank ";// where orgid ='$inv_comp_code' limit 1";
     $result3 = mysqli_query($dbcon,$sql3);
     $row3 =$result3-> fetch_assoc();
 

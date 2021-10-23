@@ -2,9 +2,9 @@
 include("../database/db_conection.php");//make connection here
 include("../workers/getters/functions.php");//make connection here
 
-if(isset($_POST['inv_code']))
+if(isset($_GET['inv_code']))
 {
-    $inv_code = $_POST['inv_code'];
+    $inv_code = $_GET['inv_code'];
 
     $sql = "SELECT * from invoicesacc where inv_code = '$inv_code' ";
     $result = mysqli_query($dbcon,$sql);
