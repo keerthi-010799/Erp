@@ -49,7 +49,7 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                                     <select id="itemwise" class="form-control form-control-sm" name="itemwise">
                                         <option selected value="">--Select Item--</option>
                                         <?php
-                                        $sql = mysqli_query($dbcon,"SELECT * FROM salesitemaster2");
+                                        $sql = mysqli_query($dbcon,"SELECT distinct itemname FROM salesitemaster2");
                                         while ($row = $sql->fetch_assoc()){	
                                             $itemname=$row['itemname'];
                                             echo '<option  value="'.$itemname.'" >'.$itemname.'</option>';
