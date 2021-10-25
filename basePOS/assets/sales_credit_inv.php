@@ -34,8 +34,8 @@ function get_itemDetails($dbcon,$code){
     $result = mysqli_query($dbcon,$sql);
     $row =$result-> fetch_assoc();
 
-    $ret = "[".$row['itemcode']."]  ".$row['itemname']."&nbsp;|&nbsp;HSN: ".$row['hsncode']."&nbsp;|&nbsp; ";
-    $ret.=  "GST@".($row['sales_taxrate']/1)."%";
+    //$ret = "[".$row['itemcode']."]  ".$row['itemname']."&nbsp;|&nbsp;HSN: ".$row['hsncode']."&nbsp;|&nbsp; ";
+    $ret=  "GST@".($row['sales_taxrate']/1)."%";
     return $ret;
 }
 function convertNumberToWord($num = false)
@@ -496,7 +496,9 @@ window.onafterprint = afterPrint;
      };
 
      var afterPrint = function () {
-        // window.history.back();
+        if(window.location.pathname.includes("sales_credit_inv")){
+        window.history.back();
+        }
          location.reload();
      };
 </script>
