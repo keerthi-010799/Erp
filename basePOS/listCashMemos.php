@@ -122,7 +122,7 @@
                                                 if($row['inv_status']=="Approved"){
 
                                                     echo '
-                                                        <a class="dropdown-item"  href=".php?so_code=' . $row['so_code'] . '&so_status=Invoiced" class="btn btn-danger btn-sm" data-placement="top" data-toggle="tooltip" data-title="Convert to Invoice"><i class="fa fa-exchange" aria-hidden="true"></i>&nbsp; Convert to Invoice</a>';
+                                                        <a class="dropdown-item"  href="#" class="btn btn-danger btn-sm" data-placement="top" data-toggle="tooltip" data-title="Convert to Invoice"><i class="fa fa-exchange" aria-hidden="true"></i>&nbsp; Convert to Invoice</a>';
 
                                                 }
 
@@ -208,7 +208,7 @@
                     };
 
                     var afterPrint = function () {
-                        location.reload();
+                       // location.reload();
                         $('#po_print').hide();
                     };
 

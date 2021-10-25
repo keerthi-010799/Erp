@@ -496,6 +496,7 @@ window.onafterprint = afterPrint;
      };
 
      var afterPrint = function () {
-         window.history.back();
+        // window.history.back();
+         location.reload();
      };
 </script>
