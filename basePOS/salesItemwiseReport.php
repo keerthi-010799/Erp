@@ -200,20 +200,20 @@ function getSaleItemCount($getArr, $itemCodeId) {
                                             }
                                             ?>
                                         </tbody>
-                                        <!-- <tfoot>
+                                         <tfoot>
                                             <tr>
-                                                !-- <th></th>
+                                                 <th></th>
                                                 <th></th>
-                                                <th></th> --
-                                              
-                                        <!?php
-                                            echo getSaleItemCountfootercols($dbcon);
-                                        ?>
-                                                <-- <th></th>
+                                                <th></th> 
+                                                <th></th> 
+                                                <th></th> 
+
+                                       
+                                                 <th></th>
                                                 <th></th>
-                                                <th></th> --
+                                                <th></th> 
                                             </tr>
-                                        </tfoot> -->
+                                        </tfoot>
                                     </table>
                                 </div>
                             </div>
@@ -282,6 +282,7 @@ function getSaleItemCount($getArr, $itemCodeId) {
         excel_printhead+= status_var!=''?'Payment Status : '+status_var:'';
         excel_printhead+= '  ';
         excel_printhead+= date_range!=''?'Date : '+date_range:'';
+
         var table = $('#po_reports').DataTable( {
             lengthChange: false,
             "footerCallback": function ( row, data, start, end, display ) {
@@ -292,7 +293,23 @@ function getSaleItemCount($getArr, $itemCodeId) {
                     typeof i === 'number' ?
                         i : 0;
                 };
-                
+                var grossval = api
+                .column( 3 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 ).toFixed(2);
+
+                var val = api
+                .column( 4 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 ).toFixed(2);
+
+                $( api.column( 0 ).footer() ).html('Total');
+                $( api.column( 3 ).footer() ).html(grossval);
+                $( api.column( 4 ).footer() ).html(val);
 
                 for(var idx = 0; idx < items.length; idx++){
                    items[idx].sum = api.column( idx+3 ).data().reduce( function (a, b) { return intVal(a) + intVal(b); }, 0 );
@@ -300,30 +317,7 @@ function getSaleItemCount($getArr, $itemCodeId) {
 
                 }
 
-                console.log(items,'items');
-                // var _250ml = api.column( 3 ).data().reduce( function (a, b) { return intVal(a) + intVal(b); }, 0 );
-                // var _500ml = api.column( 4 ).data().reduce( function (a, b) { return intVal(a) + intVal(b); }, 0 );
-                // var _500ml20 = api.column( 5 ).data().reduce( function (a, b) { return intVal(a) + intVal(b); }, 0 );
-                // var _500ml30 = api.column( 6 ).data().reduce( function (a, b) { return intVal(a) + intVal(b); }, 0 );
-                // var _500ml40 = api.column( 7 ).data().reduce( function (a, b) { return intVal(a) + intVal(b); }, 0 );
-                // var _1000mlRly = api.column( 8 ).data().reduce( function (a, b) { return intVal(a) + intVal(b); }, 0 );
-                // var _1000ml = api.column( 9 ).data().reduce( function (a, b) { return intVal(a) + intVal(b); }, 0 );
-                // var _1000ml50 = api.column( 10 ).data().reduce( function (a, b) { return intVal(a) + intVal(b); }, 0 );
-                // var _2000ml30 = api.column( 11 ).data().reduce( function (a, b) { return intVal(a) + intVal(b); }, 0 );
-                // var _2000ml35 = api.column( 12 ).data().reduce( function (a, b) { return intVal(a) + intVal(b); }, 0 );
-                // var _5000ml = api.column( 13 ).data().reduce( function (a, b) { return intVal(a) + intVal(b); }, 0 );
-                // $( api.column( 0 ).footer() ).html('Total');
-                // $( api.column( 3 ).footer() ).html(_250ml);
-                // $( api.column( 4 ).footer() ).html(_500ml);
-                // $( api.column( 5 ).footer() ).html(_500ml20);
-                // $( api.column( 6 ).footer() ).html(_500ml30);
-                // $( api.column( 7 ).footer() ).html(_500ml40);
-                // $( api.column( 8 ).footer() ).html(_1000mlRly);
-                // $( api.column( 9 ).footer() ).html(_1000ml);
-                // $( api.column( 10 ).footer() ).html(_1000ml50);
-                // $( api.column( 11 ).footer() ).html(_2000ml30);
-                // $( api.column( 12 ).footer() ).html(_2000ml35);
-                // $( api.column( 13 ).footer() ).html(_5000ml);
+             
                 
             },
             buttons: [

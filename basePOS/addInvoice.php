@@ -664,7 +664,7 @@ include('header.php');
                                             while ($row = $sql->fetch_assoc()){	
                                                 $custid=$row['custid'];
                                                 $custname=$row['custname'];
-                                                echo '<option  value="'.$custname.'" >'.$custid ." ".$custname.'</option>';
+                                                echo '<option  value="'.$custid.'" >'.$custid ." ".$custname.'</option>';
                                             }
                                             ?>
                                         </select>

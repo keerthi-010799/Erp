@@ -194,7 +194,7 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
 
                         </div>
                     </div><!-- end card-->
-                    <div id="po_print" style="display:none;">
+                    <div id="po_print">
 
 
 </div>
@@ -416,8 +416,6 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
         $('#genModal').modal('show');
     }
 
-    $('#po_print').hide();
-
 function get_print_html(inv_code,img,template){
     $.ajax ({
         url: 'assets/'+template+'.php',
@@ -428,6 +426,7 @@ function get_print_html(inv_code,img,template){
         },
         //dataType: 'json',
         success:function(response){
+           console.log(response);
             if(response!=0 || response!=""){
                 $('#po_print').html(response);
                 $('#po_print').prepend('<img src="'+img+'" width="50px" height="50px"/>');

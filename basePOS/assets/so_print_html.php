@@ -2,9 +2,9 @@
 include("../database/db_conection.php");//make connection here
 include("../workers/getters/functions.php");//make connection here
 
-if(isset($_GET['so_code']))
+if(isset($_POST['so_code']))
 {
-    $so_code = $_GET['so_code'];
+    $so_code = $_POST['so_code'];
 
     $sql = "SELECT * from salesorders where so_code = '$so_code' ";
     $result = mysqli_query($dbcon,$sql);

@@ -679,7 +679,7 @@ View All
                                     <li><a href="listInvoices.php"><b><i class="fa fa-circle-o"></i>list Invoices</b>	</a></li>
                                     <!--li><a href="listInvoicesacc.php"><b><i class="fa fa-circle-o"></i>list Manual Invoices</b>	</a></li-->
                                     <li><a href="addCashMemo.php"><b><i class="fa fa-plus-circle"></i>Cash Memo</b></a></li>						
-                                    <li><a href="#"><i class="fa fa-circle-o"></i>list Cash Memos</a></li>											
+                                    <li><a href="listCashMemos.php"><i class="fa fa-circle-o"></i>list Cash Memos</a></li>											
                                 </ul>	
 
                             <li class="submenu">
