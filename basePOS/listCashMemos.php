@@ -181,15 +181,14 @@
 
 
                 <script>
-                    $('#po_print').hide();
 
-                    function get_print_html(so_code,img){
+                    function get_print_html(inv_code,img){
                         $.ajax ({
-                            url: 'assets/so_print_html.php',
+                            url: 'assets/sales_credit_inv.php',
                             type: 'post',
                             async :false,
                             data: {
-                                so_code:so_code,
+                                inv_code:inv_code,
                             },
                             //dataType: 'json',
                             success:function(response){
@@ -210,7 +209,6 @@
 
                     var afterPrint = function () {
                         location.reload();
-
                         $('#po_print').hide();
                     };
 
