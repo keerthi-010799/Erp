@@ -279,7 +279,7 @@ $session_user = $rs['username'];
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <input type="text" placeholder="Shipping Street" name="po_shipping_street" id="po_shipping_street" required class="form-control form-control-sm"  > 
+                                        <input type="text" placeholder="Shipping Street" name="po_shipping_street" id="po_shipping_street"  class="form-control form-control-sm"  > 
                                     </div>
                                 </div>
 
@@ -289,7 +289,7 @@ $session_user = $rs['username'];
                                         <input type="text" class="form-control form-control-sm" required name="po_billing_city" id="po_billing_city"  placeholder=" Billing City" >
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <input type="text" placeholder="Shipping City" name="po_shipping_city" id="po_shipping_city" required class="form-control form-control-sm"> 
+                                        <input type="text" placeholder="Shipping City" name="po_shipping_city" id="po_shipping_city"  class="form-control form-control-sm"> 
                                     </div>
                                 </div>
 
@@ -320,7 +320,7 @@ $session_user = $rs['username'];
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <select class="form-control form-control-sm" id="po_shipping_country" required name="po_shipping_country"> 
+                                        <select class="form-control form-control-sm" id="po_shipping_country"  name="po_shipping_country"> 
                                             <span class="text-muted">  
                                                 <option value="" selected>Shipping Country</option> </span>
 
@@ -336,7 +336,7 @@ $session_user = $rs['username'];
 
 
                                     <div class="form-group col-md-4">
-                                        <input type="text" class="form-control form-control-sm" name="po_shipping_zip" id="po_shipping_zip"  required placeholder="Shipping Zip/Postal Code">
+                                        <input type="text" class="form-control form-control-sm" name="po_shipping_zip" id="po_shipping_zip"   placeholder="Shipping Zip/Postal Code">
                                     </div>									  
                                 </div>
 
@@ -347,7 +347,7 @@ $session_user = $rs['username'];
                                     </div>	
 
                                     <div class="form-group col-md-4">
-                                        <input type="text" class="form-control form-control-sm" name="po_shipping_phone"  id="po_shipping_phone"  required placeholder="Shipping Phone">
+                                        <input type="text" class="form-control form-control-sm" name="po_shipping_phone"  id="po_shipping_phone"   placeholder="Shipping Phone">
                                     </div>									  
                                 </div>
 
@@ -357,7 +357,7 @@ $session_user = $rs['username'];
                                         <input type="text" class="form-control form-control-sm" name="po_billing_gstin" id="po_billing_gstin"  required placeholder="Billing GSTIN No" value="" />
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <input type="text" class="form-control form-control-sm" name="po_shipping_gstin" id="po_shipping_gstin"  required placeholder="Shipping GSTIN No">
+                                        <input type="text" class="form-control form-control-sm" name="po_shipping_gstin" id="po_shipping_gstin"   placeholder="Shipping GSTIN No">
                                     </div>									  
                                 </div>
 

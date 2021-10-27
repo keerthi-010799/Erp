@@ -1,0 +1,8 @@
+{
+    "billing":{
+        "required":true
+    },
+    "shipping":{
+        "required":false
+    }
+}

@@ -34,8 +34,8 @@ function get_itemDetails($dbcon,$code){
     $result = mysqli_query($dbcon,$sql);
     $row =$result-> fetch_assoc();
 
-    //$ret = "[".$row['itemcode']."]  ".$row['itemname']."&nbsp;|&nbsp;HSN: ".$row['hsncode']."&nbsp;|&nbsp; ";
-    $ret=  "GST@".($row['sales_taxrate']/1)."%";
+    $ret = "[".$row['itemcode']."]  ".$row['itemname']."&nbsp;&nbsp;|&nbsp; ";//|&nbsp;HSN: ".$row['hsncode']."&nbsp;|&nbsp; ";
+    $ret.=  "GST@".($row['sales_taxrate']/1)."%";
     return $ret;
 }
 function convertNumberToWord($num = false)
@@ -502,3 +502,5 @@ window.onafterprint = afterPrint;
          location.reload();
      };
 </script>
+    </body>
+    </html>

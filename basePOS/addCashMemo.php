@@ -758,7 +758,7 @@ include('header.php');
                                 <table  class="table table-hover small-text" id="tb">
                                     <tr class="tr-header">
                                         <th width="20%">Item Details</th>
-                                        <th width="12%">HSN/SAC</th>
+                                        <!-- <th width="12%">HSN/SAC</th> -->
                                         <th width="11%">Qty</th>
                                         <th width="12%">Unit</th>
                                         <th width="15%"><i class="fa fa-rupee fonts" aria-hidden="true"></i>&nbsp;Rate</th>
@@ -790,7 +790,7 @@ include('header.php');
 
                                         <!--td><input type="text" name="description" placeholder="Item Name" class="form-control"></td
 <td><input type="text" name="itemcode" placeholder="Item Details" class="form-control"></td>-->
-                                        <td><input readonly id="hsncode" type="text" name="hsncode" placeholder="hsncode"    data-id="" class="form-control form-control-sm hsncode"></td>
+                                        <!-- <td><input readonly id="hsncode" type="text" name="hsncode" placeholder="hsncode"    data-id="" class="form-control form-control-sm hsncode"></td> -->
                                         <td><input id="qty" type="text" name="qty" onkeypress="sales_rowitem.update_math_vals();sales_rowitem.stkalert(this);"   onkeyup="sales_rowitem.update_math_vals();sales_rowitem.stkalert(this);" placeholder="Qty" data-id="" class="form-control form-control-sm qty"></td>                                        <td>
                                         <select class="form-control form-control-sm amount" id="uom"  onchange="sales_rowitem.update_math_vals();"; name="uom" style="line-height:1.5;">
                                             <option value="" selected>Open Unit</option>

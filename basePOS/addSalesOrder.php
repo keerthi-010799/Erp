@@ -236,7 +236,7 @@ include('header.php');
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <input type="text" placeholder="Shipping Street" name="so_cust_shipping_street" id="so_cust_shipping_street" required class="form-control form-control-sm"  > 
+                                        <input type="text" placeholder="Shipping Street" name="so_cust_shipping_street" id="so_cust_shipping_street"  class="form-control form-control-sm"  > 
                                     </div>
                                 </div>
 
@@ -246,7 +246,7 @@ include('header.php');
                                         <input type="text" class="form-control form-control-sm" required name="so_cust_billing_city" id="so_cust_billing_city"  placeholder=" Billing City" >
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <input type="text" placeholder="Shipping City" name="so_cust_shipping_city" id="so_cust_shipping_city" required class="form-control form-control-sm"> 
+                                        <input type="text" placeholder="Shipping City" name="so_cust_shipping_city" id="so_cust_shipping_city"  class="form-control form-control-sm"> 
                                     </div>
                                 </div>
 
@@ -277,7 +277,7 @@ include('header.php');
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <select class="form-control form-control-sm" id="so_cust_shipping_country" required name="so_cust_shipping_country"> 
+                                        <select class="form-control form-control-sm" id="so_cust_shipping_country"  name="so_cust_shipping_country"> 
                                             <span class="text-muted">  
                                                 <option value="" selected>Shipping Country</option> </span>
 
@@ -293,7 +293,7 @@ include('header.php');
 
 
                                     <div class="form-group col-md-4">
-                                        <input type="text" class="form-control form-control-sm" name="so_cust_shipping_zip" id="so_cust_shipping_zip"  required placeholder="Shipping Zip/Postal Code">
+                                        <input type="text" class="form-control form-control-sm" name="so_cust_shipping_zip" id="so_cust_shipping_zip"   placeholder="Shipping Zip/Postal Code">
                                     </div>									  
                                 </div>
 
@@ -304,7 +304,7 @@ include('header.php');
                                     </div>	
 
                                     <div class="form-group col-md-4">
-                                        <input type="text" class="form-control form-control-sm" name="so_cust_shipping_phone"  id="so_cust_shipping_phone"  required placeholder="Shipping Phone">
+                                        <input type="text" class="form-control form-control-sm" name="so_cust_shipping_phone"  id="so_cust_shipping_phone"   placeholder="Shipping Phone">
                                     </div>									  
                                 </div>
 
@@ -314,7 +314,7 @@ include('header.php');
                                         <input type="text" class="form-control form-control-sm" name="so_cust_billing_gstin" id="so_cust_billing_gstin"  required placeholder="Billing GSTIN No" value="" />
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <input type="text" class="form-control form-control-sm" name="so_cust_shipping_gstin" id="so_cust_shipping_gstin"  required placeholder="Shipping GSTIN No">
+                                        <input type="text" class="form-control form-control-sm" name="so_cust_shipping_gstin" id="so_cust_shipping_gstin"   placeholder="Shipping GSTIN No">
                                     </div>									  
                                 </div>
 

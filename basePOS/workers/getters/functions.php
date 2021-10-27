@@ -187,8 +187,8 @@ function get_total($so_items_arr){
             $fsubtotal = $so_items_arr[$i]->rwprice*$so_items_arr[$i]->rwqty;
 
         if($so_items_arr[$i]->tax_method == 1){
-            $subtotal = $fsubtotal*(100/($so_items_arr[$i]->tax_val+100));
-            $taxval = $subtotal * ($so_items_arr[$i]->tax_val/100);
+            $subtotal = nf($fsubtotal)*(100/(nf($so_items_arr[$i]->tax_val)+100));
+            $taxval = nf($subtotal) * (nf($so_items_arr[$i]->tax_val)/100);
             $amt = round($amt + ($subtotal + $taxval),2);
         }
         else{

@@ -138,7 +138,8 @@
 
   </button>
   <div class="dropdown-menu">
-    <a class="dropdown-item"  href="#" onclick="ToPrint(this);" data-template="sales_credit_inv" data-code="'.$row['inv_code'].'" data-img="assets/images/logo.png"  data-id="po_print"><i class="fa fa-print" aria-hidden="true"></i>&nbsp; Print</a>   <a class="dropdown-item"  href="#" onclick="ToPrint(this);" data-template="dc_print" data-code="'.$row['inv_code'].'" data-img="assets/images/logo.png"  data-id="po_print"><i class="fa fa-print" aria-hidden="true"></i>&nbsp; DC Print</a>';
+    <a class="dropdown-item"  href="#" onclick="ToPrint(this);" data-template="sales_credit_inv" data-code="'.$row['inv_code'].'" data-img="assets/images/logo.png"  data-id="po_print"><i class="fa fa-print" aria-hidden="true"></i>&nbsp; Print</a>  
+     <a class="dropdown-item"  href="#" onclick="ToPrint(this);" data-template="dc_print" data-code="'.$row['inv_code'].'" data-img="assets/images/logo.png"  data-id="po_print"><i class="fa fa-print" aria-hidden="true"></i>&nbsp; DC Print</a>';
 
 
                                                 if($row['inv_status']=="Created"){

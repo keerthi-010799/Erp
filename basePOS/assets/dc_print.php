@@ -32,7 +32,7 @@ function get_itemDetails($dbcon,$code){
     $result = mysqli_query($dbcon,$sql);
     $row =$result-> fetch_assoc();
 
-    return "[".$row['itemcode']."]  ".$row['itemname']."<br/> HSN : ".$row['hsncode'];
+    return "[".$row['itemcode']."]  ".$row['itemname']."<br/>";// HSN : ".$row['hsncode'];
 }
 function convertNumberToWord($num = false)
 {
@@ -89,10 +89,10 @@ function convertNumberToWord($num = false)
             }
         </style>
     </head>
-    <body>
+    <body onload="printInit();">
         <h5 >
 
-            <div style="text-align:center">DELIVERY CHALLAN</div>
+            <div style="text-align:center;">DELIVERY CHALLAN</div>
         </h5>
 
         <table class="p_table" width="100%" style="border:1px solid #000;padding:10px;">
@@ -365,3 +365,22 @@ function convertNumberToWord($num = false)
                 </table>
             </tbody>
         </table>
+
+    <script>
+
+function printInit(){
+window.print();
+window.onbeforeprint = beforePrint;
+window.onafterprint = afterPrint;
+
+}
+
+         
+    var beforePrint = function () {
+        // alert('start');
+     };
+
+     var afterPrint = function () {
+        window.history.back();
+     };
+</script>

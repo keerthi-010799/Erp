@@ -560,7 +560,7 @@
                          var res_data = response;
                         }
                         if(res_data.status){
-                            var new_option ="<option>"+res_data.data+"</option>";
+                            var new_option ="<option seleccted>"+res_data.data+"</option>";
                             $('#category').append(new_option);
                             $('#customModal').modal('toggle');
                         }else{
@@ -592,7 +592,7 @@
                          var res_data = response;
                         }
                         if(res_data.status){
-                            var new_option ="<option>"+res_data.data+"</option>";
+                            var new_option ="<option selected>"+res_data.data+"</option>";
                             $('#brand').append(new_option);
                             $('#customModalBrand').modal('toggle');
                         }else{

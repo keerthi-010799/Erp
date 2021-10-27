@@ -780,8 +780,9 @@ include('header.php');
                                 </div>
                                 <br/>
 
-
-
+                                 <?php           
+                                $req = $json_data['shipping']['required'];
+                                ?>
                                 <div class="form-row">	
                                     <div class="form-group col-md-4">
                                         <input type="text" placeholder="Billing Street"  name="inv_billing_street" id="inv_billing_street"  class="form-control form-control-sm" > 
@@ -792,13 +793,18 @@ include('header.php');
                                     </div>
                                 </div>
 
-
+                                            
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
                                         <input type="text" class="form-control form-control-sm" required name="inv_billing_city" id="inv_billing_city"  placeholder=" Billing City" >
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <input type="text" placeholder="Shipping City" name="inv_shipping_city" id="inv_shipping_city" required class="form-control form-control-sm"> 
+                                    <?php if($req == 1){
+                                        echo '<input type="text" placeholder="Shipping City" name="inv_shipping_city" id="inv_shipping_city"  class="form-control form-control-sm" required>';
+                                    }else{
+                                        echo '<input type="text" placeholder="Shipping City" name="inv_shipping_city" id="inv_shipping_city"  class="form-control form-control-sm">';
+                                    } 
+                                    ?>
                                     </div>
                                 </div>
 
@@ -812,7 +818,12 @@ include('header.php');
                                     </div>
 
                                     <div class="form-group col-md-4">											
-                                        <select id="inv_shipping_state" class="form-control form-control-sm" name="inv_shipping_state">
+                                    <?php if($req == 1){
+                                        echo '<select id="inv_shipping_state" class="form-control form-control-sm" name="inv_shipping_state" required>';
+                                    }else{
+                                        echo '<select id="inv_shipping_state" class="form-control form-control-sm" name="inv_shipping_state">';
+                                    }
+                                    ?>
                                             <span class="text-muted">  <option selected value="">Shipping State</option> </span>
 
                                         </select>
@@ -829,7 +840,12 @@ include('header.php');
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <select class="form-control form-control-sm" id="inv_shipping_country" required name="inv_shipping_country"> 
+                                        <?php 
+                                        if($req == 1){
+                                            echo'<select class="form-control form-control-sm" id="inv_shipping_country" required name="inv_shipping_country">'; 
+                                        }else{
+                                            echo'<select class="form-control form-control-sm" id="inv_shipping_country" name="inv_shipping_country">'; 
+                                        } ?>
                                             <span class="text-muted">  
                                                 <option value="" selected>Shipping Country</option> </span>
 
@@ -856,7 +872,13 @@ include('header.php');
                                     </div>	
 
                                     <div class="form-group col-md-4">
-                                        <input type="text" class="form-control form-control-sm" name="inv_shipping_phone"  id="inv_shipping_phone"  required placeholder="Shipping Phone">
+                                    <?php 
+                                        if($req == 1){    
+                                    echo '<input type="text" class="form-control form-control-sm" name="inv_shipping_phone"  id="inv_shipping_phone"  required placeholder="Shipping Phone">';
+                                        }else{
+                                        echo '<input type="text" class="form-control form-control-sm" name="inv_shipping_phone"  id="inv_shipping_phone" placeholder="Shipping Phone">';
+                                    }
+                                    ?>
                                     </div>									  
                                 </div>
 
@@ -866,7 +888,7 @@ include('header.php');
                                         <input type="text" class="form-control form-control-sm" name="inv_billing_gstin" id="inv_billing_gstin"   placeholder="Billing GSTIN No" value="" />
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <input type="text" class="form-control form-control-sm" name="inv_shipping_gstin" id="inv_shipping_gstin"   placeholder="Shipping GSTIN No">
+                                        <input type="text" class="form-control form-control-sm" name="inv_shipping_gstin" id="inv_shipping_gstin"  req placeholder="Shipping GSTIN No">
                                     </div>									  
                                 </div>
 
@@ -881,7 +903,7 @@ include('header.php');
                                 <table  class="table table-hover small-text" id="tb">
                                     <tr class="tr-header">
                                         <th width="20%">Item Details</th>
-                                        <th width="12%">HSN/SAC</th>
+                                        <!-- <th width="12%">HSN/SAC</th> -->
                                         <th width="11%">Qty</th>
                                         <th width="12%">Unit</th>
                                         <th width="15%"><i class="fa fa-rupee fonts" aria-hidden="true"></i>&nbsp;Rate</th>
@@ -911,7 +933,7 @@ include('header.php');
                                         </td>
                                         <!--td><input type="text" name="description" placeholder="Item Name" class="form-control"></td
                                             <td><input type="text" name="itemcode" placeholder="Item Details" class="form-control"></td>-->
-                                        <td><input id="hsncode" type="text" name="hsncode" placeholder="hsncode"    data-id="" class="form-control form-control-sm hsncode"></td>
+                                        <!-- <td><input id="hsncode" type="text" name="hsncode" placeholder="hsncode"    data-id="" class="form-control form-control-sm hsncode"></td> -->
                                         <td><input id="qty" type="text" name="qty" onkeypress="sales_rowitem.update_math_vals();sales_rowitem.stkalert(this);"   onkeyup="sales_rowitem.update_math_vals();sales_rowitem.stkalert(this);" placeholder="Qty" data-id="" class="form-control form-control-sm  qty"></td>                                        <td>
                                         <select class="form-control form-control-sm amount" id="uom"  onchange="sales_rowitem.update_math_vals();"; name="uom" style="line-height:1.5;">
                                             <option value="" selected>Open Unit</option>
@@ -1186,7 +1208,7 @@ include('header.php');
                     //dataType: 'json',
                     success:function(response){
                         if(response!=0 || response!=""){
-                            var new_option ="<option>"+response+"</option>";
+                            var new_option ="<option value="+response+">"+response+"</option>";
                             $('#paymentterm').append(new_option);
                             $('#customModal').modal('toggle');
                         }else{
@@ -1532,12 +1554,14 @@ include('header.php');
                          var res_data = response;
                         }
                         if(res_data.status){
-                            // console.log(res_data.data);
-                            var new_option ="<option>"+res_data.data+"</option>";
+                             console.log(res_data.data);
+                            var new_option ='<option selected value="'+res_data.value+'">'+res_data.label+'</option>';
                             $('#inv_customer').append(new_option);
+                            post_address(res_data.value);
                              $('#newcustomermodal').modal("hide");
                              $('.modal-backdrop').remove();
                              $(document.body).removeClass("modal-open");
+
 
 
                         }else{
