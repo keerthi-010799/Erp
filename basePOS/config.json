@@ -1,8 +1,12 @@
 {
+    "supplyPlace":{
+        "required":false
+    },
     "billing":{
         "required":true
     },
     "shipping":{
         "required":false
     }
+
 }

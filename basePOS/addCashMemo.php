@@ -1316,8 +1316,8 @@ include('header.php');
                          var res_data = response;
                         }
                         if(res_data.status){
-                            // console.log(res_data.data);
-                            var new_option ="<option>"+res_data.data+"</option>";
+                             console.log(res_data,res_data.label);
+                            var new_option ='<option selected value="'+res_data.value+'">'+res_data.label+'</option>';
                             $('#inv_customer').append(new_option);
                              $('#newcustomermodal').modal("hide");
                              $('.modal-backdrop').remove();
@@ -1503,8 +1503,9 @@ include('header.php');
                         }
                         console.log(res_data.status,res_data.data);
                         if(res_data.status){
-                        var new_option ="<option>"+res_data.data+"</option>";
+                        var new_option ="<option selected>"+res_data.data+"</option>";
                           $('#item_select').append(new_option);
+                          sales_rowitem.set_itemrow('#item_select','sales');
                           $('#additemModal').modal("hide");
                           $('.modal-backdrop').remove();
                           $(document.body).removeClass("modal-open");

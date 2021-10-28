@@ -2,6 +2,15 @@
 include("../database/db_conection.php");//make connection here
 include("../workers/getters/functions.php");//make connection here
 
+$json = file_get_contents('../config.json');
+
+$json_data = json_decode($json,true);
+
+print_r($json_data,true);
+
+$req = $json_data['shipping']['required'];  
+
+
 if(isset($_GET['inv_code']))
 {
     $inv_code = $_GET['inv_code'];
@@ -195,12 +204,27 @@ function print_duedate($payterm, $payterm_desc, $inv_date){
                     <?php echo $row2['custname']; ?>,<br/>
 
                         <!-- Code updated by jayaprakash - 09042019 -->
-                        <?php echo $row['inv_shipping_street']; ?>,<br/>
-                        <?php echo $row['inv_shipping_city']; ?>-<?php echo $row['inv_shipping_zip']; ?>&nbsp;<?php echo $row['inv_shipping_country']; ?>,<?php echo $row['inv_shipping_state']; ?><br/>
-                        <b>Mob#</b>:&nbsp;<?php echo $row2['mobile']; ?> <br/>
+                        <?php 
+                        if($req === 1){
+                            echo $row['inv_shipping_street']+"<br/>";
+                            echo $row['inv_shipping_city'] +"-" +$row['inv_shipping_zip']+" "+ $row['inv_shipping_country']+",";
+                            echo $row['inv_shipping_state']+"<br/>";
+                            echo'<b>Mob#</b> :&nbsp;'+$row['inv_shipping_phone']+'<br/>';
+                        }else{
+                            echo $row2['address']."<br/>";
+                            echo $row2['city']."-".$row2['zip']." ". $row2['country'].",";
+                            echo $row2['state']."<br/>";
+                            echo'<b>Mob#</b> :&nbsp;'.$row2['mobile'].'<br/>';
+   
+                        }
+                        ?>
+                         <!-- <php echo $row['inv_shipping_street'] ? $row['inv_shipping_street'] : $row2['address'] ; ?>,<br/> -->
+                         <!-- <php echo $row['inv_shipping_city'] ? $row['inv_shipping_city'] : $row2['city']; ?>-<php echo $row['inv_shipping_zip'] ? $row['inv_shipping_zip'] : $row2['zip']; ?>&nbsp;<?php echo $row['inv_shipping_country'] ? $row['inv_shipping_country'] : $row2['country']; ?>,<php echo $row['inv_shipping_state'] ? $row['inv_shipping_state'] : $row2['state']; ?><br/> -->
+                        <!-- <b>Mob#</b>:&nbsp;<php echo $row['inv_shipping_phone'] ? $row['inv_shipping_phone'] : $row2['mobile']; ?> <br/> -->
                         
-                        <!--?php echo $row2['city']; ?--> <!--?php echo $row2['zip']; ?-->                        
+                         <!--?php echo $row2['city']; ?--> <!--?php echo $row2['zip']; ?-->                        
                         <b>GSTIN</b> - <?php echo $row['inv_shipping_gstin']; ?>
+					
                          </td>
                     <td style="border:1px solid #000;padding:0px;">
                         <table width="100%">

@@ -730,7 +730,14 @@ include('header.php');
 
                                     <div class="form-group col-md-4">											
                                         <label for="inputState">Place of Supply</label>
-                                        <select id="inv_deliveryat"  class="form-control select2" name="inv_deliveryat">
+                                        <?php
+                                        $req = $json_data['supplyPlace']['required'];
+                                            if($req === 1){
+                                        echo '<select id="inv_deliveryat" required class="form-control form-control-sm" name="inv_deliveryat">';
+                                    }else{
+                                        echo '<select id="inv_deliveryat"  class="form-control form-control-sm" name="inv_deliveryat">';
+                                    }
+                                        ?>
                                             <option selected>--Open State--</option>
                                         </select>	
                                         <!--a href="addSupplierCodeMaster.php">add supplier type</a-->												
@@ -1765,6 +1772,7 @@ $('#newcustomer').click(function(e){
                         if(res_data.status){
                         var new_option ="<option selected>"+res_data.data+"</option>";
                           $('#item_select').append(new_option);
+                          sales_rowitem.set_itemrow('#item_select','sales');
                           $('#additemModal').modal("hide");
                           $('.modal-backdrop').remove();
                           $(document.body).removeClass("modal-open");

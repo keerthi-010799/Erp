@@ -170,7 +170,7 @@ include('header.php');
 
 <!--modal add item-->
 <div class="modal fade custom-modal" id="additemModal" tabindex="-1" role="dialog" aria-labelledby="customModal" aria-hidden="true">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="exampleModalLabel2">Add New Item</h5>
@@ -721,7 +721,14 @@ include('header.php');
 
                                     <div class="form-group col-md-4">											
                                         <label for="inputState">Place of Supply</label>
-                                        <select id="inv_deliveryat"   required class="form-control form-control-sm" name="inv_deliveryat">
+                                        <?php           
+                                        $req = $json_data['supplyPlace']['required'];
+                                            if($req === 1){
+                                        echo '<select id="inv_deliveryat" required class="form-control form-control-sm" name="inv_deliveryat">';
+                                    }else{
+                                        echo '<select id="inv_deliveryat"  class="form-control form-control-sm" name="inv_deliveryat">';
+                                    }
+                                        ?>
                                             <option selected>--Open State--</option>
                                         </select>	
                                         <!--a href="addSupplierCodeMaster.php">add supplier type</a-->												
@@ -1741,10 +1748,11 @@ include('header.php');
                         }else{
                          var res_data = response;
                         }
-                        console.log(res_data.status,res_data.data);
+                        console.log(res_data,res_data.data);
                         if(res_data.status){
-                        var new_option ="<option>"+res_data.data+"</option>";
+                        var new_option ="<option selected>"+res_data.data+"</option>";
                           $('#item_select').append(new_option);
+                          sales_rowitem.set_itemrow('#item_select','sales');
                           $('#additemModal').modal("hide");
                           $('.modal-backdrop').remove();
                           $(document.body).removeClass("modal-open");
@@ -1805,5 +1813,5 @@ $(document).ready(function() {
 });
 </script>
 <!-- END Java Script for this page -->
-    </body>
-</html>
+</body>
+</ht

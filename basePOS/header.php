@@ -23,7 +23,7 @@ if(isset($_SESSION['login_email'])){
     $session_name = $rs['firstname'].' '.$rs['lastname'];
 }
 
-$json = file_get_contents('billing.json');
+$json = file_get_contents('config.json');
 
 $json_data = json_decode($json,true);
 
