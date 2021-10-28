@@ -181,7 +181,7 @@ function print_duedate($payterm, $payterm_desc, $inv_date){
 
                         <!-- Code updated by jayaprakash - 09042019 -->
                         <?php 
-                        if($req === 1){
+                        if($req === true){
                             echo $row['inv_shipping_street']+"<br/>";
                             echo $row['inv_shipping_city'] +"-" +$row['inv_shipping_zip']+" "+ $row['inv_shipping_country']+",";
                             echo $row['inv_shipping_state']+"<br/>";

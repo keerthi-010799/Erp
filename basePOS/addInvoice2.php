@@ -732,7 +732,7 @@ include('header.php');
                                         <label for="inputState">Place of Supply</label>
                                         <?php
                                         $req = $json_data['supplyPlace']['required'];
-                                            if($req === 1){
+                                            if($req === true){
                                         echo '<select id="inv_deliveryat" required class="form-control form-control-sm" name="inv_deliveryat">';
                                     }else{
                                         echo '<select id="inv_deliveryat"  class="form-control form-control-sm" name="inv_deliveryat">';
@@ -814,7 +814,7 @@ include('header.php');
                                         <input type="text" class="form-control form-control-sm" required name="inv_billing_city" id="inv_billing_city"  placeholder=" Billing City" >
                                     </div>
                                     <div class="form-group col-md-4">
-                                    <?php if($req == 1){    
+                                    <?php if($req === true){    
                                     echo '<input type="text" placeholder="Shipping City" name="inv_shipping_city" id="inv_shipping_city"  class="form-control form-control-sm" required>'; 
                                     }else{
                                         echo '<input type="text" placeholder="Shipping City" name="inv_shipping_city" id="inv_shipping_city"  class="form-control form-control-sm">'; 
@@ -834,7 +834,7 @@ include('header.php');
 
                                     <div class="form-group col-md-4">											
                                     <?php
-                                    if($req == 1){    
+                                    if($req === true){    
                                   echo '<select id="inv_shipping_state" class="form-control form-control-sm" name="inv_shipping_state" required>';
                                 }else{
                                    echo '<select id="inv_shipping_state" class="form-control form-control-sm" name="inv_shipping_state">';
@@ -858,7 +858,7 @@ include('header.php');
 
                                     <div class="form-group col-md-4">
                                     <?php 
-                                            if($req == 1){
+                                            if($req === true){
                                         echo '<select class="form-control form-control-sm" id="inv_shipping_country"  name="inv_shipping_country" required> ';
                                             }else{echo '<select class="form-control form-control-sm" id="inv_shipping_country"  name="inv_shipping_country" > ';
                                             }
@@ -890,7 +890,7 @@ include('header.php');
 
                                     <div class="form-group col-md-4">
                                     <?php
-                                    if($req == 1){    
+                                    if($req === true){    
                                         echo '<input type="text" class="form-control form-control-sm" name="inv_shipping_phone"  id="inv_shipping_phone"   placeholder="Shipping Phone" required>';
                                     }else{echo '<input type="text" class="form-control form-control-sm" name="inv_shipping_phone"  id="inv_shipping_phone"   placeholder="Shipping Phone">';
                                     }
