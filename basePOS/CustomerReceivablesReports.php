@@ -25,10 +25,10 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
             <div class="row">
                 <div class="col-xl-12">
                     <div class="breadcrumb-holder">
-                        <h1 class="main-title float-left"> Customer Recievables Report</h1>
+                        <h1 class="main-title float-left"> Customer Recievables/Balance Report</h1>
                         <ol class="breadcrumb float-right">
                             <li class="breadcrumb-item">Home</li>
-                            <li class="breadcrumb-item active">Customer Recievables Reprot</li>
+                            <li class="breadcrumb-item active">Customer Recievables/Balance Report</li>
                         </ol>
                         <div class="clearfix"></div>
                     </div>
@@ -42,14 +42,14 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                         <div class="card-header">
 
 
-                            <h3><i class="fa fa-cart-plus bigfonts" aria-hidden="true"></i><b>&nbsp;Customer Recievables Report</b></h3>
+                            <h3><i class="fa fa-cart-plus bigfonts" aria-hidden="true"></i><b>&nbsp;Customer Recievables/Balances Report</b></h3>
                         </div>
 
                         <div class="card-body">
                             <div class="form-group row">
                                 <div class="col-sm-4">
                                     <div class="input-group">
-                                        <input type="text" id="daterange" class="form-control" placeholder="Select Date Range">
+                                        <input type="text" id="daterange" class="form-control form-control-sm" placeholder="Select Date Range">
                                         <span class="input-group-btn">
                                             <button class="btn btn-default" id="reset-date">
                                                 <i class="fa fa-times"></i>
@@ -59,7 +59,7 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                                 </div>
 
                                 <div class="form-group col-sm-3">
-                                    <select id="custwise" class="form-control form-control-md" name="custwise">
+                                    <select id="custwise" class="form-control select2" name="custwise">
                                         <option value=''>--Select Customer--</option>
                                         <?php
                                         $sql = mysqli_query($dbcon,"SELECT * FROM customerprofile");
@@ -75,7 +75,7 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                                 </div>
 
                                 <div class="form-group col-md-3">
-                                    <select id="pstatuswise" class="form-control form-control-md" name="pstatuswise">
+                                    <select id="pstatuswise" class="form-control select2" name="pstatuswise">
                                         <option value="" selected>Open Payment Status</option>
                                         <option value="Unpaid">Unpaid</option>
                                         <option value="Partially Paid">Partially Paid</option>
@@ -85,7 +85,7 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                                 </div>
 
                                 <div class="col-sm-2">
-                                    <button type="button" class="btn btn-primary" onclick="get_custrec_reports();">Run Report</button>
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="get_custrec_reports();">Run Report</button>
                                 </div>
                             </div>
                             <hr/>
@@ -466,6 +466,14 @@ function printContent(el){
 
 
 </script>
+<!-- BEGIN Java Script for this page -->
+<script src="assets/plugins/select2/js/select2.min.js"></script>
+<script>                                
+$(document).ready(function() {
+    $('.select2').select2();
+});
+</script>
+<!-- END Java Script for this page -->
 <?php
 include('footer.php');
 ?>

@@ -186,7 +186,7 @@ include('header.php');
 								<div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="brand">Brand</label>
-                                        <select id="brand" onchange="" class="form-control form-control-sm select2"
+                                        <select id="brand" onchange="" class="form-control select2"
                                          name="brand"  autocomplete="off">
                                          
                                             <option selected>Select Brand</option>
@@ -217,7 +217,7 @@ include('header.php');
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <label for="inputState">Category</label>
-                                        <select id="category" onchange="" class="form-control form-control-sm" name="category" id="category" autocomplete="off">
+                                        <select id="category" onchange="" class="form-control select2" name="category" id="category" autocomplete="off">
                                             <option selected>Select Category</option>
                                             <?php 
                                             include("database/db_conection.php");//make connection here
@@ -657,8 +657,8 @@ include('header.php');
 
                                 <div class="form-row">
                                     <div class="form-group col-md-8">
-                                        <label for="inputState"><span class="text-danger">Customer Name*</span></label>
-                                        <select id="inv_customer" class="form-control form-control-sm" name="inv_customer">
+                                        <label for="inv_customer"><span class="text-danger">Customer Name*</span></label>
+                                        <select id="inv_customer" class="form-control select2" name="inv_customer">
                                             <option selected>--Select Customer--</option>
                                             <?php
                                             $sql = mysqli_query($dbcon,"SELECT * FROM customerprofile");

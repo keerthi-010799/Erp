@@ -656,8 +656,8 @@ include('header.php');
 
                                 <div class="form-row">
                                     <div class="form-group col-md-8">
-                                        <label for="inputState"><span class="text-danger">Customer Name*</span></label>
-                                        <select id="inv_customer" onchange="post_address(this.value);" class="form-control form-control-sm" name="inv_customer" required>
+                                        <label for="inv_customer"><span class="text-danger">Customer Name*</span></label>
+                                        <select id="inv_customer" onchange="post_address(this.value);" class="form-control select2" name="inv_customer" required>
                                             <option selected>--Select Customer--</option>
                                             <?php
                                             $sql = mysqli_query($dbcon,"SELECT * FROM customerprofile");

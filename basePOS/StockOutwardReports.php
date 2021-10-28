@@ -25,7 +25,7 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
             <div class="row">
                 <div class="col-xl-12">
                     <div class="breadcrumb-holder">
-                        <h1 class="main-title float-left"> Inventory(Sales) Report</h1>
+                        <h1 class="main-title float-left"> Inventory/Stock(Outward) Report</h1>
                         <ol class="breadcrumb float-right">
                             <li class="breadcrumb-item">Home</li>
                             <li class="breadcrumb-item active">Stock  Report</li>
@@ -45,8 +45,8 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                             <h3><i class="fa fa-cart-plus bigfonts" aria-hidden="true"></i><b>&nbsp;Stock  Report </b></h3>
                         </div>
                         <div class="form-group row">
-                        <div class="form-group col-sm-3">
-                                    <select id="itemwise" class="form-control form-control-sm" name="itemwise">
+                        <div class="form-group col-md-4">
+                                    <select id="itemwise" class="form-control select2" name="itemwise">
                                         <option selected value="">--Select Item--</option>
                                         <?php
                                         $sql = mysqli_query($dbcon,"SELECT distinct itemname FROM salesitemaster2");
@@ -61,8 +61,8 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                                 </div>
                         
                                 <div class="form-group row">
-                        <div class="form-group col-sm-3">
-                                    <select id="categorywise" class="form-control form-control-sm" name="categorywise">
+                        <div class="form-group col-md-6">
+                                    <select id="categorywise" class="form-control select2" name="categorywise">
                                         <option selected value="">--Select Category--</option>
                                         <?php
                                         $sql = mysqli_query($dbcon,"SELECT * FROM itemcategory");
@@ -75,8 +75,8 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                                     </select>
 
                                 </div>
-                                <div class="form-group col-sm-3">
-                                    <select id="brandwise" class="form-control form-control-sm" name="brandwise">
+                               <div class="form-group col-md-4">
+                                    <select id="brandwise" class="form-control select2" name="brandwise">
                                         <option selected value="">--Select Brand--</option>
                                         <?php
                                         $sql = mysqli_query($dbcon,"SELECT * FROM brandmaster");
@@ -90,7 +90,7 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
 
                                 </div>
                                 <div class="col-sm-2">
-                                    <button type="button" class="btn btn-primary btn-sm" onclick="filter_table();">Run Filter</button>
+                                    <button type="button" class="btn btn-primary btn-sm" onclick="filter_table();">Filter</button>
                                 </div>
  
                                     </div>
@@ -288,6 +288,14 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
     }
 
 </script>
+<!-- BEGIN Java Script for this page -->
+<script src="assets/plugins/select2/js/select2.min.js"></script>
+<script>                                
+$(document).ready(function() {
+    $('.select2').select2();
+});
+</script>
+<!-- END Java Script for this page -->
 <?php
 include('footer.php');
 ?>

@@ -47,7 +47,7 @@ include('workers/getters/functions.php');
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-3">
-                                    <select id="custwise" class="form-control form-control-sm" name="custwise">
+                                    <select id="custwise" class="form-control select2" name="custwise">
                                         <option selected>--Select Customer--</option>
                                         <?php
                                         $sql = mysqli_query($dbcon,"SELECT * FROM customerprofile");
@@ -376,6 +376,14 @@ function printContent(el){
 }
 
 </script>
+<!-- BEGIN Java Script for this page -->
+<script src="assets/plugins/select2/js/select2.min.js"></script>
+<script>                                
+$(document).ready(function() {
+    $('.select2').select2();
+});
+</script>
+<!-- END Java Script for this page -->
 <?php
 include('footer.php');
 ?>
