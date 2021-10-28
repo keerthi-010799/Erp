@@ -203,7 +203,7 @@ $req = $json_data;
                             <table class="table table-condensed">       
                                 <thead>
                         <tr>
-                                        <td <?php echo ($req['reports']['supplierPaymentMadeReport'] == 1) ? 'style="display:block"' : 'style="display:none"'?>>
+                                        <td <?php echo ($req['reports']['supplierPaymentMadeReport'] === true ) ? 'style="display:block"' : 'style="display:none"'?>>
                                             <i class="fa fa-rupee bigfonts" aria-hidden="true"></i>&nbsp;Payables & Payments Made
                                         </td>
 
@@ -220,7 +220,7 @@ $req = $json_data;
                                 <tbody>
                                     <!-- foreach ($order->lineItems as $line) or some such thing here -->
                                     <tr>
-                                        <td <?php echo ($req['reports']['vendorBalanceReport'] == 1) ? 'style="display:block"' : 'style="display:none"'?>><a href="VendorPayablesReports.php">
+                                        <td <?php echo ($req['reports']['vendorBalanceReport'] === true) ? 'style="display:block"' : 'style="display:none"'?>><a href="VendorPayablesReports.php">
                                             <i class="fa fa-angle-right bigfonts" aria-hidden="true"></i> &nbsp;Vendor Balances Report
                                             </a>&nbsp;<i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" data-trigger="focus" data-placement="top" title="Vendor/Supplier Payments Outstanding Report."></i>
                                         </td>
@@ -234,7 +234,7 @@ $req = $json_data;
 
 
                                     <tr>
-                                        <td <?php echo ($req['reports']['supplierPaymentMadeReport'] == 1) ? 'style="display:block"' : 'style="display:none"'?>>
+                                        <td <?php echo ($req['reports']['supplierPaymentMadeReport'] === true) ? 'style="display:block"' : 'style="display:none"'?>>
                                             <a href="VendorPaymentsReports.php">
                                                 <i class="fa fa-angle-right bigfonts" aria-hidden="true"></i> &nbsp;Supplier Payments Made Report</a>&nbsp;<i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" data-trigger="focus" data-placement="top" title="Vendor/Suplier Payments Paid Report."></i>
                                             </a>
@@ -250,7 +250,7 @@ $req = $json_data;
                                     </tr>
 
                                     <tr>
-                                        <td <?php echo ($req['reports']['debitNotes'] === 1) ? 'style="display:block"' : 'style="display:none"'?> ><a href="listDebitNotes.php">
+                                        <td <?php echo ($req['reports']['debitNotes'] === true) ? 'style="display:block"' : 'style="display:none"'?> ><a href="listDebitNotes.php">
                                             <i class="fa fa-angle-right bigfonts" aria-hidden="true"></i> &nbsp;Debit Notes</td>
 
                                         <td class="text-left"><a href="listCreditNotes.php">
@@ -259,7 +259,7 @@ $req = $json_data;
                                     </tr>
 
                                     <tr>
-                                        <td <?php echo ($req['reports']['vendorCreditsHistory'] == 1) ? 'style="display:block"' : 'style="display:none"'?>><a href="VendorCreditsReports.php">
+                                        <td <?php echo ($req['reports']['vendorCreditsHistory'] === true) ? 'style="display:block"' : 'style="display:none"'?>><a href="VendorCreditsReports.php">
                                             <i class="fa fa-angle-right bigfonts" aria-hidden="true"></i> &nbsp;Vendor Credits
                                             History</a> &nbsp;<i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" data-trigger="focus" data-placement="top" title="Vendor Advance Credits Transaction History Report."></i></td>
                                         <td><a href="PaymentsRecievedReports.php">
@@ -267,7 +267,7 @@ $req = $json_data;
                                     </tr>
 
                                     <tr>
-                                        <td <?php echo ($req['reports']['refundHistory'] == 1) ? 'style="display:block"' : 'style="display:none"'?>><a href="listVendorRefunds.php">
+                                        <td <?php echo ($req['reports']['refundHistory'] === true) ? 'style="display:block"' : 'style="display:none"'?>><a href="listVendorRefunds.php">
                                             <i class="fa fa-angle-right bigfonts" aria-hidden="true"></i> &nbsp;Refund History</td>
                                             
                                             <td>

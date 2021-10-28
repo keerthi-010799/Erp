@@ -144,7 +144,7 @@ print_r($json_data,true);
                     </div>
                     <div class="modal-body">
                         <div class="row">						
-							<div <?php echo ($json_data['header']['purchase'] == 1) ? 'style="display:block"' : 'style="display:none"'?> class="fa fa-shopping-basket col">Purchases<br><br><br>
+							<div <?php echo ($json_data['header']['purchase'] === true) ? 'style="display:block"' : 'style="display:none"'?> class="fa fa-shopping-basket col">Purchases<br><br><br>
 							<a href="listPurchaseOrders.php"><class="col">Purchase Order</a><br><br><br>
 							<a href="listGoodsReceiptNote.php"><class="col">Goods Receipt Note(GRN)</a><br><br><br>
 							<!--a href="listPartnerPurchaseEntries.php"><class="col">GRN(Outsourced)</a><br><br><br-->
@@ -155,9 +155,9 @@ print_r($json_data,true);
 						</div>
 						
 						<div class="fa fa-shopping-cart col">Sales<br><br><br>
-							<a <?php echo ($json_data['header']['estimates'] == 1) ? 'style="display:block"' : 'style="display:none"'?> href="listEstimates.php"><class="col">Estimates</a>
+							<a <?php echo ($json_data['header']['estimates'] === true) ? 'style="display:block"' : 'style="display:none"'?> href="listEstimates.php"><class="col">Estimates</a>
                             <!-- <br><br><br> -->
-							<a <?php echo ($json_data['header']['salesOrder'] == 1) ? 'style="display:block"' : 'style="display:none"'?> href="listSalesOrders.php"><class="col">Sales Order</a>
+							<a <?php echo ($json_data['header']['salesOrder'] === true) ? 'style="display:block"' : 'style="display:none"'?> href="listSalesOrders.php"><class="col">Sales Order</a>
                             <!-- <br><br><br> -->
 							<a href="listInvoices.php"><class="col">Invoices</a><br><br><br>							
 							<a href="listCustomerCredits.php"><class="col">Customer Credits</a><br><br><br>										
@@ -166,13 +166,13 @@ print_r($json_data,true);
 							<a href="listCustomerPayments.php"><class="col">Customer Payments Received</a><br><br><br>
 						</div>
 						<div class="fa fa-shopping-basket col">Inventory<br><br><br>
-							<a <?php echo ($json_data['header']['purchase'] == 1) ? 'style="display:block"' : 'style="display:none"'?> href="listPurchaseItemMaster.php"><class="col-md5">Item Master(Purchase)</a>
+							<a <?php echo ($json_data['header']['purchase'] === true) ? 'style="display:block"' : 'style="display:none"'?> href="listPurchaseItemMaster.php"><class="col-md5">Item Master(Purchase)</a>
                             <!-- <br><br><br> -->
 							<a href="listSalesItemMaster.php"><class="col">Item Master(Sales)</a><br><br><br>
-							<a <?php echo ($json_data['header']['scrap'] == 1) ? 'style="display:block"' : 'style="display:none"'?> href="listScrapItemMaster.php"><class="col">Scrap-INVENTORY</a>
+							<a <?php echo ($json_data['header']['scrap'] === true) ? 'style="display:block"' : 'style="display:none"'?> href="listScrapItemMaster.php"><class="col">Scrap-INVENTORY</a>
                             <!-- <br><br><br>	 -->
 						</div>
-						<div <?php echo ($json_data['header']['production'] == 1) ? 'style="display:block"' : 'style="display:none"'?> class="fa fa-shopping-cart col">Production<br><br><br>
+						<div <?php echo ($json_data['header']['production'] === true) ? 'style="display:block"' : 'style="display:none"'?> class="fa fa-shopping-cart col">Production<br><br><br>
 							<a href="listProductRawItems.php"><class="col-md5">Assign Rawmaterials</a><br><br><br>
 							<a href="listProductions.php"><class="col">Production</a><br><br><br>
 						</div>
@@ -608,11 +608,11 @@ View All
                     <li class="submenu">
                         <a href="#"><i class="fa fa-building-o bigfonts" aria-hidden="true"></i>Inventory <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">								
-                            <li <?php echo ($json_data['header']['productInwards'] == 1) ? 'style="display:block"' : 'style="display:none"'?>><a href="listPurchaseItemMaster.php"><i class="fa fa-circle-o"></i>list Product Inward</a></li>
-                            <li <?php echo ($json_data['header']['productInwards'] == 1) ? 'style="display:block"' : 'style="display:none"'?>><a href="addPurchaseItemMaster.php"><i class="fa fa-plus-circle"></i>Product Inward</a></li>
+                            <li <?php echo ($json_data['header']['productInwards'] === true) ? 'style="display:block"' : 'style="display:none"'?>><a href="listPurchaseItemMaster.php"><i class="fa fa-circle-o"></i>list Product Inward</a></li>
+                            <li <?php echo ($json_data['header']['productInwards'] === true) ? 'style="display:block"' : 'style="display:none"'?>><a href="addPurchaseItemMaster.php"><i class="fa fa-plus-circle"></i>Product Inward</a></li>
                             <li><a href="listSalesItemMaster.php"><i class="fa fa-circle-o"></i>list Product Outward</a></li>
                             <li><a href="addSalesItemMaster.php"><i class="fa fa-plus-circle"></i>Product Outward</a></li>
-                            <li <?php echo ($json_data['header']['purchase'] == 1) ? 'style="display:block"' : 'style="display:none"'?> class="submenu">
+                            <li <?php echo ($json_data['header']['purchase'] === true) ? 'style="display:block"' : 'style="display:none"'?> class="submenu">
                                 <a href="#" >STOCK TRANSFERS<span class="menu-arrow"></span> </a>
                                 <ul class="list-unstyled">	
                                     <li><a href="transferProductInward.php"><i class="fa fa-plus-circle"></i>Transfer Stock Inward</a></li>
@@ -634,7 +634,7 @@ View All
 </li-->
 
 
-                    <li <?php echo ($json_data['header']['purchase'] == 1) ? 'style="display:block"' : 'style="display:none"'?> class="submenu">
+                    <li <?php echo ($json_data['header']['purchase'] === true) ? 'style="display:block"' : 'style="display:none"'?> class="submenu">
                         <a href="#"><i class="fa fa-shopping-basket" aria-hidden="true"></i>Purchase <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">								
                             <li><a href="addPurchaseOrder.php"><i class="fa fa-plus-circle"></i>Purchase Orders</a></li>
@@ -650,7 +650,7 @@ View All
                             </li>		
                         </ul>
 
-                    <li <?php echo ($json_data['header']['grn'] == 1) ? 'style="display:block"' : 'style="display:none"'?> class="submenu">
+                    <li <?php echo ($json_data['header']['grn'] === true) ? 'style="display:block"' : 'style="display:none"'?> class="submenu">
                         <a href="#"><i class="fa fa-truck smallfonts" aria-hidden="true"></i><span>GRN</span> <span class="menu-arrow"></span></a>
                         <ul class="list-unstyled">
                             <li><a href="addGoodsReceiptNote.php"><i class="fa fa-plus-circle"></i>add GRN</a></li>
@@ -677,10 +677,10 @@ View All
                         <a href="#"><i class="fa fa-shopping-cart"></i><span>Sales</span> <span class="menu-arrow"></span></a>
 
                         <ul class="list-unstyled">
-                            <li <?php echo ($json_data['header']['estimates'] == 1) ? 'style="display:block"' : 'style="display:none"'?>><a href="addEstimate.php"><i class="fa fa-plus-circle"></i>Estimates</a> <li>
-                            <li <?php echo ($json_data['header']['estimates'] == 1) ? 'style="display:block"' : 'style="display:none"'?>><a href="listEstimates.php"><i class="fa fa-circle-o"></i>List Estimates</a> <li>
-                            <li <?php echo ($json_data['header']['salesOrder'] == 1) ? 'style="display:block"' : 'style="display:none"'?>><a href="addSalesOrder.php"><i class="fa fa-plus-circle"></i>Sales Orders</a> <li>
-                            <li <?php echo ($json_data['header']['salesOrder'] == 1) ? 'style="display:block"' : 'style="display:none"'?>><a href="listSalesOrders.php"><i class="fa fa-circle-o"></i>list Sales Orders</a> <li>	
+                            <li <?php echo ($json_data['header']['estimates'] === true) ? 'style="display:block"' : 'style="display:none"'?>><a href="addEstimate.php"><i class="fa fa-plus-circle"></i>Estimates</a> <li>
+                            <li <?php echo ($json_data['header']['estimates'] === true) ? 'style="display:block"' : 'style="display:none"'?>><a href="listEstimates.php"><i class="fa fa-circle-o"></i>List Estimates</a> <li>
+                            <li <?php echo ($json_data['header']['salesOrder'] === true) ? 'style="display:block"' : 'style="display:none"'?>><a href="addSalesOrder.php"><i class="fa fa-plus-circle"></i>Sales Orders</a> <li>
+                            <li <?php echo ($json_data['header']['salesOrder'] === true) ? 'style="display:block"' : 'style="display:none"'?>><a href="listSalesOrders.php"><i class="fa fa-circle-o"></i>list Sales Orders</a> <li>	
 
                             <li class="submenu">
                                 <a href="#"><i class="fa fa-file-text-o bigfonts" aria-hidden="true"></i><b> Invoices </b><span class="menu-arrow"></span></a>
