@@ -1583,7 +1583,7 @@ $('#newcustomer').click(function(e){
                         }
                         if(res_data.status){
                             // console.log(res_data.data);
-                            var new_option ="<option selected>"+res_data.label+"</option>";
+                            var new_option ='<option selected value="'+res_data.value+'">'+res_data.label+"</option>";
                             $('#inv_customer').append(new_option);
                             post_address(res_data.value);
                              $('#newcustomermodal').modal("hide");
@@ -1772,7 +1772,7 @@ $('#newcustomer').click(function(e){
                         if(res_data.status){
                         var new_option ="<option selected>"+res_data.data+"</option>";
                           $('#item_select').append(new_option);
-                          sales_rowitem.set_itemrow('#item_select','sales');
+                          sales_rowitem.set_itemrow('#item_select','sales','manual');
                           $('#additemModal').modal("hide");
                           $('.modal-backdrop').remove();
                           $(document.body).removeClass("modal-open");
