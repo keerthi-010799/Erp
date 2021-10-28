@@ -1,6 +1,13 @@
-<?php include('header.php'); ?>
-<!-- End Sidebar -->
+<?php include('header.php'); 
+$json = file_get_contents('config.json');
 
+$json_data = json_decode($json,true);
+
+print_r($json_data,true);
+$req = $json_data;  
+
+?>
+<!-- End Sidebar -->
 
 <div class="content-page">
 
@@ -195,8 +202,8 @@
                         <div class="table-responsive">
                             <table class="table table-condensed">       
                                 <thead>
-                                    <tr>
-                                        <td >
+                        <tr>
+                                        <td <?php echo ($req['reports']['supplierPaymentMadeReport'] == 1) ? 'style="display:block"' : 'style="display:none"'?>>
                                             <i class="fa fa-rupee bigfonts" aria-hidden="true"></i>&nbsp;Payables & Payments Made
                                         </td>
 
@@ -213,7 +220,7 @@
                                 <tbody>
                                     <!-- foreach ($order->lineItems as $line) or some such thing here -->
                                     <tr>
-                                        <td><a href="VendorPayablesReports.php">
+                                        <td <?php echo ($req['reports']['vendorBalanceReport'] == 1) ? 'style="display:block"' : 'style="display:none"'?>><a href="VendorPayablesReports.php">
                                             <i class="fa fa-angle-right bigfonts" aria-hidden="true"></i> &nbsp;Vendor Balances Report
                                             </a>&nbsp;<i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" data-trigger="focus" data-placement="top" title="Vendor/Supplier Payments Outstanding Report."></i>
                                         </td>
@@ -227,7 +234,7 @@
 
 
                                     <tr>
-                                        <td>
+                                        <td <?php echo ($req['reports']['supplierPaymentMadeReport'] == 1) ? 'style="display:block"' : 'style="display:none"'?>>
                                             <a href="VendorPaymentsReports.php">
                                                 <i class="fa fa-angle-right bigfonts" aria-hidden="true"></i> &nbsp;Supplier Payments Made Report</a>&nbsp;<i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" data-trigger="focus" data-placement="top" title="Vendor/Suplier Payments Paid Report."></i>
                                             </a>
@@ -243,7 +250,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td><a href="listDebitNotes.php">
+                                        <td <?php echo ($req['reports']['debitNotes'] === 1) ? 'style="display:block"' : 'style="display:none"'?> ><a href="listDebitNotes.php">
                                             <i class="fa fa-angle-right bigfonts" aria-hidden="true"></i> &nbsp;Debit Notes</td>
 
                                         <td class="text-left"><a href="listCreditNotes.php">
@@ -252,7 +259,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td><a href="VendorCreditsReports.php">
+                                        <td <?php echo ($req['reports']['vendorCreditsHistory'] == 1) ? 'style="display:block"' : 'style="display:none"'?>><a href="VendorCreditsReports.php">
                                             <i class="fa fa-angle-right bigfonts" aria-hidden="true"></i> &nbsp;Vendor Credits
                                             History</a> &nbsp;<i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" data-trigger="focus" data-placement="top" title="Vendor Advance Credits Transaction History Report."></i></td>
                                         <td><a href="PaymentsRecievedReports.php">
@@ -260,7 +267,7 @@
                                     </tr>
 
                                     <tr>
-                                        <td><a href="listVendorRefunds.php">
+                                        <td <?php echo ($req['reports']['refundHistory'] == 1) ? 'style="display:block"' : 'style="display:none"'?>><a href="listVendorRefunds.php">
                                             <i class="fa fa-angle-right bigfonts" aria-hidden="true"></i> &nbsp;Refund History</td>
                                             
                                             <td>

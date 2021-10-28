@@ -7,6 +7,23 @@
     },
     "shipping":{
         "required":false
+    },
+    "reports":{
+    "vendorBalanceReport":false,
+    "supplierPaymentMadeReport":false,
+    "debitNotes":false,
+    "vendorCreditsHistory":false,
+    "refundHistory":false
+    },
+    "header":{
+    "stockTransfer":false,
+    "grn":false,
+    "purchase":false,
+    "productInwards":false,
+    "estimates":false,
+    "salesOrder":false,
+    "scrap":false,
+    "production":false
     }
 
 }
