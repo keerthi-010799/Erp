@@ -772,12 +772,12 @@ include('header.php');
                                     </tr>
                                     <tr>
                                         <td>
-                                            <select name="itemcode" class="form-control select2 itemcode" onchange="sales_rowitem.set_itemrow(this);" id="item_select">
+                                            <select name="itemcode" class="form-control form-control-sm itemcode" onchange="sales_rowitem.set_itemrow(this);" id="item_select">
                                                 <option value="" name="itemcode" selected>Item Code</option>
                                                 <?php $qr  = "select * from salesitemaster2;";
                                                 $exc = mysqli_query($dbcon,$qr)or die();
                                                 while($r = mysqli_fetch_array($exc)){ ?>
-                                                <option value="<?php echo $r['id']; ?>"><?php echo $r['itemcode']."-".substr($r['brand'],0,5)."-".$r['itemname']."-".substr($r['size'],0,5); ?></option>
+                                                <option value="<?php echo $r['id']; ?>"><?php echo substr($r['brand'],0,5)."-".$r['itemcode']."-".$r['itemname']."-".substr($r['size'],0,5); ?></option>
                                                 <?php
                                                                                     }
                                                 ?>
