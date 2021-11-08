@@ -43,7 +43,8 @@ function get_itemDetails($dbcon,$code){
     $result = mysqli_query($dbcon,$sql);
     $row =$result-> fetch_assoc();
 
-    $ret = "[".$row['itemcode']."]  ".$row['itemname']."&nbsp;&nbsp;|&nbsp; ";//|&nbsp;HSN: ".$row['hsncode']."&nbsp;|&nbsp; ";
+    $ret = substr($row['brand'],0,10)."-".substr($row['itemname'],0,15)."-".$row['size']."- [".$row['itemcode']."]&nbsp;&nbsp;|&nbsp; ";
+    //|&nbsp;HSN: ".$row['hsncode']."&nbsp;|&nbsp; ";
     $ret.=  "GST@".($row['sales_taxrate']/1)."%";
     return $ret;
 }

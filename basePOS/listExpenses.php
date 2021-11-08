@@ -57,6 +57,19 @@ include('workers/getters/functions.php');
                                         }
                                         ?>
                                     </select>
+                                    </div>
+                                    <div class="form-group col-md-3">
+                                    <select id="payeewise" class="form-control form-control-sm" name="payeewise">
+                                        <option value=''>--Select payee--</option>
+                                        <?php
+                                        $sql = mysqli_query($dbcon,"SELECT DISTINCT payee FROM recordexpense");
+                                        while ($row = $sql->fetch_assoc()){	
+                                            $payee=$row['payee'];
+                                            echo '<option  value="'.$payee.'" >'.$payee.'</option>';
+
+                                        }
+                                        ?>
+                                    </select>
                                 </div>
                                 <div class="col-sm-2">
                                     <button type="button" class="btn btn-primary btn-sm" onclick="get_po_reports();">Run Report</button>
@@ -85,12 +98,13 @@ include('workers/getters/functions.php');
                                         </thead>
                                         <tbody>
                                             <?php
-                                            if((isset($_GET['st'])&&$_GET['st']!='')||(isset($_GET['end'])&&$_GET['end']!='')||(isset($_GET['categorywise'])&&$_GET['categorywise'])){
+                                            if((isset($_GET['st'])&&$_GET['st']!='')||(isset($_GET['end'])&&$_GET['end']!='')||(isset($_GET['categorywise'])&&$_GET['categorywise'])||(isset($_GET['payeewise'])&&$_GET['payeewise'])){
                                                 $timestamp = strtotime($_GET['st']);
                                                 $st = date('Y-m-d', $timestamp);
                                                 $timestamp = strtotime($_GET['end']);
                                                 $end = date('Y-m-d', $timestamp);
                                                 $categorywise = $_GET['categorywise'];
+                                                $payeewise = $_GET['payeewise'];
 
                                                 $sql = "SELECT * from recordexpense p where 1=1 ";
                                                 if($_GET['st']!=''){
@@ -103,6 +117,10 @@ include('workers/getters/functions.php');
                                                 if(isset($_GET['categorywise'])&&$_GET['categorywise']!=''){
                                                     // echo $_GET['vendorwise'];
                                                     $sql.=" and p.category='".$_GET['categorywise']."'";    
+                                                }
+                                                if(isset($_GET['payeewise'])&&$_GET['payeewise']!=''){
+                                                    // echo $_GET['vendorwise'];
+                                                    $sql.=" and p.payee='".$_GET['payeewise']."'";    
                                                 }
 
                                                 $sql.=" ;"; 
@@ -164,13 +182,15 @@ include('workers/getters/functions.php');
 <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
 
 <script>
-    var page_partywise = "<?php if(isset($_GET['categorywise'])){ echo $_GET['categorywise']; } ?>";
+    var page_categorywise = "<?php if(isset($_GET['categorywise'])){ echo $_GET['categorywise']; } ?>";
+    var page_payeewise = "<?php if(isset($_GET['payeewise'])){ echo $_GET['payeewise']; } ?>";
     var page_st = "<?php if(isset($_GET['st'])){ echo $_GET['st']; } ?>";
     var page_end = "<?php if(isset($_GET['end'])){ echo $_GET['end']; } ?>";
 
 
     $(document).ready(function() {
-        $('#categorywise').val(page_partywise);
+        $('#categorywise').val(page_categorywise);
+        $('#payeewise').val(page_payeewise);        
         $("#reset-date").hide();
 
         $('#daterange').daterangepicker({
@@ -207,6 +227,7 @@ include('workers/getters/functions.php');
 
         var date_range = $('#daterange').val(); 
         var party_var = $('#categorywise').val(); 
+        var payee_var = $('#payeewise').val(); 
         var printhead = party_var!=''?'<p><b>Payee : </b>'+party_var+'</p>':'';
         printhead+= date_range!=''?'<p><b>Date : </b>'+date_range+'</p>':'';
         var excel_printhead = party_var!=''?'Payee : '+party_var:'';
@@ -297,7 +318,8 @@ include('workers/getters/functions.php');
         }
 
         var categorywise = $('#categorywise').val();
-        location.href="listExpenses.php?st="+st+"&end="+end+"&categorywise="+categorywise;
+        var payeewise = $('#payeewise').val();
+        location.href="listExpenses.php?st="+st+"&end="+end+"&categorywise="+categorywise+"&payeewise="+payeewise;
 
 	
     }

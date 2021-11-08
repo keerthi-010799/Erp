@@ -383,8 +383,8 @@ VALUES ('$voucherid',
 
 <script>
         $('document').ready(function(){	
-            $('#submitcategory').click(function(){
-                var category = $('#addcategory').val();
+            $('#submitcategory1').click(function(){
+                var category = $('#addcategory1').val();
                 //var suptype = $('#addsupptype').val();
                 //alert(groupname+description);
                 $.ajax ({
@@ -396,15 +396,21 @@ VALUES ('$voucherid',
                     },
                     //dataType: 'json',
                     success:function(response){
-                        if(response!=0 || response!=""){
-                            var new_option ="<option>"+response+"</option>";
+						console.log(response);
+						if(typeof(response) === "string"){
+                        var res_data = JSON.parse(response);
+                        }else{
+                         var res_data = response;
+                        }
+                        if(res_data.status){
+                            var new_option ="<option selected>"+res_data.data+"</option>";
                             $('#category').append(new_option);
                             $('#customModal').modal('toggle');
                         }else{
-                            alert('Error in inserting new Category,try another unique category');
+                            alert(res_data.error)
+                            //alert('Error in inserting new Category,try another unique category');
                         }
                     }
-
                 });
 
             });

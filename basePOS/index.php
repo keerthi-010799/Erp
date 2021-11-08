@@ -67,8 +67,27 @@ function get_TodaysReceivables(){
     $sql_q = "SELECT sum(cust_payment_amount) as todayscollection FROM `customer_payments` WHERE cust_payment_date = CURDATE()";
     $exc_q = mysqli_query($dbcon,$sql_q)or die("Error");
 
+    $sql_q1 = "SELECT sum(cust_payment_amount) as todayscollection1 FROM `customer_paymentsacc` WHERE cust_payment_date = CURDATE()";
+    $exc_q1 = mysqli_query($dbcon,$sql_q1)or die("Error");
+
     $row=mysqli_fetch_assoc($exc_q);
-    echo $row['todayscollection']?$row['todayscollection']:0;
+    $row1=mysqli_fetch_assoc($exc_q1);
+    
+    echo $row['todayscollection']+$row1['todayscollection1'] ? $row['todayscollection']+$row1['todayscollection1']:0;
+}
+
+function get_TodaysSales(){
+    global $dbcon;
+    $sql_q = "SELECT count(inv_value) as todaysSales FROM `invoices` WHERE inv_date = CURDATE()";
+    $exc_q = mysqli_query($dbcon,$sql_q)or die("Error");
+
+    $sql_q1 = "SELECT count(inv_value) as todaysSales1 FROM `invoicesacc` WHERE inv_date = CURDATE()";
+    $exc_q1 = mysqli_query($dbcon,$sql_q1)or die("Error");
+
+    $row=mysqli_fetch_assoc($exc_q);
+    $row1=mysqli_fetch_assoc($exc_q1);
+    
+    echo $row['todaysSales']+$row1['todaysSales1'] ? $row['todaysSales']+$row1['todaysSales1']:0;
 }
 
 function get_TodaysExpenses(){
@@ -262,7 +281,7 @@ where inv_payment_status!='Paid' and inv_status='Approved' and DATE_ADD(inv_date
                         <div class="card-box noradius noborder bg-purple">
                         <h2 class="card-title lead text-center text-white">TODAYS SALES</h2>
                         <p class="display-3 card-text text-center text-white">
-                            <?php  print_r(get_users_count());?></p>
+                            <?php  get_TodaysSales();?></p>
                             <!--
 
                 </div>

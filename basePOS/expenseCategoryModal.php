@@ -5,7 +5,7 @@ if(isset($_POST['category']))
 {
 	$code ="";
 	$prefix = "CAT00";
-	
+	$return = array();
     $category=$_POST['category'];//same
    // $description = $_POST['description'];//same
 	
@@ -13,9 +13,8 @@ if(isset($_POST['category']))
     $run_query=mysqli_query($dbcon,$check_suptype_query);
 	if(mysqli_num_rows($run_query)>0)
     {
-		echo '0';
-      
-        exit();
+		$return['status'] = false;
+		$return['error']  = 'Error in inserting new Category,try another unique category';
     }
    //$image =base64_encode($image);	
 //Generating Category Codes
@@ -39,13 +38,17 @@ $sql="SELECT MAX(id) as latest_id FROM itemcategory ORDER BY id DESC";
 	
 	if(mysqli_query($dbcon,$insert_itemcategory))
 	{
-		echo 	$category;
+		$return['status'] = true;
+		$return['data'] = $category;
+		//echo 	$category;
 		//echo "<script>alert('User Group creation Successful ')</script>";
 		//header("location:addUsers.php");
     } else {
-		echo '0';
-		exit; //echo "<script>alert('User creation unsuccessful ')</script>";
+		$return['error']='Error in inserting new Category,try another unique category';
+		//echo '0';
+		//exit; //echo "<script>alert('User creation unsuccessful ')</script>";
 	}
 	
 }
+echo json_encode($return);
 ?>
