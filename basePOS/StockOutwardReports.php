@@ -104,8 +104,11 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                                     <table id="po_reports" class="table table-bordered" style="width:100%">
                                         <thead>
                                             <tr>
-                                                <th>Item Code</th>												
-                                                <th>Item Name</th>												
+                                                <th>Item Code</th>	
+                                                <th>Brand</th>																							
+                                                <th>Item Name</th>
+                                                <th>Category</th>												
+                                                <th>Size</th>												
                                                 <th>Item Cost</th>
                                                 <th>Taxrate</th>	
                                                 <th>Purchase rate</th>																							
@@ -148,7 +151,10 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                                                 while ($row =$result-> fetch_assoc()){
                                                     echo '<tr>';
                                                     echo '<td>' .$row['itemcode'] . '</td>';
+                                                    echo '<td>' .$row['brand'] . '</td>';
                                                     echo '<td>'.$row['itemname'].' </td>';
+                                                    echo '<td>' .$row['category'] . '</td>';
+                                                    echo '<td>' .$row['size'] . '</td>';
                                                     echo '<td>'.($row['sales_priceperqty']-$row['sales_taxamount']).' </td>';
                                                     echo '<td>'.$row['sales_taxrate'].' </td>';
                                                     echo '<td>'.$row['priceperqty'].' </td>';
