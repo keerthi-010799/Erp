@@ -255,7 +255,7 @@ print_r($json_data,true);
                                         <tr>
                                             <td><a href="listUserGroups.php">																		add Roles/Group</a></td>
                                             <td class="text-center"><a  href="listInvoicesacc.php">
-                                                Manual Invoice</a></td>
+                                                Non-GST Invoice</a></td>
                                             <!--td class="text-center"><a  href="listInvoices.php">list Invoices</a>
 
 
@@ -272,7 +272,7 @@ print_r($json_data,true);
 
                                             <td><a  href="listUsers.php">
                                                 Edit to Inactive User</a></td>
-                                            <td class="text-center"><a href="CustomerReceivablesReportsacc.php">Manual Inv Cust Bal Report</a></td>																			
+                                            <td class="text-center"><a href="CustomerReceivablesReportsacc.php">Non GST Customer Balance Report</a></td>																			
                                             <td class="text-center"></td>
                                             <td class="text-right"></td>
                                         </tr>
@@ -282,7 +282,7 @@ print_r($json_data,true);
                                                 <a href="listCompanyBankDetails.php">Org Bank Details</a></td>
 
                                             <td class="text-center"><a href="PaymentsRecievedReportsacc.php">
-                                                Manual Inv Payments Made Report</a>
+                                                Non-GST Payments Made Report</a>
                                             </td>
                                             <!--td class="text-center">
 <a  href="listCustomerPayments.php">list Customer Payments Made</a>

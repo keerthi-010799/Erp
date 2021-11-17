@@ -37,8 +37,8 @@ function get_itemDetails($dbcon,$code){
     </head>
     <body>
         
-        <h5 > <div style="text-align:center">DHIRAJ AGRO PRIVATE LIMITED <br>
-		(A Franchisee of Parle Agro Pvt Ltd)</div> </h5>
+        <h5 > <div style="text-align:center">Sri Maheshwari Textiles <br>
+		</div> </h5>
         <h3><div style="text-align:center">VENDOR PAYMENTS VOUCHER</div></h3> 
        
 

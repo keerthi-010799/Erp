@@ -107,7 +107,8 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                                                 <th>Item Code</th>												
                                                 <th>Item Name</th>												
                                                 <th>Item Cost</th>
-                                                <th>Taxrate</th>												
+                                                <th>Taxrate</th>	
+                                                <th>Purchase rate</th>																							
                                                 <th>Sales rate</th>												
                                                 <th>Stock On Hand</th>												
                                                 <th>Stock Value</th>												
@@ -150,6 +151,7 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                                                     echo '<td>'.$row['itemname'].' </td>';
                                                     echo '<td>'.($row['sales_priceperqty']-$row['sales_taxamount']).' </td>';
                                                     echo '<td>'.$row['sales_taxrate'].' </td>';
+                                                    echo '<td>'.$row['priceperqty'].' </td>';
                                                     echo '<td>'.$row['sales_priceperqty'].' </td>';
                                                     echo '<td>'.$row['stockinqty'].' </td>';
                                                     echo '<td>'.$row['stockinqty']*$row['sales_priceperqty'].' </td>';

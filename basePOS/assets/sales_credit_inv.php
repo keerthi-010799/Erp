@@ -128,7 +128,7 @@ function print_duedate($payterm, $payterm_desc, $inv_date){
         <div style="text-align:center">SRI MAHESHWARI TEXTILES <br>
 		</div> </h5>
 		
-         <h3>   <div style="text-align:center">INVOICE</div>
+         <h3>   <div style="text-align:center">CREDIT INVOICE</div>
         </h3>
 
         <table class="p_table" width="100%" style="border:1px solid #000;padding:10px;">

@@ -82,6 +82,7 @@
                                             <th>size</th>											
                                             <th>Item Cost</th>
                                             <th>Taxrate</th>												
+                                            <th>Purchase rate</th>												
                                             <th>Sales rate</th>												
                                             <th>Stock On Hand</th>												
                                             <th>Created By</th>												
@@ -128,6 +129,7 @@
                                                 echo '<td>'.$row['size'].' </td>';                                                 
                                                 echo '<td>'.nf($pprice).' </td>';
                                                 echo '<td>'.$pptax.' </td>';
+                                                echo '<td>'.$row['priceperqty'].' </td>';
                                                 echo '<td>'.$row['sales_priceperqty'].' </td>';
                                                 echo '<td>'.$row['stockinqty'].' </td>';
                                                 echo '<td>'.$row['handler'].' </td>';

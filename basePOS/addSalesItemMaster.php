@@ -173,6 +173,122 @@
                                 </div>	
 
 
+                                <div class="form-row" style="display:"> 
+                                    <div class="form-group col-md-6">
+                                        <h5>Purchase Price Information</h5>
+                                    </div>
+                                </div>
+                                <div id="purchase_div" style="display:">
+                                    <div class="form-row">
+                                        <div class="form-group col-md-2">
+                                            <i class="fa fa-rupee fonts" aria-hidden="true"></i>
+                                            <label>Purchase rate/Price<span class="text-danger"></span></label>
+                                            <input type="text" onchange="gettaxrate('purchase_div');" name="priceperqty" id="priceperqty" class="form-control form-control-sm"  placeholder="Price Per Qty" autocomplete="off" />
+                                        </div>
+                                        <div class="form-group col-md-2" id="adjust_cost" style="display:none">
+                                            <i class="fa fa-rupee fonts" aria-hidden="true"></i>
+                                            <label>Adjust Price</label>
+                                            <input type="number" step="any" onkeypress="adjustprice('purchase');"  onkeyup="adjustprice('purchase');" id="adjpriceperqty" name="adjpriceperqty" class="form-control form-control-sm"   />
+                                        </div>
+                                        <div class="form-group col-md-2">
+                                            <label>UOM&nbsp;<i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" 
+                                                               data-trigger="focus" data-placement="top" title="The Item will be measured in terms of this UNIT(e.g.:Kgs,dozen,box"></i>
+                                                <span class="text-danger">*</span></label>
+                                            <select id="uom" onchange="gettaxrate('purchase_div');"  class="form-control form-control-sm" name="uom">
+                                                <option value="0" selected>Select UOM</option>
+                                                <?php 
+
+                                                $sql = mysqli_query($dbcon, "SELECT code,description FROM uom_lookups ");
+                                                while ($row = $sql->fetch_assoc()){	
+                                                    $description=$row['description'];
+                                                    $code=$row['code'];
+                                                    echo '<option  value="'.$code.'" >'.$description.'</option>';
+                                                }
+                                                ?>
+                                            </select>	
+                                        </div>	
+
+                                    </div>
+
+
+                                     <div class="form-row">
+                                        <div class="form-group col-md-6">
+                                            <label>As of Date<span class="text-danger">*</span></label>
+                                            <i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" 
+                                               data-trigger="focus" data-placement="top" title="As of Date is price as on date"></i>
+                                            <input type="date" class="form-control form-control-sm"  name="pricedatefrom" id="pricedatefrom" value="<?php echo date("Y-m-d");?>">					  
+                                        </div>
+                                    </div>											
+
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <label for="inputState">Tax Method
+                                            </label>
+                                            <select id="taxmethod" onchange="gettaxrate('purchase_div');" class="form-control form-control-sm" name="taxmethod">
+                                                <option value=''>Select Tax Method</option>
+                                                <option value="1">Inclusive</option>
+                                                <option value="0">Exclusive</option>
+                                            </select>
+                                        </div>
+
+
+
+                                        <div class="form-group col-md-3">
+                                            <label for="inputState">Tax Name</label>
+                                            <select id="taxid" onchange="gettaxrate('purchase_div');"  class="form-control form-control-sm" name="taxid">
+                                                <option value="0" selected>Open Taxrate</option>
+                                                <?php  
+                                                include("database/db_conection.php");//make connection here -->
+                                                $sql = mysqli_query($dbcon, "SELECT id,taxtype,taxname,taxrate FROM taxmaster ");
+                                                while ($row = $sql->fetch_assoc()){	
+                                                $taxname=$row['taxname'];
+                                                $taxrate=$row['taxrate'];
+                                                $taxtype=$row['taxtype'];
+                                                $taxid=$row['id'];
+                                                echo '<option  data-name="'.$taxname.'" data-type="'.$taxtype.'" data-rate="'.$taxrate.'" value="'.$taxid.'" >'.$taxname.'</option>';
+                                                }
+                                                ?>
+                                            </select>	
+                                        </div>
+                                    <div class="form-group" style="display:none;">
+                                        <input type="text" name="taxtype" id="taxtype" class="form-control form-control-sm"  required placeholder="Price Per Qty" autocomplete="off" readonly>
+                                    </div> 
+                                    <div class="form-group" style="display:none;">
+                                        <input type="text" name="taxname" id="taxname" class="form-control form-control-sm"  required placeholder="Price Per Qty" autocomplete="off" readonly>
+                                    </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <!-- <i class="fa fa-rupee fonts" aria-hidden="true"></i> -->
+                                            <label>Tax Rate %<span class="text-danger">*</span></label>
+                                            <input type="text" name="taxrate" id="taxrate" class="form-control form-control-sm"   placeholder="Price Per Qty" autocomplete="off" readonly>
+                                        </div>
+
+                                        <div class="form-group col-md-3">									
+                                            <label>Tax Amount&nbsp;<span class="text-danger"><i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" 
+                                                                                                data-trigger="focus" data-placement="top" title="The Item will be measured in terms of this uint(e.g.:Kgs,dozen,box"></i>
+                                                </span></label>
+                                            <input type="text" name="taxamount" id="taxamount" class="form-control form-control-sm" autocomplete="off" placeholder="Tax Amount"  readonly />
+                                        </div>
+                                    </div>
+
+                                    <div class="form-row">
+                                        <div class="form-group col-md-3">
+                                            <i class="fa fa-rupee fonts" aria-hidden="true"></i>
+                                            <label>Actual Product Price<span class="text-danger">*</span></label>
+                                            <input type="text" name="product_price" id="product_price" class="form-control form-control-sm"   placeholder="Actual Product price" autocomplete="off" readonly />
+                                        </div>
+
+                                        <div class="form-group col-md-3">									
+                                            <label>Final Price&nbsp;<span class="text-danger"><i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" 
+                                                                                                 data-trigger="focus" data-placement="top" title="The Item will be measured in terms of this uint(e.g.:Kgs,dozen,box"></i>
+                                                </span></label>
+                                            <input type="text" name="final_price" id="final_price" class="form-control form-control-sm" autocomplete="off" placeholder="Price Including Tax"  readonly>
+                                        </div>
+                                    </div>
+                                </div> 
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <h5>Sales Price Information</h5>
@@ -296,123 +412,6 @@
                                     </div>
                                 </div>											
 
-
-                                <div class="form-row" style="display:none">
-                                    <div class="form-group col-md-6">
-                                        <h5>Purchase Price Information</h5>
-                                    </div>
-                                </div>
-                                <div id="purchase_div" style="display:none">
-                                    <div class="form-row">
-                                        <div class="form-group col-md-2">
-                                            <i class="fa fa-rupee fonts" aria-hidden="true"></i>
-                                            <label>Cost<span class="text-danger"></span></label>
-                                            <input type="text" onchange="gettaxrate('purchase_div');" name="priceperqty" id="priceperqty" class="form-control form-control-sm"  placeholder="Price Per Qty" autocomplete="off" />
-                                        </div>
-                                        <div class="form-group col-md-2" id="adjust_cost" style="display:none">
-                                            <i class="fa fa-rupee fonts" aria-hidden="true"></i>
-                                            <label>Adjust Price</label>
-                                            <input type="number" step="any" onkeypress="adjustprice('purchase');"  onkeyup="adjustprice('purchase');" id="adjpriceperqty" name="adjpriceperqty" class="form-control form-control-sm"   />
-                                        </div>
-                                        <div class="form-group col-md-2">
-                                            <label>UOM&nbsp;<i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" 
-                                                               data-trigger="focus" data-placement="top" title="The Item will be measured in terms of this UNIT(e.g.:Kgs,dozen,box"></i>
-                                                <span class="text-danger">*</span></label>
-                                            <select id="uom" onchange="gettaxrate('purchase_div');"  class="form-control form-control-sm" name="uom">
-                                                <option value="0" selected>Select UOM</option>
-                                                <?php 
-
-                                                $sql = mysqli_query($dbcon, "SELECT code,description FROM uom_lookups ");
-                                                while ($row = $sql->fetch_assoc()){	
-                                                    $description=$row['description'];
-                                                    $code=$row['code'];
-                                                    echo '<option  value="'.$code.'" >'.$description.'</option>';
-                                                }
-                                                ?>
-                                            </select>	
-                                        </div>	
-
-                                    </div>
-
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-6">
-                                            <label>As of Date<span class="text-danger">*</span></label>
-                                            <i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" 
-                                               data-trigger="focus" data-placement="top" title="As of Date is price as on date"></i>
-                                            <input type="date" class="form-control form-control-sm"  name="pricedatefrom" id="pricedatefrom" value="<?php echo date("Y-m-d");?>">					  
-                                        </div>
-                                    </div>											
-
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-3">
-                                            <label for="inputState">Tax Method
-                                            </label>
-                                            <select id="taxmethod" onchange="gettaxrate('purchase_div');" class="form-control form-control-sm" name="taxmethod">
-                                                <option value=''>Select Tax Method</option>
-                                                <option value="1">Inclusive</option>
-                                                <option value="0">Exclusive</option>
-                                            </select>
-                                        </div>
-
-
-
-                                        <div class="form-group col-md-3">
-                                            <label for="inputState">Tax Name</label>
-                                            <select id="taxid" onchange="gettaxrate('purchase_div');"  class="form-control form-control-sm" name="taxid">
-                                                <option value="0" selected>Open Taxrate</option>
-                                                <?php 
-                                                include("database/db_conection.php");//make connection here
-                                                $sql = mysqli_query($dbcon, "SELECT id,taxtype,taxname,taxrate FROM taxmaster ");
-                                                while ($row = $sql->fetch_assoc()){	
-                                                $taxname=$row['taxname'];
-                                                $taxrate=$row['taxrate'];
-                                                $taxtype=$row['taxtype'];
-                                                $taxid=$row['id'];
-                                                echo '<option  data-name="'.$taxname.'" data-type="'.$taxtype.'" data-rate="'.$taxrate.'" value="'.$taxid.'" >'.$taxname.'</option>';
-                                                }
-                                                ?>
-                                            </select>	
-                                        </div>
-                                    <div class="form-group" style="display:none;">
-                                        <input type="text" name="taxtype" id="taxtype" class="form-control form-control-sm"  required placeholder="Price Per Qty" autocomplete="off" readonly>
-                                    </div> 
-                                    <div class="form-group" style="display:none;">
-                                        <input type="text" name="taxname" id="taxname" class="form-control form-control-sm"  required placeholder="Price Per Qty" autocomplete="off" readonly>
-                                    </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-3">
-                                            <!-- <i class="fa fa-rupee fonts" aria-hidden="true"></i> -->
-                                            <label>Tax Rate %<span class="text-danger">*</span></label>
-                                            <input type="text" name="taxrate" id="taxrate" class="form-control form-control-sm"   placeholder="Price Per Qty" autocomplete="off" readonly>
-                                        </div>
-
-                                        <div class="form-group col-md-3">									
-                                            <label>Tax Amount&nbsp;<span class="text-danger"><i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" 
-                                                                                                data-trigger="focus" data-placement="top" title="The Item will be measured in terms of this uint(e.g.:Kgs,dozen,box"></i>
-                                                </span></label>
-                                            <input type="text" name="taxamount" id="taxamount" class="form-control form-control-sm" autocomplete="off" placeholder="Tax Amount"  readonly />
-                                        </div>
-                                    </div>
-
-                                    <div class="form-row">
-                                        <div class="form-group col-md-3">
-                                            <i class="fa fa-rupee fonts" aria-hidden="true"></i>
-                                            <label>Actual Product Price<span class="text-danger">*</span></label>
-                                            <input type="text" name="product_price" id="product_price" class="form-control form-control-sm"   placeholder="Actual Product price" autocomplete="off" readonly />
-                                        </div>
-
-                                        <div class="form-group col-md-3">									
-                                            <label>Final Price&nbsp;<span class="text-danger"><i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" 
-                                                                                                 data-trigger="focus" data-placement="top" title="The Item will be measured in terms of this uint(e.g.:Kgs,dozen,box"></i>
-                                                </span></label>
-                                            <input type="text" name="final_price" id="final_price" class="form-control form-control-sm" autocomplete="off" placeholder="Price Including Tax"  readonly>
-                                        </div>
-                                    </div>
-                                </div>
 
 
                                 <div class="form-row">

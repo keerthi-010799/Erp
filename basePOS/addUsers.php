@@ -115,12 +115,9 @@ include("database/db_conection.php");//make connection here
                                         <option selected>Open Org ID</option>
                                         <?php 
                                         include("database/db_conection.php");//make connection here
-                                        $sql = mysqli_query($dbcon,"SELECT concat( prefix,id ) AS compcode
-																				FROM comprofile
-																				ORDER BY id ASC
-																				");
+                                        $sql = mysqli_query($dbcon,"SELECT orgid from comprofile ORDER BY id ASC");
                                         while ($row = $sql->fetch_assoc()){	
-                                            echo $compcode=$row['compcode'];
+                                            echo $compcode=$row['orgid'];
                                             echo '<option onchange="'.$row[''].'" value="'.$compcode.'" >'.$compcode.'</option>';
 
                                         }
@@ -273,14 +270,7 @@ User Group
 </div>
 <!-- END content-page -->
 
-<footer class="footer">
-    <span class="text-right">
-        Copyright@<a target="_blank" href="#">Dhiraj Agro Products Pvt. Ltd.,</a>
-    </span>
-    <span class="float-right">
-        Powered by <a target="_blank" href=""><span>e-Schoolz</span> </a>
-    </span>
-</footer>
+
 
 </div>
 <!-- END main -->

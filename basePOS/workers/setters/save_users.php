@@ -6,7 +6,7 @@ include('../getters/functions.php');
 
 $return =array();
 $userid ="";
-$prefix = "DAPL00";
+$prefix = "SMT-";
 
 $user_name=$_POST['user_name'];//here getting result from the post array after submitting the form.
 $firstname=$_POST['firstname'];
