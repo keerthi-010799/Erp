@@ -290,7 +290,7 @@
                                     </div>
                                 </div> 
 
-                                
+
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <h5>Sales Price Information</h5>
@@ -441,7 +441,7 @@
                                 <div class="form-row">
                                     <div class="form-group col-md-6">									  
                                         <label>Low Stock Alert</label>
-                                        <input type="text" class="form-control form-control-sm" name="lowstockalert" id="lowstockalert" placeholder="eg., 5  or 10 "  required class="form-control" autocomplete="off">
+                                        <input type="text" class="form-control form-control-sm" name="lowstockalert" id="lowstockalert" placeholder="eg., 5  or 10 "  class="form-control" autocomplete="off">
                                     </div>
                                 </div>
 
