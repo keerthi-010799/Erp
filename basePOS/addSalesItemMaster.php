@@ -289,6 +289,8 @@
                                         </div>
                                     </div>
                                 </div> 
+
+                                
                                 <div class="form-row">
                                     <div class="form-group col-md-6">
                                         <h5>Sales Price Information</h5>
