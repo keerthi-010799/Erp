@@ -941,7 +941,7 @@ include('header.php');
                                         <!--td><input type="text" name="description" placeholder="Item Name" class="form-control"></td
                                             <td><input type="text" name="itemcode" placeholder="Item Details" class="form-control"></td>-->
                                         <!-- <td><input id="hsncode" type="text" name="hsncode" placeholder="hsncode"    data-id="" class="form-control form-control-sm hsncode"></td> -->
-                                        <td><input id="qty" type="text" name="qty" onkeypress="sales_rowitem.update_math_vals();sales_rowitem.stkalert(this);"   onkeyup="sales_rowitem.update_math_vals();sales_rowitem.stkalert(this);" placeholder="Qty" data-id="" class="form-control form-control-sm  qty"></td>                                        <td>
+                                        <td><input id="qty" type="text" name="qty" onkeypress="sales_rowitem.update_math_vals(); sales_rowitem.stkalert(this);"   onkeyup="sales_rowitem.update_math_vals(); sales_rowitem.stkalert(this);" placeholder="Qty" data-id="" class="form-control form-control-sm  qty"></td>                                        <td>
                                         <select class="form-control form-control-sm amount" id="uom"  onchange="sales_rowitem.update_math_vals();"; name="uom" style="line-height:1.5;">
                                             <option value="" selected>Open Unit</option>
                                             <?php 
@@ -1814,4 +1814,4 @@ $(document).ready(function() {
 </script>
 <!-- END Java Script for this page -->
 </body>
-</ht
+</html>

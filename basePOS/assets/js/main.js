@@ -188,9 +188,6 @@
 
                 }
 
-
-                console.log(taxarray);
-
                 $('#posubtotal').text(eval(posubtotal).toFixed(2));
 
                 var podiscount = $('#podiscount').val();
@@ -212,7 +209,6 @@
                 $('#taxdiv').html(tax_text.taxhtml);
 
                 var pograndtotal = (eval(posubtotal - podeduction));
-            //  console.log(tax_text.total_tax_amt_master," total_tax_amt_master")
                 pograndtotal = (eval(pograndtotal) + eval(tax_text.total_tax_amt_master)).toFixed(2);
 
                 $('#pograndtotal').text(pograndtotal);
@@ -419,7 +415,6 @@
             // else{
             //     var price = vals.sales_priceperqty;
             // }
-            //console.log(vals);
             $(ele).closest('tr').find('#hsncode').val(vals.hsncode);
             $(ele).closest('tr').find('#price').val(vals.sales_priceperqty);
             $(ele).closest('tr').find('#price').attr('data-price',vals.sales_priceperqty);
@@ -445,8 +440,6 @@
                 var posubtotal = 0;
                 var taxarray = [];
                 for(i=1;i<rowCount;i++){ 
-                    console.log($('#tb tr').eq(i).find('#qty').val());
-
                     var rwqty = $('#tb tr').eq(i).find('#qty').val();
                     var tax_val = $('#tb tr').eq(i).find('#taxname option:selected').attr('data-rate');
                     var tax_type = $('#tb tr').eq(i).find('#taxname option:selected').attr('data-type');
@@ -565,8 +558,6 @@
             }
         },
         gettax_text: function(taxarray){
-            console.log(taxarray);
-
             function groupBy(data, property) {
                 return data.reduce((acc, obj) => {
                 const key = obj[property];
@@ -623,7 +614,6 @@
             
         },
         calcTaxAmt: function(arr,type){
-            console.log(arr);
         var amt = "";
         
         var TaxAmt = 0;
@@ -685,7 +675,7 @@
         },
         stkalert:function(x){
             //alert();
-            var itemcode = $(x).closest('td').prev('td').prev('td').find('#item_select').val();
+            var itemcode = $(x).closest('td').prev('td').find('#item_select').val();
             var item_det = Page.get_edit_vals(itemcode,'salesitemaster2',"id");
             var inQty = eval($(x).val());
             if(inQty>eval(item_det.stockinqty)){
