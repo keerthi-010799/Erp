@@ -375,12 +375,12 @@ include('header.php');
                                 </div>											
 
 
-                                <div class="form-row" style="display:none">
+                                <div class="form-row" style="display:block">
                                     <div class="form-group col-md-6">
                                         <h5>Purchase Price Information</h5>
                                     </div>
                                 </div>
-                                <div id="purchase_div" style="display:none">
+                                <div id="purchase_div" style="display:block">
                                     <div class="form-row">
                                         <div class="form-group col-md-2">
                                             <i class="fa fa-rupee fonts" aria-hidden="true"></i>
