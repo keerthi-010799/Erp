@@ -672,7 +672,18 @@ include('header.php');
 								<i class="fa fa-user-plus" aria-hidden="true"></i>Add New Customer</a><br>
 
                                     </div>
+                                </div><div class="form-row">
+                                    <div class="form-group col-md-8">
+                                        <label for="inputState">Invoice type<span class="text-danger">*</span></label>
+                                        <select id="inv_type"  class="form-control form-control-sm" name="inv_type">
+                                        <option  value="Cash" >Cash</option>
+                                             <option  value="Credit" >Credit</option>
+                                        </select>
+
+                                    </div>
                                 </div>
+
+
 
                                 <!-- <div class="form-row">
                                     <div class="form-group col-md-8">
@@ -1468,7 +1479,7 @@ include('header.php');
             data.inv_value = $('#pobaltotal').text(); 
             data.inv_balance_amt = $('#pobaltotal').text(); 
             data.inv_payment_status = "Unpaid"; 
-            data.inv_type = "Credit Invoice"; 
+            data.inv_type = $('#inv_type').val(); 
             data.inv_payterm_desc =  $('#inv_payterm option:selected').attr('data-val');
             var today = new Date();
             var yy = today.getFullYear().toString();

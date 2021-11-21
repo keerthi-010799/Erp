@@ -155,12 +155,12 @@ function print_duedate($payterm, $payterm_desc, $inv_date){
                                     Invoice Date: <b><?php echo $row['inv_date']; ?></b>
                                 </td> 
                             </tr>    
-                               <tr>
+                               <!-- <tr>
                                 <td style="border-bottom:1px solid #000;padding:5px;">
                                     Payment Term: <b><?php echo $row['inv_payterm_desc']; ?></b>
                                 </td> 
                                
-                            </tr>   
+                            </tr>    -->
                             <tr>
                                 <td style="padding:5px;">
                             
