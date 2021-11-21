@@ -237,12 +237,12 @@ function print_duedate($payterm, $payterm_desc, $inv_date){
                                 </td> 
                             </tr>   
 
-                            <!-- <tr>
+                            <tr <?php echo ($json_data['paymentTerm'] === true) ? 'style="display:block"' : 'style="display:none"'?>>
                                 <td style="border-bottom:1px solid #000;padding:5px;">
-                                    Payment Term: <b><//?php echo $row['inv_payterm_desc']; ?></b>
+                                    Payment Term: <b><?php echo $row['inv_payterm_desc']; ?></b>
                                 </td> 
                                
-                            </tr>    -->
+                            </tr>   
                             <tr>
                                 <td style="padding:5px;">
                                    <?php 

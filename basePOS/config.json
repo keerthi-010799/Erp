@@ -24,6 +24,6 @@
     "salesOrder":false,
     "scrap":false,
     "production":false
-    }
-
+    },
+    "paymentTerm":false
 }
