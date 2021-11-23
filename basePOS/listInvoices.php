@@ -116,13 +116,8 @@
                                                 echo '<td>'.status_code($row['inv_status']).' </td>';
                                                 echo '<td>'.$row['inv_value'].' </td>';
                                                 echo '<td>'.$row['inv_balance_amt'].' </td>';
-                                                if($row['inv_type']=="Credit Invoice"){
                                                     echo '<td>'.payment_status($row['inv_payment_status'],date('Y-m-d'),$row['inv_payterm'],$row['inv_date']) .' </td>';
 
-                                                }else{
-                                                    echo '<td><span class="text-success">Paid</span> </td>';
-
-                                                }
 
                                                 echo '<td>'.$row['inv_owner'].' </td>';
                                         ?>
@@ -157,7 +152,7 @@
 
 
                                                     echo '
-                                                        <a class="dropdown-item"  href="addCustomerReceipts.php?inv_code=' . $row['inv_code'] . '&action=add&type=customer_payments" class="btn btn-danger btn-sm" data-placement="top" data-toggle="tooltip" data-title="Recieve Payment"><i class="fa fa-exchange" aria-hidden="true"></i>&nbsp; Recieve payment</a>';
+                                                        <a class="dropdown-item"  href="addCustomerReceipts.php?inv_code=' . $row['inv_code'] .'&inv_type='.$row['inv_type']. '&action=add&type=customer_payments" class="btn btn-danger btn-sm" data-placement="top" data-toggle="tooltip" data-title="Recieve Payment"><i class="fa fa-exchange" aria-hidden="true"></i>&nbsp; Recieve payment</a>';
 
                                                     echo '
                                                         <a class="dropdown-item"  href="addCreditNotes.php?inv_code=' . $row['inv_code'] . '&action=add&type=creditnotes" class="btn btn-danger btn-sm" data-placement="top" data-toggle="tooltip" data-title="  Create CreditNote"><i class="fa fa-exchange" aria-hidden="true"></i>&nbsp; Create CreditNote</a>';

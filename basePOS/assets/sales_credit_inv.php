@@ -123,12 +123,13 @@ function print_duedate($payterm, $payterm_desc, $inv_date){
 
     </head>
     <body onload="printInit();">
-        <h5 > 
-        <img src="images/logo.png" width="100px" height="100px"/>    
-        <div style="text-align:center">SRI MAHESHWARI TEXTILES <br>
-		</div> </h5>
+        <h3 > 
+        <div style="text-align:center"><img src="images/logo.png" width="200px" height="200px"/>  </div>
+       <div style="text-align:center">SRI MAHESHWARI TEXTILES <div style="text-align:center"><p><small>a wholesale cloth shop  </small></p></div>
+	   
+	</div> </h3>
 		
-         <h3>   <div style="text-align:center">CREDIT INVOICE</div>
+         <h3>   <div style="text-align:center">INVOICE</div>
         </h3>
 
         <table class="p_table" width="100%" style="border:1px solid #000;padding:10px;">
@@ -162,12 +163,17 @@ function print_duedate($payterm, $payterm_desc, $inv_date){
                                
                             </tr>  
                             <tr>
+                                <td style="border-bottom:1px solid #000;padding:5px;">
+                                    Invoice Type: <b><?php echo $row['inv_type']; ?></b>
+                                </td> 
+                            </tr> 
+                            <!-- <tr>
                                 <td style="padding:5px;">
                             
-                                    Due Date: <b><?php echo print_duedate($row['inv_payterm'],$row['inv_payterm_desc'],$row['inv_date']); ?></b>
+                                    Due Date: <b><php echo print_duedate($row['inv_payterm'],$row['inv_payterm_desc'],$row['inv_date']); ?></b>
                                 </td> 
                                
-                            </tr>   
+                            </tr>    -->
 
                         </table>
 

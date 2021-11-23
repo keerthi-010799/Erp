@@ -673,6 +673,15 @@ include('header.php');
 
                                     </div>
                                 </div>
+                                <div class="form-row">
+                                    <div class="form-group col-md-8">
+                                        <label for="inputState">Invoice type<span class="text-danger">*</span></label>
+                                        <select id="inv_type"  class="form-control form-control-sm" onchange="setStatus(this.value)" name="inv_type">
+                                        <option  value="Credit" >Credit</option>
+                                        <option  value="Cash" >Cash</option>
+                                        </select>
+                                    </div>
+                                </div>
 
                                 <div class="form-row">
                                     <div class="form-group col-md-8">
@@ -1478,7 +1487,7 @@ include('header.php');
             data.inv_value = $('#pobaltotal').text(); 
             data.inv_balance_amt = $('#pobaltotal').text(); 
             data.inv_payment_status = "Unpaid"; 
-            data.inv_type = "Credit Invoice"; 
+            data.inv_type = $('#inv_type').val(); 
             data.inv_payterm_desc =  $('#inv_payterm option:selected').attr('data-val');
             //console.log(data,"jp")
             var newinvcode_val = $('#inv_code_row #inv_code').val();
@@ -1515,6 +1524,7 @@ include('header.php');
                     dataType: 'json',
                     success:function(response){
                         location.href="listInvoices.php";
+
                     }
 
 
@@ -1802,6 +1812,13 @@ include('header.php');
 
             });
         });
+        function setStatus(invType){
+            if(invType == 'Cash'){
+                $('#inv_payterm').val('0');
+                // $('#inv_status').val('Approved');
+                
+            }
+        }
 
     </script>			
 

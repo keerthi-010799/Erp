@@ -252,6 +252,8 @@
             var page_table = "<?php if(isset($_GET['type'])){ echo $_GET['type']; } ?>";
             var page_cust_payment_inv_code = "<?php if(isset($_GET['inv_code'])){ echo $_GET['inv_code']; } ?>";
             var page_cust_payment_v_credits_id = "<?php if(isset($_GET['v_credits_id'])){ echo $_GET['v_credits_id']; } ?>";
+            var invoice_type = "<?php if(isset($_GET['inv_type'])){ echo $_GET['inv_type']; } ?>";
+
 
             $(function(){
                 var customer_params =[];
@@ -265,6 +267,9 @@
                     $('#cust_payment_ref_no').val(edit_data.inv_code);
                     oninvoice_select(edit_data.inv_code);
 
+                }
+                if(invoice_type == 'Cash'){
+                    $('#cust_payment_mode').val('Cash');
                 }
 
             });

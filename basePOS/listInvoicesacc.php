@@ -60,7 +60,7 @@
                                         function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                                             $curdate=strtotime($newdate);
                                             $mydate=strtotime('+'.$po_payterm.' day', strtotime($grn_date));
-
+                                           
                                             if($curdate > $mydate)
                                             {
                                                 return '<span class="text-danger">Overdue</span>';
@@ -114,13 +114,9 @@
                                                 echo '<td>'.$row['custname'].' </td>';
                                                 echo '<td>'.$row['inv_value'].' </td>';
                                                 echo '<td>'.$row['inv_balance_amt'].' </td>';
-                                                if($row['inv_type']=="Credit Invoice"){
                                                     echo '<td>'.$payment_status.' </td>';
 
-                                                }else{
-                                                    echo '<td><span class="text-success">Paid</span> </td>';
 
-                                                }
 
                                                 echo '<td>'.$row['inv_owner'].' </td>';
                                         ?>
@@ -146,10 +142,10 @@
 
 
                                                 }
-                                                if($payment_status!='<span class="text-success">Paid</span>'){
+                                                if($payment_status != '<span class="text-success">Paid</span>'){
                                                    
                                                     echo '
-                                                        <a class="dropdown-item"  href="addCustomerReceiptsacc.php?inv_code=' . $row['inv_code'] . '&action=add&type=customer_paymentsacc" class="btn btn-danger btn-sm" data-placement="top" data-toggle="tooltip" data-title="Recieve Payment"><i class="fa fa-exchange" aria-hidden="true"></i>&nbsp; Recieve payment</a>';
+                                                        <a class="dropdown-item"  href="addCustomerReceiptsacc.php?inv_code=' . $row['inv_code'] .'&inv_type='.$row['inv_type'].'&action=add&type=customer_paymentsacc" class="btn btn-danger btn-sm" data-placement="top" data-toggle="tooltip" data-title="Recieve Payment"><i class="fa fa-exchange" aria-hidden="true"></i>&nbsp; Recieve payment</a>';
  
                                                 }
 

@@ -672,14 +672,14 @@ include('header.php');
 								<i class="fa fa-user-plus" aria-hidden="true"></i>Add New Customer</a><br>
 
                                     </div>
-                                </div><div class="form-row">
+                                </div>
+                                <div class="form-row">
                                     <div class="form-group col-md-8">
                                         <label for="inputState">Invoice type<span class="text-danger">*</span></label>
-                                        <select id="inv_type"  class="form-control form-control-sm" name="inv_type">
+                                        <select id="inv_type"  class="form-control form-control-sm" onchange="setStatus(this.value)" name="inv_type">
+                                        <option  value="Credit" >Credit</option>
                                         <option  value="Cash" >Cash</option>
-                                             <option  value="Credit" >Credit</option>
                                         </select>
-
                                     </div>
                                 </div>
 
@@ -1833,6 +1833,12 @@ $('#newcustomer').click(function(e){
 
             });
         });
+        function setStatus(invType){
+            if(invType == 'Cash'){
+                $('#inv_payterm').val('0');
+               // $('#inv_status').val('Approved');
+            }
+        }
 
     </script>
 <!-- BEGIN Java Script for this page -->
