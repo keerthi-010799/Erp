@@ -135,18 +135,39 @@
     <a class="dropdown-item"  href="#" onclick="ToPrint(this);" data-template="sales_credit_invacc" data-code="'.$row['inv_code'].'" data-img="assets/images/logo.png"  data-id="po_print"><i class="fa fa-print" aria-hidden="true"></i>&nbsp; Print</a>   <a class="dropdown-item"  href="#" onclick="ToPrint(this);" data-template="dc_printacc" data-code="'.$row['inv_code'].'" data-img="assets/images/logo.png"  data-id="po_print"><i class="fa fa-print" aria-hidden="true"></i>&nbsp; DC Print</a>';
 
 
+                                                // if($row['inv_status']=="Created"){
+                                                //     echo ' <a class="dropdown-item" href="addInvoice2.php?inv_code=' . $row['inv_code'] . '&action=edit&type=invoicesacc" class="btn btn-primary btn-sm" data-target="#modal_edit_user_5"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp; Edit</a>';   
+                                                //     echo '
+                                                //         <a class="dropdown-item"  href="#" onclick="deleteRecord_8(this);" data-id="'.$row['inv_code'].'" class="btn btn-danger btn-sm" data-placement="top" data-toggle="tooltip" data-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp; Delete</a>';
+
+
+                                                // }
+                                                // if($payment_status != '<span class="text-success">Paid</span>'){
+                                                   
+                                                //     echo '
+                                                //         <a class="dropdown-item"  href="addCustomerReceiptsacc.php?inv_code=' . $row['inv_code'] .'&inv_type='.$row['inv_type'].'&action=add&type=customer_paymentsacc" class="btn btn-danger btn-sm" data-placement="top" data-toggle="tooltip" data-title="Recieve Payment"><i class="fa fa-exchange" aria-hidden="true"></i>&nbsp; Recieve payment</a>';
+ 
+                                                // }
                                                 if($row['inv_status']=="Created"){
-                                                    echo ' <a class="dropdown-item" href="addInvoice2.php?inv_code=' . $row['inv_code'] . '&action=edit&type=invoicesacc" class="btn btn-primary btn-sm" data-target="#modal_edit_user_5"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp; Edit</a>';   
+                                                    echo ' <a class="dropdown-item" href="addInvoice.php?inv_code=' . $row['inv_code'] . '&action=edit&type=invoices" class="btn btn-primary btn-sm" data-target="#modal_edit_user_5"><i class="fa fa-pencil" aria-hidden="true"></i>&nbsp; Edit</a>';   
                                                     echo '
                                                         <a class="dropdown-item"  href="#" onclick="deleteRecord_8(this);" data-id="'.$row['inv_code'].'" class="btn btn-danger btn-sm" data-placement="top" data-toggle="tooltip" data-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp; Delete</a>';
 
+                                                    echo '
+                                                        <a class="dropdown-item"  href="workers/setters/invconvertacc.php?inv_code='.$row['inv_code'].'&inv_status=Approved"  data-id="'.$row['inv_code'].'" class="btn btn-danger btn-sm" data-placement="top" data-toggle="tooltip" data-title="Delete"><i class="fa fa-trash-o" aria-hidden="true"></i>&nbsp; Convert to Approved</a>';
 
                                                 }
-                                                if($payment_status != '<span class="text-success">Paid</span>'){
-                                                   
+
+                                                if($row['inv_status']=="Approved" && $row['inv_balance_amt']>0){
+
+
+
                                                     echo '
-                                                        <a class="dropdown-item"  href="addCustomerReceiptsacc.php?inv_code=' . $row['inv_code'] .'&inv_type='.$row['inv_type'].'&action=add&type=customer_paymentsacc" class="btn btn-danger btn-sm" data-placement="top" data-toggle="tooltip" data-title="Recieve Payment"><i class="fa fa-exchange" aria-hidden="true"></i>&nbsp; Recieve payment</a>';
- 
+                                                        <a class="dropdown-item"  href="addCustomerReceipts.php?inv_code=' . $row['inv_code'] .'&inv_type='.$row['inv_type']. '&action=add&type=customer_payments" class="btn btn-danger btn-sm" data-placement="top" data-toggle="tooltip" data-title="Recieve Payment"><i class="fa fa-exchange" aria-hidden="true"></i>&nbsp; Recieve payment</a>';
+
+                                                    echo '
+                                                        <a class="dropdown-item"  href="addCreditNotesacc.php?inv_code=' . $row['inv_code'] . '&action=add&type=creditnotes" class="btn btn-danger btn-sm" data-placement="top" data-toggle="tooltip" data-title="  Create CreditNote"><i class="fa fa-exchange" aria-hidden="true"></i>&nbsp; Create CreditNote</a>';
+
                                                 }
 
 
