@@ -147,11 +147,11 @@
 
                                 <div class="form-row">	
                                     <div class="form-group col-md-4">
-                                        <input type="text" placeholder="Billing Street"  name="creditnote_billing_street" id="creditnote_billing_street" required class="form-control form-control-sm" > 
+                                        <input type="text" placeholder="Billing Street"  name="creditnote_billing_street" id="creditnote_billing_street"  class="form-control form-control-sm" > 
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <input type="text" placeholder="Shipping Street" name="creditnote_shipping_street" id="creditnote_shipping_street" required class="form-control form-control-sm"  > 
+                                        <input type="text" placeholder="Shipping Street" name="creditnote_shipping_street" id="creditnote_shipping_street"  class="form-control form-control-sm"  > 
                                     </div>
                                 </div>
 
@@ -161,7 +161,7 @@
                                         <input type="text" class="form-control form-control-sm" required name="creditnote_billing_city" id="creditnote_billing_city"  placeholder=" Billing City" >
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <input type="text" placeholder="Shipping City" name="creditnote_shipping_city" id="creditnote_shipping_city" required class="form-control form-control-sm"> 
+                                        <input type="text" placeholder="Shipping City" name="creditnote_shipping_city" id="creditnote_shipping_city"  class="form-control form-control-sm"> 
                                     </div>
                                 </div>
 
@@ -184,7 +184,7 @@
 
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
-                                        <select class="form-control form-control-sm" id="creditnote_billing_country" required name="creditnote_billing_country"> 
+                                        <select class="form-control form-control-sm" id="creditnote_billing_country"  name="creditnote_billing_country"> 
                                             <span class="text-muted">  
                                                 <option value="" >Billing Country</option> </span>
 
@@ -192,7 +192,7 @@
                                     </div>
 
                                     <div class="form-group col-md-4">
-                                        <select class="form-control form-control-sm" id="creditnote_shipping_country" required name="creditnote_shipping_country"> 
+                                        <select class="form-control form-control-sm" id="creditnote_shipping_country"  name="creditnote_shipping_country"> 
                                             <span class="text-muted">  
                                                 <option value="" selected>Shipping Country</option> </span>
 
@@ -203,12 +203,12 @@
 
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
-                                        <input type="text" class="form-control form-control-sm" name="creditnote_billing_zip" id="creditnote_billing_zip"  required placeholder="Billing Zip/Postal Code" value="">
+                                        <input type="text" class="form-control form-control-sm" name="creditnote_billing_zip" id="creditnote_billing_zip"   placeholder="Billing Zip/Postal Code" value="">
                                     </div>	
 
 
                                     <div class="form-group col-md-4">
-                                        <input type="text" class="form-control form-control-sm" name="creditnote_shipping_zip" id="creditnote_shipping_zip"  required placeholder="Shipping Zip/Postal Code">
+                                        <input type="text" class="form-control form-control-sm" name="creditnote_shipping_zip" id="creditnote_shipping_zip"   placeholder="Shipping Zip/Postal Code">
                                     </div>									  
                                 </div>
 
@@ -219,17 +219,17 @@
                                     </div>	
 
                                     <div class="form-group col-md-4">
-                                        <input type="text" class="form-control form-control-sm" name="creditnote_shipping_phone"  id="creditnote_shipping_phone"  required placeholder="Shipping Phone">
+                                        <input type="text" class="form-control form-control-sm" name="creditnote_shipping_phone"  id="creditnote_shipping_phone"   placeholder="Shipping Phone">
                                     </div>									  
                                 </div>
 
 
                                 <div class="form-row">
                                     <div class="form-group col-md-4">
-                                        <input type="text" class="form-control form-control-sm" name="creditnote_billing_gstin" id="creditnote_billing_gstin"  required placeholder="Billing GSTIN No" value="" />
+                                        <input type="text" class="form-control form-control-sm" name="creditnote_billing_gstin" id="creditnote_billing_gstin"   placeholder="Billing GSTIN No" value="" />
                                     </div>
                                     <div class="form-group col-md-4">
-                                        <input type="text" class="form-control form-control-sm" name="creditnote_shipping_gstin" id="creditnote_shipping_gstin"  required placeholder="Shipping GSTIN No">
+                                        <input type="text" class="form-control form-control-sm" name="creditnote_shipping_gstin" id="creditnote_shipping_gstin"   placeholder="Shipping GSTIN No">
                                     </div>									  
                                 </div>
 

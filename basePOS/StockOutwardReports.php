@@ -115,6 +115,7 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                                                 <th>Sales rate</th>												
                                                 <th>Stock On Hand</th>												
                                                 <th>Stock Value</th>												
+                                                <th>Purchase Stock Value</th>												
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -161,6 +162,7 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                                                     echo '<td>'.$row['sales_priceperqty'].' </td>';
                                                     echo '<td>'.$row['stockinqty'].' </td>';
                                                     echo '<td>'.$row['stockinqty']*$row['sales_priceperqty'].' </td>';
+                                                    echo '<td>'.$row['stockinqty']*$row['priceperqty'].' </td>';
 
                                                     echo ' </tr>';  
                                                 }

@@ -724,7 +724,7 @@ include('header.php');
                                 <div class="form-row">                                
                                     <div class="form-group col-md-4">											
                                         <label for="inputState">Payment Term</label>
-                                        <select id="inv_payterm" class="form-control form-control-sm"  name="inv_payterm">
+                                        <select id="inv_payterm" class="form-control form-control-sm" required name="inv_payterm">
                                             <option selected>Open Payment Term</option>
                                         </select>
 

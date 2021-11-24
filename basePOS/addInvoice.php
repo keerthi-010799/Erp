@@ -713,7 +713,7 @@ include('header.php');
                                 <div class="form-row">                                
                                     <div class="form-group col-md-4">											
                                         <label for="inputState">Payment Term</label>
-                                        <select id="inv_payterm" onchange="ongroup(this)" class="form-control"  name="inv_payterm">
+                                        <select id="inv_payterm" onchange="ongroup(this)" class="form-control" required name="inv_payterm">
                                             <option selected>Open Payment Term</option>
                                         </select>
 

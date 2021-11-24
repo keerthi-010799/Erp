@@ -123,29 +123,61 @@ function print_duedate($payterm, $payterm_desc, $inv_date){
 
     </head>
     <body onload="printInit();">
-        <h3 > 
-        <div style="text-align:center"><img src="images/logo.png" width="200px" height="200px"/>  </div>
-       <div style="text-align:center">SRI MAHESHWARI TEXTILES <div style="text-align:center"><p><small>a wholesale cloth shop  </small></p></div>
-	   
-	</div> </h3>
+        <div><h3 > 
+        <div style="text-align:left"><img  style="position:absolute" src="images/logo.png" width="100px" height="100px"/>  </div>
+       <div style="text-align:center">SRI MAHESHWARI TEXTILES <div style="text-align:center">
+       <p><small>a wholesale cloth shop</small></p></div>
+       </div> </h3>
+       <div style="text-align:center">
+       <?php echo $row1['address']; ?>
+                        <?php echo $row1['city']; ?>-<?php echo $row1['zip']; ?>&nbsp;<br/>
+                        <!-- <php echo $row1['country']; ?>,<php echo $row1['state']; ?><br/> -->
+                        <b>Mob#:&nbsp;</b><?php echo $row1['mobile']; ?>,<b>Mail:&nbsp;</b><?php echo $row1['email'];?><br/>
+                        <b>GSTIN</b> - <?php echo $row1['gstin']; ?><br/><br/>
+	
 		
-         <h3>   <div style="text-align:center">INVOICE</div>
+         <h3>   <div style="text-align:center">TAX INVOICE</div>
         </h3>
-
+        </div>
         <table class="p_table" width="100%" style="border:1px solid #000;padding:10px;">
             <tbody>
-                <tr>
+                <!-- <tr>
                     <td width="50%" style="border:1px solid #000;padding:10px;">
                         <b>Shop Name & Address</b><br/>
 
-                        <?php echo $row1['orgname']; ?>,<br/>
+                        <php echo $row1['orgname']; ?>,<br/>
                         <?php echo $row1['address']; ?>,<br/>
                         <?php echo $row1['city']; ?>-<?php echo $row1['zip']; ?>&nbsp;
                         <?php echo $row1['country']; ?>,<?php echo $row1['state']; ?><br/>
-                        <b>Mob#:&nbsp;</b><?php echo $row1['mobile'];?><br/>
+                        <b>Mob#:&nbsp;</b><php echo $row1['mobile'];?><br/>
                         <b>GSTIN</b> - <?php echo $row1['gstin']; ?><br/>
                        
+                    </td> -->
+                    <tr>
+                    <td width="50%" style="border:1px solid #000;padding:10px;">
+					
+					  <b>Customer Name & Address</b><br/>
+
+                        <?php echo $row2['custname']; ?>,<br/>
+
+                        <!-- Code updated by jayaprakash - 09042019 -->
+                        <?php 
+                        if($req === true){
+                            echo $row['inv_shipping_street']+"<br/>";
+                            echo $row['inv_shipping_city'] +"-" +$row['inv_shipping_zip']+" "+ $row['inv_shipping_country']+",";
+                            echo $row['inv_shipping_state']+"<br/>";
+                            echo'<b>Mob#</b> :&nbsp;'+$row['inv_shipping_phone']+'<br/>';
+                        }else{
+                            echo $row2['address']."<br/>";
+                            echo $row2['city']."-".$row2['zip']." ". $row2['country'].",";
+                            echo $row2['state']."<br/>";
+                            echo'<b>Mob#</b> :&nbsp;'.$row2['mobile'].'<br/>';
+   
+                        }
+                        ?>                       
+                        <b>GSTIN</b> - <?php echo $row['inv_shipping_gstin']; ?>   
                     </td>
+                    
                     <td width="50%" style="border:1px solid #000;padding:0px;">
                         <table width="100%">
                             <tr>
@@ -179,37 +211,7 @@ function print_duedate($payterm, $payterm_desc, $inv_date){
 
                     </td>
                 </tr>
-                <tr>
-                    <td width="50%" style="border:1px solid #000;padding:10px;">
-					
-					  <b>Customer Name & Address</b><br/>
-
-                        <?php echo $row2['custname']; ?>,<br/>
-
-                        <!-- Code updated by jayaprakash - 09042019 -->
-                        <?php 
-                        if($req === true){
-                            echo $row['inv_shipping_street']+"<br/>";
-                            echo $row['inv_shipping_city'] +"-" +$row['inv_shipping_zip']+" "+ $row['inv_shipping_country']+",";
-                            echo $row['inv_shipping_state']+"<br/>";
-                            echo'<b>Mob#</b> :&nbsp;'+$row['inv_shipping_phone']+'<br/>';
-                        }else{
-                            echo $row2['address']."<br/>";
-                            echo $row2['city']."-".$row2['zip']." ". $row2['country'].",";
-                            echo $row2['state']."<br/>";
-                            echo'<b>Mob#</b> :&nbsp;'.$row2['mobile'].'<br/>';
-   
-                        }
-                        ?>
-                         <!-- <php echo $row['inv_shipping_street'] ? $row['inv_shipping_street'] : $row2['address'] ; ?>,<br/> -->
-                         <!-- <php echo $row['inv_shipping_city'] ? $row['inv_shipping_city'] : $row2['city']; ?>-<php echo $row['inv_shipping_zip'] ? $row['inv_shipping_zip'] : $row2['zip']; ?>&nbsp;<?php echo $row['inv_shipping_country'] ? $row['inv_shipping_country'] : $row2['country']; ?>,<php echo $row['inv_shipping_state'] ? $row['inv_shipping_state'] : $row2['state']; ?><br/> -->
-                        <!-- <b>Mob#</b>:&nbsp;<php echo $row['inv_shipping_phone'] ? $row['inv_shipping_phone'] : $row2['mobile']; ?> <br/> -->
-                        
-                         <!--?php echo $row2['city']; ?--> <!--?php echo $row2['zip']; ?-->                        
-                        <b>GSTIN</b> - <?php echo $row['inv_shipping_gstin']; ?>
-					
-                       
-                    </td>
+ 
                     <!-- Code added by Saravanakumar -->
                     <td width="50%" style="border:1px solid #000;padding:0px;">
                         <table width="100%">
