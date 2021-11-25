@@ -269,8 +269,8 @@
                                         <!--td><input type="text" name="description" placeholder="Item Name" class="form-control"></td
 <td><input type="text" name="itemcode" placeholder="Item Details" class="form-control"></td>-->
                                         <td><input id="hsncode" type="text" name="hsncode" placeholder="hsncode"    data-id="" class="form-control hsncode"></td>
-                                        <td><input id="qty" type="text" name="qty" onkeypress="sales_rowitem.update_math_vals();"   onkeyup="sales_rowitem.update_math_vals();" placeholder="Qty" data-id="" class="form-control qty"></td>                                        <td>
-                                        <select class="form-control amount" id="uom"  onchange="sales_rowitem.update_math_vals();"; name="uom" style="line-height:1.5;">
+                                        <td><input id="qty" type="text" name="qty" onkeypress="sales_rowitem.update_math_vals_for_manual();"   onkeyup="sales_rowitem.update_math_vals_for_manual();" placeholder="Qty" data-id="" class="form-control qty"></td>                                        <td>
+                                        <select class="form-control amount" id="uom"  onchange="sales_rowitem.update_math_vals_for_manual();"; name="uom" style="line-height:1.5;">
                                             <option value="" selected>Open Unit</option>
                                             <?php 
                                             $sql = mysqli_query($dbcon, "SELECT * FROM uom ");
@@ -281,7 +281,7 @@
                                             ?>
                                         </select>
                                         </td>
-                                        <td><input id="price" type="text" name="price" placeholder="Rate/Qty" onkeypress="sales_rowitem.update_math_vals();"   onkeyup="sales_rowitem.update_math_vals();"   data-id="" class="form-control price"></td>
+                                        <td><input id="price" type="text" name="price" placeholder="Rate/Qty" onkeypress="sales_rowitem.update_math_vals_for_manual();"   onkeyup="sales_rowitem.update_math_vals_for_manual();"   data-id="" class="form-control price"></td>
                                         <td><input id="amount" type="text" name="amount" placeholder="qtyXprice" data-id="" class="form-control amount"></td>
                                         <!-- <td><input type="text" name="discount[]" class="form-control discount" placeholder="Itm wise Disc"></td> -->
                                         <!-- <td>                       <select class="form-control amount" id="taxname"  onchange="sales_rowitem.update_math_vals();"; name="taxname" style="line-height:1.5;">
@@ -319,7 +319,7 @@
                                                 <div class="col-md-8">
 
                                                     <div id="ember1600" class="input-group ember-view col-md-7" style="padding-left:0px;">
-                                                        <input type="text" class="form-control text-right ember-text-field text-right ember-view" id="podiscount" style=".375rem .75rem;" onkeypress="sales_rowitem.update_math_vals();"   onkeyup="sales_rowitem.update_math_vals();" placeholder="Discount"> 
+                                                        <input type="text" class="form-control text-right ember-text-field text-right ember-view" id="podiscount" style=".375rem .75rem;" onkeypress="sales_rowitem.update_math_vals_for_manual();"   onkeyup="sales_rowitem.update_math_vals_for_manual();" placeholder="Discount"> 
                                                         <!----> <div class="input-group-btn" style="width:20%;"><button type="button" data-toggle="dropdown" class="btn btn-default dropdown-toggle discount-btn" data-meth="flat" id="discoutTypeTextbutton">
                                                         <span id="discoutTypeText">₹</span>  <span class="caret"></span></button> <ul class="dropdown-menu pull-right text-center" style="min-width:4rem;" id="discoutType">
                                                         <li onclick="chgdiscount_tupe(this);" data-meth="percent"><a data-ember-action="" data-ember-action-1602="1602"  >%</a></li> 
@@ -347,7 +347,7 @@
 
 
 
-                                                        <input class="form-control" onkeypress="sales_rowitem.update_math_vals();"   onkeyup="sales_rowitem.update_math_vals();" id="poadjustmentval" type="number" step="any" placeholder="Adjustment ">
+                                                        <input class="form-control" onkeypress="sales_rowitem.update_math_vals_for_manual();"   onkeyup="sales_rowitem.update_math_vals_for_manual();" id="poadjustmentval" type="number" step="any" placeholder="Adjustment ">
                                                         <i class="fa fa-question-circle-o bigfonts" aria-hidden="true" data-toggle="popover" 
                                                            data-trigger="focus" data-placement="top" title="Add any other +ve or -ve charges that need to be appliedto adjust the total amount of the transaction Eg. +10 or -10."></i>
                                                     </div>
@@ -532,7 +532,7 @@
                 var trIndex = $(this).closest("tr").index();
                 if(trIndex>1) {
                     $(this).closest("tr").remove();
-                    sales_rowitem.update_math_vals();
+                    sales_rowitem.update_math_vals_for_manual();
                 } else {
                     alert("Sorry!! Can't remove first row!");
                 }

@@ -184,21 +184,22 @@ function print_duedate($payterm, $payterm_desc, $inv_date){
     <h6>  <div style="text-align:center">a wholesale clothes shop</div> </h6>
          <h3>   <div style="text-align:center">INVOICE</div>
         </h3-->
-
+        <div style="text-align:center">INVOICE</div>
        <h3 > 
-        <div style="text-align:left"><img style="position:absolute" src="images/logo.png" width="100px" height="100px"/>  
-       <div style="text-align:center;padding: left 50px">SRI MAHESHWARI TEXTILES 
-       <div style="text-align:center"><small>a wholesale cloth shop  </small></div>
+        <div style="text-align:left;margin:right 10px"><img style="position:absolute" src="images/logo.png" width="100px" height="100px"/>  
+       <div style="text-align:center;color:#8B008B">SRI MAHESHWARI TEXTILES 
+       <!-- <div style="text-align:center"><small>a wholesale cloth shop  </small></div> -->
 	</div> </h3>
-    <div style="text-align:center;padding: left 50px;">
+    <div style="text-align:center">
     <?php echo $row1['address']; ?>,
                         <?php echo $row1['city']; ?>-<?php echo $row1['zip']; ?>&nbsp;
-                        <!-- <php echo $row1['country']; ?>,<php echo $row1['state']; ?><br/> -->
-                        <b>Mob#:&nbsp;</b><?php echo $row1['mobile'];?>,<b>Mail:&nbsp;</b><?php echo $row1['email'];?><br/>
-                        <b>GSTIN</b> - <?php echo $row1['gstin']; ?>
+                        <!--<php echo $row1['country']; ?>,<php echo $row1['state']; ?> --><br/>
+                        <b>Mob:&nbsp;</b><?php echo $row1['mobile'];?>,<?php echo $row1['workphone']; ?><br/>
+                         <b>E-mail:&nbsp;</b><?php echo $row1['email'];?><br/>
+                        <!-- <b>GSTIN</b> - <php echo $row1['gstin']; ?> -->
 		</div><br/>
-         <h3>   <div style="text-align:center">INVOICE</div>
-        </h3>
+         <!-- <h3>   
+        </h3> -->
 
 
         <table class="p_table" width="100%" style="border:1px solid #000;padding:10px;">

@@ -180,6 +180,12 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                                                 <th></th>
                                                 <th></th>
                                                 <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -237,12 +243,33 @@ function payment_status($payment_status,$newdate,$po_payterm,$grn_date){
                 .reduce( function (a, b) {
                     return intVal(a) + intVal(b);
                 }, 0 ).toFixed(2);
+                var stockOnHand = api
+                .column( 9 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 ).toFixed(2);
+                var StockValue = api
+                .column( 10 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 ).toFixed(2);
+                var purchaseStockValue = api
+                .column( 11 )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 ).toFixed(2);
 
 
 
                 $( api.column( 0 ).footer() ).html('Total');
                 $( api.column( 6 ).footer() ).html(grossval);
                 $( api.column( 5 ).footer() ).html(grossvalStockQty);
+                $( api.column( 9 ).footer() ).html(stockOnHand);
+                $( api.column( 10 ).footer() ).html(StockValue);
+                $( api.column( 11 ).footer() ).html(purchaseStockValue);
 
             },
             buttons: [
