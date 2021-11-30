@@ -153,14 +153,14 @@ if(isset($_POST['expenseEdit']))
 								<div class="form-row">
 									       <div class="form-group col-md-12">
                                                 <label for="inputState">Expense Account</label><span class="text-danger">*</span>
-                                                <select id="expacctname" onchange="onload(this)" class="form-control select2" name="expacctname" required>
-                                                 <?php 
+                                                <select id="expacctname" onchange="onload(this)" class="form-control select2"  name="expacctname" required>
+                                               <?php 
                                                     include("database/db_conection.php");//make connection here
 
                                                     $sql = mysqli_query($dbcon, "SELECT accountname FROM expenseacctmaster");
                                                     while ($row = $sql->fetch_assoc()){	
                                                         echo $acctname_get=$row['accountname'];
-                                                         if($acctname_get==$accountname){
+                                                         if($acctname_get==$expacctname){
                                                             echo '<option value="'.$acctname_get.'" selected>'.$acctname_get.'</option>';
 
                                                         }else{
